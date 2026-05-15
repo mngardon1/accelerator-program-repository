@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Help Me Decide | CHIEF AI Accelerator</title>
+    <meta name="description" content="Decide where to set up your first Claude Project — Chat or Cowork — using your first Skill.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #132539;
+            --paper: #F9F8F5;
+            --teal: #13B5A2;
+            --teal-deep: #12917E;
+            --teal-light: #5DCFC1;
+            --mint: #D5F0EC;
+            --slate: #6B7A8D;
+            --slate-deep: #2A3F54;
+            --white: #FFFFFF;
+            --warning: #D4A338;
+
+            --text-on-dark: rgba(255,255,255,0.92);
+            --text-muted-dark: rgba(255,255,255,0.72);
+            --text-faint-dark: rgba(255,255,255,0.55);
+
+            --font-display: 'Sora', Arial, sans-serif;
+            --font-body: 'Inter', Arial, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --max-content: 880px;
+            --max-wide: 1080px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { background: var(--paper); color: var(--navy); }
+        body {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--teal); text-decoration: none; }
+        a:hover { color: var(--teal-deep); }
+
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(19,37,57,0.08);
+        }
+        .brand {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--navy);
+        }
+        .header-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--teal);
+        }
+
+        .breadcrumb-wrap {
+            max-width: var(--max-wide);
+            margin: 0 auto;
+            padding: 28px 40px 0;
+        }
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--slate);
+        }
+        .breadcrumb a { color: var(--slate); }
+        .breadcrumb a:hover { color: var(--navy); }
+        .breadcrumb span { margin: 0 8px; }
+
+        .hero {
+            background: var(--navy);
+            color: var(--white);
+            padding: 80px 40px 96px;
+            text-align: center;
+            margin-top: 32px;
+        }
+        .hero .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(40px, 6vw, 60px);
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+        .hero .subtitle {
+            font-size: 19px;
+            color: var(--text-muted-dark);
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .hero .meta-pill {
+            display: inline-flex;
+            gap: 24px;
+            margin-top: 32px;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 999px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-on-dark);
+        }
+        .hero .meta-pill .sep { color: rgba(255,255,255,0.4); }
+
+        .section {
+            padding: 88px 40px;
+        }
+        .section.dark {
+            background: var(--navy);
+            color: var(--white);
+        }
+        .section.dark h2,
+        .section.dark h3 { color: var(--white); }
+        .section.dark .eyebrow { color: var(--teal); }
+        .section-inner {
+            max-width: var(--max-content);
+            margin: 0 auto;
+        }
+        .section-inner.wide { max-width: var(--max-wide); }
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--slate);
+            margin-bottom: 16px;
+        }
+        h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(30px, 4vw, 40px);
+            line-height: 1.15;
+            color: var(--navy);
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+        }
+        .section-intro {
+            font-size: 18px;
+            color: var(--slate);
+            max-width: 700px;
+            margin-bottom: 36px;
+            line-height: 1.65;
+        }
+        .section.dark .section-intro { color: var(--text-muted-dark); }
+        h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 1.3;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+        p { margin-bottom: 18px; }
+        p:last-child { margin-bottom: 0; }
+        strong { font-weight: 600; color: var(--navy); }
+        .section.dark strong { color: var(--white); }
+        em { font-style: italic; }
+
+        .pull-quote {
+            margin: 32px 0;
+            padding: 24px 32px;
+            background: var(--white);
+            border-left: 3px solid var(--teal);
+            font-family: var(--font-display);
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.4;
+        }
+        .section.dark .pull-quote {
+            background: rgba(255,255,255,0.05);
+            color: var(--white);
+        }
+
+        /* Two-card overview (what we're doing) */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 24px;
+        }
+        .overview-card {
+            background: var(--white);
+            border: 1px solid rgba(19,37,57,0.08);
+            padding: 32px;
+            border-top: 4px solid var(--teal);
+        }
+        .overview-card.second { border-top-color: var(--teal-deep); }
+        .overview-card .ov-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 8px;
+        }
+        .overview-card.second .ov-label { color: var(--teal-deep); }
+        .overview-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        .overview-card p {
+            font-size: 15px;
+            color: var(--slate-deep);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* What is a Skill explainer */
+        .skill-explainer {
+            background: rgba(213,240,236,0.4);
+            border: 1px solid rgba(19,181,162,0.2);
+            border-radius: 6px;
+            padding: 32px 36px;
+            margin-top: 8px;
+        }
+        .skill-explainer .se-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--teal-deep);
+            margin-bottom: 12px;
+        }
+        .skill-explainer h3 {
+            font-size: 22px;
+            margin-bottom: 14px;
+        }
+        .skill-explainer p {
+            color: var(--slate-deep);
+            font-size: 16px;
+            line-height: 1.65;
+        }
+
+        /* Download / copy card */
+        .download-card {
+            background: var(--navy);
+            color: var(--white);
+            padding: 40px 40px;
+            border-radius: 6px;
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 32px;
+            align-items: center;
+        }
+        .download-card .dl-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 8px;
+        }
+        .download-card h3 {
+            color: var(--white);
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+        .download-card p {
+            color: var(--text-muted-dark);
+            font-size: 14.5px;
+            margin: 0;
+        }
+        .download-card .dl-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 200px;
+        }
+        .btn {
+            display: inline-block;
+            text-align: center;
+            padding: 12px 22px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            letter-spacing: 0.02em;
+        }
+        .btn-primary {
+            background: var(--teal);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: var(--teal-deep);
+            color: var(--white);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+        }
+
+        /* Step list — detailed numbered */
+        .step-list {
+            list-style: none;
+            counter-reset: step;
+            margin-top: 24px;
+        }
+        .step-list > li {
+            counter-increment: step;
+            position: relative;
+            padding: 24px 0 28px 84px;
+            border-bottom: 1px solid rgba(19,37,57,0.08);
+        }
+        .step-list > li:last-child { border-bottom: none; }
+        .step-list > li::before {
+            content: counter(step, decimal-leading-zero);
+            position: absolute;
+            left: 0;
+            top: 24px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 36px;
+            color: var(--teal);
+            line-height: 1;
+        }
+        .step-list .step-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+        .step-list .step-body {
+            font-size: 15.5px;
+            color: var(--slate-deep);
+            line-height: 1.65;
+        }
+        .step-list .step-body p { margin-bottom: 12px; }
+        .step-list .step-body p:last-child { margin-bottom: 0; }
+        .step-list .step-body strong { color: var(--navy); }
+
+        .inline-key {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            background: rgba(19,37,57,0.06);
+            border: 1px solid rgba(19,37,57,0.1);
+            padding: 2px 8px;
+            border-radius: 3px;
+            color: var(--navy);
+        }
+
+        /* Prompt block — what to type */
+        .prompt-box {
+            background: var(--navy);
+            color: var(--white);
+            padding: 18px 22px;
+            border-radius: 4px;
+            margin: 12px 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.6;
+            position: relative;
+        }
+        .prompt-box::before {
+            content: 'Type this';
+            position: absolute;
+            top: -10px;
+            left: 16px;
+            background: var(--teal);
+            color: var(--white);
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 2px 10px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        /* Tip box */
+        .tip-box {
+            background: rgba(212,163,56,0.08);
+            border-left: 3px solid var(--warning);
+            padding: 16px 20px;
+            margin-top: 14px;
+            border-radius: 0 4px 4px 0;
+        }
+        .tip-box .tip-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--warning);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        .tip-box p {
+            font-size: 14px;
+            color: var(--slate-deep);
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        /* Conversation preview */
+        .convo-preview {
+            background: var(--white);
+            border: 1px solid rgba(19,37,57,0.08);
+            border-radius: 6px;
+            margin-top: 16px;
+            overflow: hidden;
+        }
+        .convo-preview .convo-head {
+            background: rgba(19,37,57,0.04);
+            padding: 10px 18px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--slate);
+            border-bottom: 1px solid rgba(19,37,57,0.06);
+        }
+        .convo-preview .msg {
+            padding: 16px 22px;
+            font-size: 14.5px;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(19,37,57,0.06);
+        }
+        .convo-preview .msg:last-child { border-bottom: none; }
+        .convo-preview .msg .who {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--slate);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        .convo-preview .msg.you .who { color: var(--teal-deep); }
+        .convo-preview .msg.claude .who { color: var(--teal); }
+        .convo-preview .msg p {
+            margin: 0;
+            color: var(--slate-deep);
+        }
+
+        /* Skill content code block */
+        .skill-code {
+            background: var(--navy);
+            color: var(--text-on-dark);
+            padding: 24px 28px;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 16px;
+            max-height: 380px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .skill-code .frontmatter {
+            color: var(--teal-light);
+        }
+        .copy-row {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 12px;
+        }
+        .btn-copy {
+            background: var(--navy);
+            color: var(--white);
+            border: 1px solid var(--navy);
+            padding: 10px 18px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-copy:hover {
+            background: var(--teal-deep);
+            border-color: var(--teal-deep);
+        }
+        .btn-copy.copied {
+            background: var(--teal);
+            border-color: var(--teal);
+        }
+
+        /* What you'll be asked */
+        .questions-list {
+            list-style: none;
+            counter-reset: q;
+            margin-top: 16px;
+        }
+        .questions-list li {
+            counter-increment: q;
+            position: relative;
+            padding: 16px 0 16px 56px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .questions-list li:last-child { border-bottom: none; }
+        .questions-list li::before {
+            content: 'Q' counter(q);
+            position: absolute;
+            left: 0;
+            top: 16px;
+            font-family: var(--font-mono);
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            color: var(--teal);
+            background: rgba(19,181,162,0.15);
+            padding: 4px 10px;
+            border-radius: 3px;
+        }
+        .questions-list .q-text {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        .questions-list .q-note {
+            font-size: 14px;
+            color: var(--text-muted-dark);
+            line-height: 1.55;
+        }
+
+        /* Outcome panels */
+        .outcome-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 24px;
+        }
+        .outcome-card {
+            background: var(--white);
+            border: 1px solid rgba(19,37,57,0.08);
+            padding: 28px;
+            border-top: 4px solid var(--teal);
+        }
+        .outcome-card.cowork { border-top-color: var(--teal-deep); }
+        .outcome-card .oc-verdict {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 8px;
+        }
+        .outcome-card.cowork .oc-verdict { color: var(--teal-deep); }
+        .outcome-card h3 {
+            font-size: 22px;
+            margin-bottom: 14px;
+        }
+        .outcome-card p {
+            font-size: 14.5px;
+            color: var(--slate-deep);
+            line-height: 1.6;
+        }
+        .outcome-card .oc-next {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(19,37,57,0.08);
+            font-size: 13px;
+            color: var(--slate);
+        }
+        .outcome-card .oc-next strong { color: var(--navy); }
+
+        footer {
+            background: var(--navy);
+            color: var(--text-muted-dark);
+            padding: 48px 40px;
+            text-align: center;
+            font-size: 14px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        footer .brand {
+            color: var(--white);
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        footer .footer-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--teal);
+        }
+
+        @media (max-width: 900px) {
+            .overview-grid { grid-template-columns: 1fr; }
+            .outcome-grid { grid-template-columns: 1fr; }
+            .download-card { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 700px) {
+            header { padding: 16px 24px; }
+            .hero { padding: 56px 24px 64px; }
+            .section { padding: 56px 24px; }
+            .step-list > li { padding-left: 56px; }
+            .step-list > li::before { font-size: 28px; }
+            .hero .meta-pill { flex-direction: column; gap: 8px; padding: 16px 20px; }
+            .hero .meta-pill .sep { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/" class="brand">Michael Gardon</a>
+        <div class="header-label">CHIEF AI Accelerator</div>
+    </header>
+
+    <div class="breadcrumb-wrap">
+        <div class="breadcrumb">
+            <a href="/accelerator/">Accelerator</a>
+            <span>/</span>
+            <a href="chat-vs-cowork.html">Chat vs. Cowork</a>
+            <span>/</span>
+            Help Me Decide
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="eyebrow">Pick Where Your First Project Lives</div>
+        <h1>Help me decide where to put my first Project.</h1>
+        <p class="subtitle">We're analyzing your mode of working with AI. There are real tradeoffs, but don't worry — everything is changeable. This is not a major decision.</p>
+        <div class="meta-pill">
+            <span>~5 minutes</span>
+            <span class="sep">·</span>
+            <span>Bring one real stream of work to mind</span>
+        </div>
+    </section>
+
+    <!-- WHAT WE'RE DOING -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="eyebrow">What We're Doing Here</div>
+            <h2>Decide where your first Project lives.</h2>
+            <p>You'll be deciding where your first Project lives, so you can start working with Projects effectively. You'll also be using your first Skill along the way — don't worry about what Skills are yet. That'll come soon.</p>
+        </div>
+    </section>
+
+    <!-- DOWNLOAD THE SKILL -->
+    <section class="section dark" style="padding-bottom: 60px;">
+        <div class="section-inner">
+            <div class="eyebrow">Grab the Skill File</div>
+            <h2>Download it, or copy the contents.</h2>
+            <p class="section-intro">This file is the entire Skill. It's a single Markdown document. Either download it to your computer, or copy the text and paste it into a new file yourself — both work the same way.</p>
+
+            <div class="download-card">
+                <div>
+                    <div class="dl-label">The Skill File</div>
+                    <h3>project-placement-advisor-SKILL.md</h3>
+                    <p>About 70 lines of plain-English instructions. Claude reads it, runs the three-question diagnostic, and gives you a recommendation.</p>
+                </div>
+                <div class="dl-actions">
+                    <a href="project-placement-advisor-SKILL.md" download class="btn btn-primary">↓ Download Skill</a>
+                    <button class="btn btn-secondary" onclick="toggleSkillView()">View / copy text</button>
+                </div>
+            </div>
+
+            <div id="skill-view" style="display: none; margin-top: 24px;">
+                <div class="skill-code" id="skill-content">---
+name: project-placement-advisor
+description: Help users decide whether to set up their first Claude Project in Chat or in Cowork. Use this skill whenever a user asks any version of "where should I set up my project", "Chat or Cowork", "help me decide where to put my project", "should I use Chat Projects or Cowork Projects", or clicks a "Help me decide where to set up my first project" button. Also trigger when a user is clearly trying to choose between Chat and Cowork as the home for ongoing work, even if they don't explicitly mention "projects" — phrases like "where should I do this work", "which one should I use for my client work", or "I can't decide between Chat and Cowork" should activate this skill. Do not use this skill for general questions about Claude features, pricing, or capabilities — only for the specific decision of where to house a Project.
+---
+
+# Project Placement Advisor
+
+A short diagnostic skill. The user wants help deciding whether their first (or next) Project should live in Chat or in Cowork. The output is a clear recommendation, with the reasoning, in under a minute of conversation.
+
+## The frame to hold
+
+There is no universally correct answer. Chat Projects and Cowork Projects are both valid homes for ongoing work. The right choice depends on three things: where the user actually works, whether they need seamless mobile/web access, and whether their AI sessions typically produce built outputs.
+
+Both surfaces have persistent Project context. The old "Chat loses context" framing is wrong — Chat Projects retain memory and uploaded files across conversations. The real differences are: where the surface runs, what kind of output is possible, and how much setup is involved.
+
+When in doubt, **default to Chat.** Chat Projects are lower-friction, work everywhere, and cover most executive use cases. Cowork is the right answer when the user clearly needs local file access, multi-file building, or autonomous multi-step execution.
+
+## The three questions, in order
+
+Ask one question at a time. Wait for the answer. Move to the next.
+
+### Question 1
+
+**"Where do you actually use AI most — primarily on mobile and web, or primarily on a desktop computer?"**
+
+- Mobile/web primarily → strong lean toward **Chat**. Cowork is desktop-only (with mobile Dispatch as a workaround).
+- Desktop primarily → Cowork is on the table. Continue.
+- Mixed / both → Continue. The next questions will decide.
+
+### Question 2
+
+**"Do you need seamless access across mobile, web, and desktop — or is desktop-first acceptable to you?"**
+
+- Need seamless across all three → **Chat.** It's the only surface that runs natively everywhere.
+- Desktop-first is fine (mobile via Dispatch is acceptable) → Cowork stays on the table. Continue.
+
+### Question 3
+
+**"Do your AI sessions typically go straight to producing something — a document, spreadsheet, artifact, or built output — or are they mostly thinking and conversation?"**
+
+- Straight to producing → strong lean toward **Cowork.** Especially if outputs are multi-file or get iterated on over time.
+- Mostly thinking and conversation → **Chat** is sufficient.
+
+## Making the recommendation
+
+After the third question, give a clear recommendation. Don't waffle. Format:
+
+1. **One-line verdict.** "Set up your first Project in [Chat / Cowork]."
+2. **Two to three sentences of reasoning** tied to their specific answers.
+3. **One sentence on what to do next.**
+
+If their answers are genuinely split, default to **Chat** and tell them why: it's lower-friction, works everywhere, and they can always move to Cowork later if they hit Chat's limits.
+
+## Tone
+
+Brief, direct, executive-friendly. One question at a time. No preamble. No "great question." Move them through the diagnostic in under a minute.</div>
+                <div class="copy-row">
+                    <button class="btn-copy" id="copy-btn" onclick="copySkill()">Copy text</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE STEPS -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="eyebrow">The Steps</div>
+            <h2>How to actually do this.</h2>
+            <p class="section-intro">Walk through these in order. If you've never uploaded a file to a Claude chat before, that's fine — we'll go slow on that step.</p>
+
+            <ol class="step-list">
+                <li>
+                    <div class="step-title">Download the Skill file (if you haven't yet)</div>
+                    <div class="step-body">
+                        <p>Scroll up and click <strong>Download Skill</strong>. The file will land in your <strong>Downloads</strong> folder. It's named <span class="inline-key">project-placement-advisor-SKILL.md</span> — leave the name as-is.</p>
+                        <p>If you'd rather not download anything, click <strong>View / copy text</strong> instead, copy everything, and paste it into a new file on your computer. Save it as <span class="inline-key">project-placement-advisor.md</span>.</p>
+                        <div class="tip-box">
+                            <div class="tip-label">If you can't find your downloaded file</div>
+                            <p>On Mac, open Finder and look in <strong>Downloads</strong>. On Windows, open File Explorer and check <strong>Downloads</strong>. The file is small — a few KB.</p>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="step-title">Open Claude in your browser</div>
+                    <div class="step-body">
+                        <p>Go to <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> in a new tab. Sign in if you're not already.</p>
+                        <p>You can do this on the Claude desktop app instead — the steps are identical. Use whichever you prefer.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="step-title">Start a brand new chat</div>
+                    <div class="step-body">
+                        <p>Click <strong>New chat</strong> in the left sidebar (or the <span class="inline-key">+</span> icon if your view is collapsed).</p>
+                        <p>Do <em>not</em> open this inside an existing Project. We want a fresh, empty conversation. The Skill works in a regular chat — Projects come <em>after</em> the recommendation.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="step-title">Attach the Skill file to the chat</div>
+                    <div class="step-body">
+                        <p>At the bottom of the chat window, you'll see a text box. To the left of where you type, there's a <strong>paperclip icon</strong> or a <strong>+</strong> button — that's the attach button.</p>
+                        <p>Click it, then choose <strong>Upload from computer</strong> (or just drag the <span class="inline-key">.md</span> file from your Downloads folder directly onto the chat window). You'll see the file appear as a small attachment above the text box.</p>
+                        <div class="tip-box">
+                            <div class="tip-label">If you don't see the paperclip</div>
+                            <p>Make sure you're on Claude on the web or desktop app — not the mobile app. Mobile attachment flow is similar but the icon may be hidden inside a "+" menu next to the message box.</p>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="step-title">Tell Claude what you want</div>
+                    <div class="step-body">
+                        <p>With the file attached, type this exactly into the chat and send:</p>
+                        <div class="prompt-box">Help me decide where to set up my first Project. Use the attached skill.</div>
+                        <p>That's it. Claude will read the Skill, recognize it as a diagnostic, and start asking you the three questions.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="step-title">Answer the three questions, one at a time</div>
+                    <div class="step-body">
+                        <p>Claude will ask one question, wait for your answer, then ask the next. Answer honestly — short answers are fine. The whole exchange should take under a minute.</p>
+                        <p>Here's roughly how the conversation will go:</p>
+                        <div class="convo-preview">
+                            <div class="convo-head">Sample conversation</div>
+                            <div class="msg you">
+                                <div class="who">You</div>
+                                <p>Help me decide where to set up my first Project. Use the attached skill.</p>
+                            </div>
+                            <div class="msg claude">
+                                <div class="who">Claude</div>
+                                <p>Where do you actually use AI most — primarily on mobile and web, or primarily on a desktop computer?</p>
+                            </div>
+                            <div class="msg you">
+                                <div class="who">You</div>
+                                <p>Mostly desktop, but I check things on my phone too.</p>
+                            </div>
+                            <div class="msg claude">
+                                <div class="who">Claude</div>
+                                <p>Do you need seamless access across mobile, web, and desktop — or is desktop-first acceptable to you?</p>
+                            </div>
+                            <div class="msg you">
+                                <div class="who">You</div>
+                                <p>Desktop-first is fine.</p>
+                            </div>
+                            <div class="msg claude">
+                                <div class="who">Claude</div>
+                                <p>Do your AI sessions typically go straight to producing something — a document, spreadsheet, or built output — or are they mostly thinking and conversation?</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="step-title">Get your recommendation</div>
+                    <div class="step-body">
+                        <p>After the third answer, Claude will give you a clear, one-line verdict: <strong>set up your first Project in Chat</strong>, or <strong>set up your first Project in Cowork</strong>. Two or three sentences of reasoning. One sentence on what to do next.</p>
+                        <p>That's the whole Skill. Done in under a minute.</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- WHAT YOU'LL BE ASKED -->
+    <section class="section dark">
+        <div class="section-inner">
+            <div class="eyebrow">Preview</div>
+            <h2>The three questions you'll be asked.</h2>
+            <p class="section-intro">In case you want to think about them in advance — though honest, gut-level answers tend to be more accurate than rehearsed ones.</p>
+
+            <ol class="questions-list">
+                <li>
+                    <div class="q-text">Where do you actually use AI most — mobile/web, or desktop?</div>
+                    <div class="q-note">Be honest about where your hands actually are when you're working with AI today. Not where you wish they were.</div>
+                </li>
+                <li>
+                    <div class="q-text">Do you need seamless access across mobile, web, and desktop — or is desktop-first acceptable?</div>
+                    <div class="q-note">If you're on the road a lot and need AI in your pocket, that matters. If you mostly work from one machine, desktop-first is fine.</div>
+                </li>
+                <li>
+                    <div class="q-text">Do your AI sessions usually produce something built — or are they mostly thinking and conversation?</div>
+                    <div class="q-note">A "built output" means a document, spreadsheet, deck, codebase, or anything that lives as a file. Thinking and conversation means no artifact, just a sharper head.</div>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- WHAT HAPPENS NEXT -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="eyebrow">What's Next</div>
+            <h2>Now we'll set up your first Project.</h2>
+            <p>That's the next module.</p>
+        </div>
+    </section>
+
+    <!-- WHAT YOU JUST LEARNED -->
+    <section class="section dark">
+        <div class="section-inner">
+            <div class="eyebrow">What You Just Did</div>
+            <h2>You used your first Skill.</h2>
+            <p style="color:rgba(255,255,255,0.85);">You downloaded a Skill file, attached it to a Claude chat, prompted Claude to use it, and got a structured output back. That's the entire Skill mechanic. Every Skill in the program works exactly this way — only the playbook inside changes.</p>
+
+            <p style="color:rgba(255,255,255,0.85);">Once your Project is set up, you'll start dropping Skills into it directly so they're always available. For now, the file-upload-per-chat method is fine. You've got the muscle memory.</p>
+
+            <div class="pull-quote">
+                The decision was the immediate goal. The Skill mechanic is the durable one. Both happened in the same five minutes.
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span class="brand">Michael Gardon</span>
+        <div class="footer-label">CHIEF AI Accelerator — Help Me Decide</div>
+    </footer>
+
+    <script>
+        function toggleSkillView() {
+            var el = document.getElementById('skill-view');
+            el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+        }
+        function copySkill() {
+            var content = document.getElementById('skill-content').innerText;
+            navigator.clipboard.writeText(content).then(function() {
+                var btn = document.getElementById('copy-btn');
+                var original = btn.innerText;
+                btn.innerText = 'Copied ✓';
+                btn.classList.add('copied');
+                setTimeout(function() {
+                    btn.innerText = original;
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>

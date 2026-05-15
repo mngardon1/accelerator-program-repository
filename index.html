@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chief Accelerator — Program Map</title>
+<meta name="description" content="The reference library for the Chief AI Fluency Accelerator. Frameworks, decision aids, and module references.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:        #132539;
+    --paper:       #F9F8F5;
+    --teal:        #13B5A2;
+    --teal-deep:   #12917E;
+    --teal-light:  #5DCFC1;
+    --mint:        #D5F0EC;
+    --slate:       #6B7A8D;
+    --slate-deep:  #2A3F54;
+    --white:       #FFFFFF;
+    --warning:     #D4A338;
+    --text-on-dark:      rgba(255,255,255,0.92);
+    --text-muted-dark:   rgba(255,255,255,0.72);
+    --text-faint-dark:   rgba(255,255,255,0.55);
+    --font-display: 'Sora', Arial, sans-serif;
+    --font-body:    'Inter', Arial, sans-serif;
+    --font-mono:    'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--slate-deep);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid rgba(19,37,57,0.08);
+    background: var(--paper);
+  }
+  .brand {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  .header-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--teal);
+  }
+
+  .hero {
+    background: var(--navy);
+    color: var(--white);
+    padding: 96px 40px 88px;
+    text-align: center;
+  }
+  .hero-inner { max-width: 880px; margin: 0 auto; }
+  .hero .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--teal);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6vw, 60px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+    color: var(--white);
+  }
+  .hero .subtitle {
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--text-muted-dark);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .meta-pill {
+    display: inline-block;
+    margin-top: 36px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-faint-dark);
+  }
+
+  .section { padding: 80px 40px; }
+  .section.light { background: var(--paper); }
+  .section.alt { background: var(--white); }
+  .section-inner { max-width: 1080px; margin: 0 auto; }
+  .section .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--teal);
+    margin-bottom: 14px;
+  }
+  .section h2 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.6vw, 36px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--navy);
+    margin: 0 0 16px;
+  }
+  .section-intro {
+    font-size: 17px;
+    color: var(--slate);
+    max-width: 680px;
+    margin: 0 0 40px;
+    line-height: 1.55;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    display: block;
+    background: var(--white);
+    border: 1px solid rgba(19,37,57,0.08);
+    border-top: 3px solid var(--teal);
+    padding: 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-top-color: var(--teal-deep);
+    box-shadow: 0 8px 24px rgba(19,37,57,0.06);
+  }
+  .section.alt .card { background: var(--paper); }
+  .card .card-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--slate);
+    margin-bottom: 10px;
+  }
+  .card h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--navy);
+    margin: 0 0 10px;
+  }
+  .card p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--slate-deep);
+    margin: 0;
+  }
+  .card .card-link {
+    margin-top: 16px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--teal);
+  }
+  .card.coming-soon {
+    border-top-color: rgba(19,37,57,0.15);
+    opacity: 0.7;
+  }
+  .card.coming-soon h3 { color: var(--slate); }
+  .card.coming-soon .card-link { color: var(--slate); }
+
+  footer {
+    background: var(--navy);
+    color: var(--text-muted-dark);
+    padding: 48px 40px;
+    text-align: center;
+    font-size: 14px;
+  }
+  footer .footer-brand {
+    font-family: var(--font-display);
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  footer a { color: var(--teal); text-decoration: none; }
+
+  @media (max-width: 700px) {
+    header { padding: 16px 24px; }
+    .hero { padding: 64px 24px 56px; }
+    .section { padding: 56px 24px; }
+    .card { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">CHIEF Accelerator</div>
+  <div class="header-label">Program Map</div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Reference Library</div>
+    <h1>The Chief Accelerator Map</h1>
+    <p class="subtitle">Frameworks, decision aids, and module references for the AI Fluency Accelerator. Bookmark this page — it's the front door to every working document we use in the program.</p>
+    <span class="meta-pill">Living document · Updated continuously</span>
+  </div>
+</section>
+
+<section class="section light">
+  <div class="section-inner">
+    <div class="eyebrow">Live now</div>
+    <h2>Start here</h2>
+    <p class="section-intro">The first set of working references. Open them while you're in the work — they're not built to be read once.</p>
+    <div class="card-grid">
+      <a href="/help-me-decide/" class="card">
+        <div class="card-eyebrow">Decision aid</div>
+        <h3>Help Me Decide</h3>
+        <p>A decision tree for picking the right AI surface for the job in front of you.</p>
+        <div class="card-link">Open →</div>
+      </a>
+      <a href="/chat-vs-cowork/" class="card">
+        <div class="card-eyebrow">Guide</div>
+        <h3>Chat vs. Cowork</h3>
+        <p>When to use a chat window and when to use Cowork mode. The two are not interchangeable.</p>
+        <div class="card-link">Open →</div>
+      </a>
+      <a href="/working-with-projects/" class="card">
+        <div class="card-eyebrow">Skill</div>
+        <h3>Working With Projects</h3>
+        <p>How to set up, structure, and maintain a project so the AI actually helps instead of forgetting.</p>
+        <div class="card-link">Open →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="section-inner">
+    <div class="eyebrow">In progress</div>
+    <h2>Coming next</h2>
+    <p class="section-intro">This map expands as we build. New references and modules land here first.</p>
+    <div class="card-grid">
+      <div class="card coming-soon">
+        <div class="card-eyebrow">Foundations</div>
+        <h3>The Executive AI Learning Model</h3>
+        <p>The four-layer model for why AI behaves the way it does.</p>
+        <div class="card-link">In progress</div>
+      </div>
+      <div class="card coming-soon">
+        <div class="card-eyebrow">Foundations</div>
+        <h3>Context Layers</h3>
+        <p>The hierarchy of context that shapes every AI response.</p>
+        <div class="card-link">In progress</div>
+      </div>
+      <div class="card coming-soon">
+        <div class="card-eyebrow">Foundations</div>
+        <h3>How AI Remembers</h3>
+        <p>Memory, context windows, and projects — what the model retains.</p>
+        <div class="card-link">In progress</div>
+      </div>
+      <div class="card coming-soon">
+        <div class="card-eyebrow">Ring 1</div>
+        <h3>Ring 1 Reference</h3>
+        <p>The complete reference for Ring 1 of the curriculum.</p>
+        <div class="card-link">In progress</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">CHIEF Accelerator</div>
+  <div>An AI fluency program by <a href="https://rejoincoaching.com">Rejoin Coaching</a>.</div>
+</footer>
+
+</body>
+</html>

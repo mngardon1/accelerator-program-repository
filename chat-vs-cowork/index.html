@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Claude Chat vs. Cowork | CHIEF AI Accelerator</title>
+    <meta name="description" content="An executive's guide to deciding where your work should live — Chat for thinking, Cowork for building, or one place for both.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #132539;
+            --paper: #F9F8F5;
+            --teal: #13B5A2;
+            --teal-deep: #12917E;
+            --teal-light: #5DCFC1;
+            --mint: #D5F0EC;
+            --slate: #6B7A8D;
+            --slate-deep: #2A3F54;
+            --white: #FFFFFF;
+            --warning: #D4A338;
+
+            --text-on-dark: rgba(255,255,255,0.92);
+            --text-muted-dark: rgba(255,255,255,0.72);
+            --text-faint-dark: rgba(255,255,255,0.55);
+
+            --font-display: 'Sora', Arial, sans-serif;
+            --font-body: 'Inter', Arial, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --max-content: 880px;
+            --max-wide: 1080px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { background: var(--paper); color: var(--navy); }
+        body {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--teal); text-decoration: none; }
+        a:hover { color: var(--teal-deep); }
+
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(19,37,57,0.08);
+        }
+        .brand {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--navy);
+        }
+        .header-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--teal);
+        }
+
+        .breadcrumb-wrap {
+            max-width: var(--max-wide);
+            margin: 0 auto;
+            padding: 28px 40px 0;
+        }
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--slate);
+        }
+        .breadcrumb a { color: var(--slate); }
+        .breadcrumb a:hover { color: var(--navy); }
+        .breadcrumb span { margin: 0 8px; }
+
+        .hero {
+            background: var(--navy);
+            color: var(--white);
+            padding: 80px 40px 96px;
+            text-align: center;
+            margin-top: 32px;
+        }
+        .hero .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(40px, 6vw, 60px);
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+        .hero .subtitle {
+            font-size: 19px;
+            color: var(--text-muted-dark);
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .hero .meta-pill {
+            display: inline-flex;
+            gap: 24px;
+            margin-top: 32px;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 999px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-on-dark);
+        }
+        .hero .meta-pill .sep { color: rgba(255,255,255,0.4); }
+
+        .section {
+            padding: 88px 40px;
+        }
+        .section.dark {
+            background: var(--navy);
+            color: var(--white);
+        }
+        .section.dark h2,
+        .section.dark h3 { color: var(--white); }
+        .section.dark .eyebrow { color: var(--teal); }
+        .section-inner {
+            max-width: var(--max-content);
+            margin: 0 auto;
+        }
+        .section-inner.wide { max-width: var(--max-wide); }
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--slate);
+            margin-bottom: 16px;
+        }
+        h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(30px, 4vw, 40px);
+            line-height: 1.15;
+            color: var(--navy);
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+        }
+        .section-intro {
+            font-size: 18px;
+            color: var(--slate);
+            max-width: 700px;
+            margin-bottom: 36px;
+            line-height: 1.65;
+        }
+        .section.dark .section-intro { color: var(--text-muted-dark); }
+        h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 1.3;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+        p { margin-bottom: 18px; }
+        p:last-child { margin-bottom: 0; }
+        strong { font-weight: 600; color: var(--navy); }
+        .section.dark strong { color: var(--white); }
+        em { font-style: italic; }
+
+        .pull-quote {
+            margin: 32px 0;
+            padding: 24px 32px;
+            background: var(--white);
+            border-left: 3px solid var(--teal);
+            font-family: var(--font-display);
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.4;
+        }
+        .section.dark .pull-quote {
+            background: rgba(255,255,255,0.05);
+            color: var(--white);
+        }
+
+        /* Three modes cards */
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .mode-card {
+            background: var(--white);
+            border: 1px solid rgba(19,37,57,0.08);
+            padding: 28px 26px;
+            border-top: 3px solid var(--teal);
+        }
+        .mode-card.cowork { border-top-color: var(--teal-deep); }
+        .mode-card.code { border-top-color: var(--slate); opacity: 0.75; }
+        .mode-card .mode-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 6px;
+        }
+        .mode-card.cowork .mode-label { color: var(--teal-deep); }
+        .mode-card.code .mode-label { color: var(--slate); }
+        .mode-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        .mode-card p {
+            font-size: 15px;
+            color: var(--slate-deep);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* CTA box */
+        .cta-strip {
+            background: var(--navy);
+            color: var(--white);
+            padding: 48px 40px;
+            text-align: center;
+        }
+        .cta-strip .cta-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 12px;
+        }
+        .cta-strip h2 {
+            color: var(--white);
+            font-size: clamp(24px, 3vw, 30px);
+            margin-bottom: 16px;
+        }
+        .cta-strip p {
+            color: var(--text-muted-dark);
+            font-size: 16px;
+            max-width: 560px;
+            margin: 0 auto 24px;
+        }
+        .cta-button {
+            display: inline-block;
+            background: var(--teal);
+            color: var(--white);
+            padding: 14px 32px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 0.02em;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .cta-button:hover {
+            background: var(--teal-deep);
+            color: var(--white);
+        }
+
+        /* Comparison table — adapted for light section */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+            background: var(--white);
+            border: 1px solid rgba(19,37,57,0.08);
+        }
+        .compare-table th,
+        .compare-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(19,37,57,0.06);
+            font-size: 15px;
+            color: var(--slate-deep);
+            vertical-align: top;
+        }
+        .compare-table th {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--teal-deep);
+            background: rgba(213,240,236,0.4);
+        }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table .row-label {
+            font-family: var(--font-display);
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 14px;
+        }
+
+        /* Can / Cannot */
+        .decide-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 24px;
+        }
+        .decide-card {
+            background: var(--white);
+            border: 1px solid rgba(19,37,57,0.08);
+            padding: 28px;
+        }
+        .decide-card.skip {
+            background: rgba(107, 122, 138, 0.06);
+        }
+        .decide-card .d-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .decide-card.build .d-label { color: var(--teal); }
+        .decide-card.skip .d-label { color: var(--slate); }
+        .decide-card h3 {
+            font-size: 19px;
+            margin-bottom: 16px;
+        }
+        .decide-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .decide-card li {
+            padding: 8px 0;
+            padding-left: 22px;
+            position: relative;
+            font-size: 15px;
+            color: var(--slate-deep);
+            line-height: 1.5;
+        }
+        .decide-card.build li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--teal);
+            font-weight: 700;
+        }
+        .decide-card.skip li::before {
+            content: '✕';
+            position: absolute;
+            left: 0;
+            color: var(--slate);
+            font-weight: 700;
+        }
+
+        /* Workflow cards (A vs B) */
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 24px;
+        }
+        .workflow-card {
+            background: var(--white);
+            border: 1px solid rgba(19,37,57,0.08);
+            padding: 32px;
+            border-top: 4px solid var(--teal);
+        }
+        .workflow-card.b { border-top-color: var(--teal-deep); }
+        .workflow-card .wf-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 6px;
+        }
+        .workflow-card.b .wf-label { color: var(--teal-deep); }
+        .workflow-card h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+        .workflow-card .wf-tag {
+            font-family: var(--font-display);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--teal-deep);
+            margin-bottom: 18px;
+        }
+        .workflow-card p {
+            font-size: 15px;
+            color: var(--slate-deep);
+            line-height: 1.6;
+        }
+        .workflow-card .wf-subhead {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--slate);
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+        .workflow-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .workflow-card li {
+            padding: 6px 0 6px 18px;
+            position: relative;
+            font-size: 14.5px;
+            color: var(--slate-deep);
+            line-height: 1.5;
+        }
+        .workflow-card li::before {
+            content: '·';
+            position: absolute;
+            left: 0;
+            color: var(--teal);
+            font-weight: 700;
+        }
+        .workflow-card .upside li::before { color: var(--teal); }
+        .workflow-card .downside li::before { color: var(--warning); }
+
+        /* Prompt block */
+        .prompt-block {
+            background: rgba(19,37,57,0.04);
+            border-left: 3px solid var(--teal);
+            padding: 18px 22px;
+            margin: 18px 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--slate-deep);
+            line-height: 1.6;
+            font-style: italic;
+        }
+        .section.dark .prompt-block {
+            background: rgba(255,255,255,0.06);
+            color: var(--text-on-dark);
+        }
+
+        /* Setup flow numbered (light) */
+        .setup-list {
+            list-style: none;
+            counter-reset: setup;
+            margin-top: 20px;
+        }
+        .setup-list li {
+            counter-increment: setup;
+            position: relative;
+            padding: 16px 0 16px 56px;
+            border-bottom: 1px solid rgba(19,37,57,0.08);
+        }
+        .setup-list li:last-child { border-bottom: none; }
+        .setup-list li::before {
+            content: counter(setup, decimal-leading-zero);
+            position: absolute;
+            left: 0;
+            top: 16px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--teal);
+        }
+        .setup-list .s-title {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+        .setup-list .s-desc {
+            font-size: 14.5px;
+            color: var(--slate-deep);
+            line-height: 1.55;
+        }
+
+        /* Traps */
+        .traps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .trap-card {
+            background: rgba(255,255,255,0.05);
+            border-top: 3px solid var(--warning);
+            padding: 24px 24px;
+        }
+        .trap-card .trap-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--warning);
+            margin-bottom: 10px;
+        }
+        .trap-card h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: var(--white);
+        }
+        .trap-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .trap-card li {
+            padding: 6px 0 6px 18px;
+            position: relative;
+            font-size: 14px;
+            color: var(--text-muted-dark);
+            line-height: 1.5;
+        }
+        .trap-card li::before {
+            content: '!';
+            position: absolute;
+            left: 4px;
+            color: var(--warning);
+            font-weight: 700;
+            font-family: var(--font-display);
+        }
+
+        /* Shorthand finale */
+        .shorthand-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 24px;
+        }
+        .shorthand-card {
+            background: rgba(255,255,255,0.05);
+            border-left: 3px solid var(--teal);
+            padding: 28px 32px;
+        }
+        .shorthand-card .sh-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 8px;
+        }
+        .shorthand-card .sh-text {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.4;
+        }
+
+        footer {
+            background: var(--navy);
+            color: var(--text-muted-dark);
+            padding: 48px 40px;
+            text-align: center;
+            font-size: 14px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        footer .brand {
+            color: var(--white);
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        footer .footer-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--teal);
+        }
+
+        @media (max-width: 900px) {
+            .modes-grid { grid-template-columns: 1fr; }
+            .workflow-grid { grid-template-columns: 1fr; }
+            .traps-grid { grid-template-columns: 1fr; }
+            .shorthand-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 700px) {
+            header { padding: 16px 24px; }
+            .hero { padding: 56px 24px 64px; }
+            .section { padding: 56px 24px; }
+            .cta-strip { padding: 40px 24px; }
+            .decide-grid { grid-template-columns: 1fr; }
+            .compare-table th,
+            .compare-table td { padding: 12px 14px; font-size: 13px; }
+            .hero .meta-pill { flex-direction: column; gap: 8px; padding: 16px 20px; }
+            .hero .meta-pill .sep { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/" class="brand">Michael Gardon</a>
+        <div class="header-label">CHIEF AI Accelerator</div>
+    </header>
+
+    <div class="breadcrumb-wrap">
+        <div class="breadcrumb">
+            <a href="/accelerator/">Accelerator</a>
+            <span>/</span>
+            <a href="/accelerator/curriculum/">Curriculum</a>
+            <span>/</span>
+            Claude Chat vs. Cowork
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="eyebrow">An Executive's Guide</div>
+        <h1>Claude Chat vs. Cowork</h1>
+        <p class="subtitle">For executives and owner-operators trying to figure out where their work should live.</p>
+        <div class="meta-pill">
+            <span>12 min read</span>
+            <span class="sep">·</span>
+            <span>Pick a workflow. Run it for a month.</span>
+        </div>
+    </section>
+
+    <!-- THREE MODES -->
+    <section class="section">
+        <div class="section-inner wide">
+            <div class="eyebrow">The Landscape</div>
+            <h2>Claude has three modes of working.</h2>
+            <p class="section-intro">Three surfaces, one underlying model. The differences are not about intelligence — they're about surface, context, and what kind of building is actually possible.</p>
+
+            <div class="modes-grid">
+                <div class="mode-card">
+                    <div class="mode-label">Mode 01</div>
+                    <h3>Chat</h3>
+                    <p>A conversation with Claude on web, desktop, or mobile. You ask, Claude responds. Can create single files (Excel, PowerPoint, Word, PDF) when you enable file creation in settings. Best for thinking, drafting, and one-off deliverables. Works anywhere.</p>
+                </div>
+                <div class="mode-card cowork">
+                    <div class="mode-label">Mode 02</div>
+                    <h3>Cowork</h3>
+                    <p>A desktop workspace where Claude reads, edits, and creates files in folders on your computer. Projects tie to local folders with their own instructions and memory. Runs multi-step tasks autonomously across many files. Mobile via Dispatch.</p>
+                </div>
+                <div class="mode-card code">
+                    <div class="mode-label">Mode 03</div>
+                    <h3>Code</h3>
+                    <p>A terminal-based agent built for developers. Not relevant to this guide. The real decision for executives lives between Chat and Cowork — that's where this guide focuses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-strip">
+        <div class="cta-eyebrow">Don't want to read all of it?</div>
+        <h2>We'll just help you decide.</h2>
+        <p>The rest of this guide explains the tradeoffs. But if you'd rather skip ahead and decide where your first project should live, we can do that instead.</p>
+        <a href="help-me-decide.html" class="cta-button">Help me decide</a>
+    </section>
+
+    <!-- DIFFERENCES THAT MATTER -->
+    <section class="section">
+        <div class="section-inner wide">
+            <div class="eyebrow">Side by Side</div>
+            <h2>The differences that matter.</h2>
+            <p class="section-intro">Both Chat and Cowork run on the same Claude. Both can think. Both can create files. The model is the same. The differences are about <strong>surface, context, and what kind of building is actually possible.</strong></p>
+
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Chat</th>
+                        <th>Cowork</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-label">Where it runs</td>
+                        <td>Web, desktop, mobile</td>
+                        <td>Desktop only (Mac or Windows), mobile via Dispatch</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">File access</td>
+                        <td>Only what you upload in the conversation</td>
+                        <td>Full access to folders you grant on your computer</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">File creation</td>
+                        <td>One file at a time. Max 30MB.</td>
+                        <td>Same file types plus multi-file projects, codebases, websites, structured outputs</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Multi-file output</td>
+                        <td>Not supported. Single-file artifacts only.</td>
+                        <td>Native — folders of files, code projects, multi-component deliverables</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Memory</td>
+                        <td>Inside Chat Projects only</td>
+                        <td>Inside Cowork Projects only — does not sync with Chat Projects</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Multi-file input</td>
+                        <td>Limited by upload size and effort</td>
+                        <td>Native — point it at a folder of 200 files and walk away</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Autonomous execution</td>
+                        <td>No — turn by turn</td>
+                        <td>Yes — multi-step tasks while you do other things</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Mobile</td>
+                        <td>Native</td>
+                        <td>Through Dispatch (paired to desktop)</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Setup overhead</td>
+                        <td>None</td>
+                        <td>Real — folder, Project, and instructions per stream of work</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Usage limits</td>
+                        <td>Standard</td>
+                        <td>Burns through limits faster</td>
+                    </tr>
+                    <tr>
+                        <td class="row-label">Best for</td>
+                        <td>Thinking, single deliverables, anywhere work</td>
+                        <td>Multi-file synthesis, ongoing project workspaces, file-based work</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- CHAT CAN / CANNOT -->
+    <section class="section dark">
+        <div class="section-inner">
+            <div class="eyebrow">The Wall Most Execs Miss</div>
+            <h2>What Chat actually can and can't build.</h2>
+            <p class="section-intro">Chat creates files, but it has hard limits on what kind of building is possible. The moment the work needs more than one file or needs to live on your machine, the wall is right there.</p>
+
+            <div class="decide-grid">
+                <div class="decide-card build">
+                    <div class="d-label">Chat can create</div>
+                    <h3>Single-file artifacts</h3>
+                    <ul>
+                        <li>A single Excel, PowerPoint, Word doc, or PDF (up to 30MB)</li>
+                        <li>A single HTML page, React component, or interactive artifact</li>
+                        <li>A single Markdown document, SVG, or Mermaid diagram</li>
+                        <li>One file at a time, runs in a browser sandbox</li>
+                    </ul>
+                </div>
+                <div class="decide-card skip">
+                    <div class="d-label">Chat cannot</div>
+                    <h3>Anything with structure</h3>
+                    <ul>
+                        <li>Multi-file projects — a real website, a codebase, anything with separate files</li>
+                        <li>Read or write files on your computer</li>
+                        <li>Modify files in place</li>
+                        <li>Run multi-step tasks autonomously</li>
+                        <li>Connect to a backend, database, or persistent storage outside the sandbox</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pull-quote" style="margin-top:36px;">
+                Chat looks like it can do everything because it produces good-looking single artifacts. The moment the work needs more than one file or needs to live on your machine, the wall is right there. Cowork doesn't have that wall.
+            </div>
+        </div>
+    </section>
+
+    <!-- TRADEOFFS -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="eyebrow">The Tradeoffs</div>
+            <h2>Lighter vs. compounding.</h2>
+
+            <h3 style="margin-top:24px;">Chat is lighter.</h3>
+            <p>No setup. Works on every device. Great for thinking on the move, quick questions, and single-file deliverables. The cost is that nothing persists beyond the conversation unless you do something with it. Context doesn't compound. And the moment you need real multi-file building, you're stuck.</p>
+
+            <h3 style="margin-top:24px;">Cowork is heavier but compounds.</h3>
+            <p>It requires setup — folders, Projects, instructions — and a desktop that stays awake. The payoff is that every conversation inside a Project builds on the last one, and Claude can actually build real projects with structure, not just single artifacts. You can hand off multi-step tasks across many files and walk away.</p>
+
+            <h3 style="margin-top:24px;">They don't talk to each other.</h3>
+            <p>A Chat Project and a Cowork Project are different objects with different memory. You can't natively move a conversation from one to the other. If you start something in Chat and want to continue it in Cowork, you have to bridge it manually — usually by summarizing and dropping the summary into the Project folder.</p>
+
+            <div class="pull-quote">
+                Both can think. Only Cowork can fully build. Chat caps out at one file. Cowork doesn't cap.
+            </div>
+        </div>
+    </section>
+
+    <!-- THE REAL DECISION -->
+    <section class="section dark">
+        <div class="section-inner">
+            <div class="eyebrow">The Real Decision</div>
+            <h2>One question, two valid answers.</h2>
+            <p class="section-intro">Given that both surfaces can think, but only Cowork can fully build, the question for any executive is:</p>
+
+            <div class="pull-quote">
+                When you have an idea or a question related to active work, do you want to think freely first and decide later if it's worth keeping — or do you want everything to land in the right place from the start?
+            </div>
+
+            <p style="margin-top:24px;color:rgba(255,255,255,0.85);">That question has two valid answers. Each one points to a different workflow. Both are valid. Pick the one that matches how your brain actually operates, then commit to it.</p>
+        </div>
+    </section>
+
+    <!-- WORKFLOW A vs B -->
+    <section class="section">
+        <div class="section-inner wide">
+            <div class="eyebrow">The Two Workflows</div>
+            <h2>Spar then build, or live in one place.</h2>
+            <p class="section-intro">Verbal processors and free-thinkers tend toward A. Builders and systems-thinkers tend toward B. Neither is more sophisticated than the other.</p>
+
+            <div class="workflow-grid">
+                <div class="workflow-card">
+                    <div class="wf-label">Workflow A</div>
+                    <h3>Spar then build</h3>
+                    <div class="wf-tag">Think in Chat. Build in Cowork.</div>
+                    <p>You use Chat as your daily thinking partner. Lightweight, mobile-friendly, anywhere. When a conversation produces something worth executing, you summarize it and move it into the relevant Cowork Project to build.</p>
+
+                    <div class="wf-subhead">In practice</div>
+                    <ul>
+                        <li>Strategic question on the way to a meeting → Chat</li>
+                        <li>Half-formed idea over coffee → Chat</li>
+                        <li>Working through a decision over days → Chat</li>
+                        <li>Once it's clear what to build → summarize, move to Cowork, execute</li>
+                    </ul>
+
+                    <div class="wf-subhead">Upside</div>
+                    <ul class="upside">
+                        <li>Lighter cognitive load — no need to commit a thought to a Project before you know if it matters</li>
+                        <li>Mobile-native — Chat works everywhere with no Dispatch setup</li>
+                        <li>Lower friction for half-formed ideas</li>
+                        <li>Verbal-process freely without polluting a Project's memory</li>
+                    </ul>
+
+                    <div class="wf-subhead">Downside</div>
+                    <ul class="downside">
+                        <li>Knowledge transfer is manual — you carry context across surfaces yourself</li>
+                        <li>The summary discipline is non-negotiable; skip it and thinking orphans</li>
+                        <li>Summaries capture conclusions but rarely the full nuance</li>
+                        <li>Easy to sprawl Chat threads that never become anything</li>
+                    </ul>
+                </div>
+
+                <div class="workflow-card b">
+                    <div class="wf-label">Workflow B</div>
+                    <h3>One place</h3>
+                    <div class="wf-tag">Everything lives in Cowork.</div>
+                    <p>You set up Cowork Projects for your real streams of work and do everything inside them — thinking, sparring, drafting, building. No handoff. No transfer. The Project accumulates context the longer you use it.</p>
+
+                    <div class="wf-subhead">In practice</div>
+                    <ul>
+                        <li>Three to five Cowork Projects, one per real stream of work</li>
+                        <li>Each Project has a synced folder, seed materials, standing instructions</li>
+                        <li>Every project-related conversation happens inside the relevant Project</li>
+                        <li>Mobile work routes through Dispatch back to the same Projects</li>
+                        <li>Chat is reserved for genuinely disposable lookups</li>
+                    </ul>
+
+                    <div class="wf-subhead">Upside</div>
+                    <ul class="upside">
+                        <li>Nothing leaks. Context compounds inside each Project</li>
+                        <li>No transfer step. Thinking and building are one motion</li>
+                        <li>Claude gets progressively sharper at your work over time</li>
+                        <li>Mobile via Dispatch routes to the same place — one home per stream</li>
+                        <li>You can actually build multi-file projects, not just single artifacts</li>
+                    </ul>
+
+                    <div class="wf-subhead">Downside</div>
+                    <ul class="downside">
+                        <li>Setup overhead is real — a couple of hours upfront for 3-5 Projects</li>
+                        <li>Heavier surface for casual thinking; some find this stifling</li>
+                        <li>Requires desktop discipline — computer has to stay awake</li>
+                        <li>Burns usage limits faster than Chat</li>
+                        <li>Not as fluid for verbal processing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE CRITICAL SKILL: WORKFLOW A -->
+    <section class="section dark">
+        <div class="section-inner">
+            <div class="eyebrow">Workflow A — The Critical Skill</div>
+            <h2>Close the loop, or lose the thinking.</h2>
+            <p class="section-intro">Workflow A lives or dies on one habit. You must summarize Chat conversations into a brief before you move on — otherwise you'll have three days of thinking spread across five conversations and a wall of context you don't want to retype.</p>
+
+            <p style="color:rgba(255,255,255,0.85);">The closing prompt to make this automatic:</p>
+
+            <div class="prompt-block">
+                "Summarize this conversation as a brief I can drop into my [Project name] Cowork Project. Include the question, key decisions, reasoning, and recommended next steps."
+            </div>
+
+            <p style="color:rgba(255,255,255,0.85);">Run it at the end of any Chat conversation that touches real work. Save the summary. Drop it into the Project folder. Now Cowork has the context to build from without you re-explaining anything.</p>
+
+            <div class="pull-quote">
+                If you can't reliably do this step, you're not actually running Workflow A — you're just losing thinking.
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY I USE B -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="eyebrow">Workflow B — Why I Use It</div>
+            <h2>I don't trust myself to do the summary step.</h2>
+            <p>If I have a great conversation in Chat about a client strategy or a positioning question, the odds I'll close it cleanly with a brief and move it into the right Project are maybe 50/50. The other half of the time, that thinking is gone — buried in a thread I'll never find again, disconnected from the work it was supposed to inform.</p>
+
+            <p>Cowork removes the question. I'm already in the Project. The thinking is already in context. When the conversation produces something worth building, I build it right there. No summary. No transfer. No leakage.</p>
+
+            <p>I also don't really separate thinking from building in my own head. When I'm thinking through a client problem, I'm already half-drafting the solution. Splitting that across two surfaces would mean breaking my flow twice — once to summarize, once to switch.</p>
+
+            <div class="pull-quote">
+                The cost is real — I'm working inside a more structured environment even when I'm just thinking. But the compounding context is worth it. Claude gets sharper at my work inside each Project over time, because every conversation builds on the last one.
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW TO PICK -->
+    <section class="section dark">
+        <div class="section-inner">
+            <div class="eyebrow">How to Pick</div>
+            <h2>This is a personality question, not a tool question.</h2>
+
+            <div class="prompt-block">
+                "When I have an idea related to active work, do I want to think freely first and decide later if it's worth keeping — or do I want everything to land in the right place from the start?"
+            </div>
+
+            <p style="color:rgba(255,255,255,0.85);margin-top:24px;"><strong>"Think freely first"</strong> → Workflow A. Use Chat as your thinking layer. Build the summary habit.</p>
+            <p style="color:rgba(255,255,255,0.85);"><strong>"Land in the right place from the start"</strong> → Workflow B. Set up Projects. Live in Cowork.</p>
+
+            <div class="pull-quote" style="margin-top:32px;">
+                The worst outcome is straddling — using Chat for some project work and Cowork for other project work with no rule about which goes where. That's how you end up with thinking orphaned in one place and context fragmented in another.
+            </div>
+
+            <p style="color:rgba(255,255,255,0.85);">Pick a workflow and run it for at least a month before you evaluate.</p>
+        </div>
+    </section>
+
+    <!-- THE SETUP -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="eyebrow">The Setup — Either Workflow</div>
+            <h2>One Cowork Project = one stream of work = one local folder.</h2>
+            <p class="section-intro">Both workflows require Cowork Projects to exist. The difference is how often you start work outside of them. The setup is the same.</p>
+
+            <ol class="setup-list">
+                <li>
+                    <div class="s-title">Create a folder for each real stream of work</div>
+                    <div class="s-desc">Use a synced location (iCloud Drive, Dropbox, OneDrive, or Google Drive Desktop) so you can access outputs from any device.</div>
+                </li>
+                <li>
+                    <div class="s-title">Drop in seed materials</div>
+                    <div class="s-desc">Existing docs, notes, references, anything Claude should know going in.</div>
+                </li>
+                <li>
+                    <div class="s-title">Open Claude Desktop → Cowork → create a Project</div>
+                    <div class="s-desc">Attach the folder. Name the Project the same as the folder.</div>
+                </li>
+                <li>
+                    <div class="s-title">Write Project instructions</div>
+                    <div class="s-desc">Your role, context, standards, voice, what "good" looks like. This is the highest-leverage move and the one most people skip.</div>
+                </li>
+                <li>
+                    <div class="s-title">Pair Dispatch on your phone</div>
+                    <div class="s-desc">So mobile tasks route to the right desktop Project.</div>
+                </li>
+            </ol>
+
+            <p style="margin-top:32px;">If you're running Workflow A, your Projects are the workshop you bring finished thinking into. If you're running Workflow B, your Projects are your operating system.</p>
+        </div>
+    </section>
+
+    <!-- MOBILE -->
+    <section class="section dark">
+        <div class="section-inner">
+            <div class="eyebrow">Mobile, in Either Workflow</div>
+            <h2>Don't drop the mobile thread.</h2>
+
+            <h3 style="margin-top:24px;">Workflow A users</h3>
+            <p style="color:rgba(255,255,255,0.85);">Mobile Chat is fine for thinking on the go. Use the summary prompt before you put the phone away. When you're ready to build, Dispatch the brief to the right Project from the same mobile app.</p>
+
+            <h3 style="margin-top:24px;">Workflow B users</h3>
+            <p style="color:rgba(255,255,255,0.85);">Anything related to active work goes through Dispatch, always. Name the Project in the first line of every dispatched task:</p>
+
+            <div class="prompt-block">
+                "In the Acme Acquisition project: pull the latest financials from the folder, compare against the term sheet draft, and flag inconsistencies in a memo I can review tonight."
+            </div>
+
+            <p style="color:rgba(255,255,255,0.85);">Dispatch doesn't have a Project selector in the mobile UI yet. You route by naming the Project. Make this reflex.</p>
+        </div>
+    </section>
+
+    <!-- TRAPS -->
+    <section class="section dark" style="padding-top:0;">
+        <div class="section-inner wide">
+            <div class="eyebrow">Traps to Avoid</div>
+            <h2>Where the workflows break.</h2>
+
+            <div class="traps-grid">
+                <div class="trap-card">
+                    <div class="trap-label">Workflow A Traps</div>
+                    <h3>Lost thinking</h3>
+                    <ul>
+                        <li>Skipping the summary step — the workflow killer</li>
+                        <li>Letting Chat conversations sprawl across days without resolution</li>
+                        <li>Forgetting Cowork Projects still need to exist — A doesn't mean skipping Project setup</li>
+                    </ul>
+                </div>
+                <div class="trap-card">
+                    <div class="trap-label">Workflow B Traps</div>
+                    <h3>Empty Projects</h3>
+                    <ul>
+                        <li>Skipping Project instructions — a Project without instructions is just a folder</li>
+                        <li>Creating too many Projects — 3-5 focused ones beat 15 sprawling ones</li>
+                        <li>Treating Cowork as if it can only do file work — it thinks just as well as Chat</li>
+                        <li>Forgetting your desktop has to stay awake for Dispatch</li>
+                    </ul>
+                </div>
+                <div class="trap-card">
+                    <div class="trap-label">Either Workflow</div>
+                    <h3>Fragmentation</h3>
+                    <ul>
+                        <li>Straddling between Chat and Cowork with no clear rule</li>
+                        <li>Trying to move conversations between Chat Projects and Cowork Projects — memory doesn't sync</li>
+                        <li>Skipping the 30-minute initial setup</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 30 MINUTE SETUP -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="eyebrow">If You Do Nothing Else</div>
+            <h2>The 30-minute setup that pays off all year.</h2>
+
+            <ol class="setup-list">
+                <li>
+                    <div class="s-title">List your three to five actual streams of work</div>
+                    <div class="s-desc">Real, recurring work areas — not aspirational categories.</div>
+                </li>
+                <li>
+                    <div class="s-title">Create a synced folder for each</div>
+                    <div class="s-desc">iCloud Drive, Dropbox, OneDrive, or Google Drive Desktop.</div>
+                </li>
+                <li>
+                    <div class="s-title">Build a Cowork Project for each, with instructions</div>
+                    <div class="s-desc">The instructions are the highest-leverage move. Don't skip.</div>
+                </li>
+                <li>
+                    <div class="s-title">Pair Dispatch on your phone</div>
+                    <div class="s-desc">So mobile thinking has somewhere to land.</div>
+                </li>
+                <li>
+                    <div class="s-title">Run one real task in each Project this week</div>
+                    <div class="s-desc">Don't admire the setup. Use it.</div>
+                </li>
+                <li>
+                    <div class="s-title">Pick Workflow A or B and commit for a month</div>
+                    <div class="s-desc">After that, the habit takes over.</div>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- SHORTHAND FINALE -->
+    <section class="section dark">
+        <div class="section-inner">
+            <div class="eyebrow">The Shorthand</div>
+            <h2>Pick one. Run it. Evaluate in a month.</h2>
+
+            <div class="shorthand-grid">
+                <div class="shorthand-card">
+                    <div class="sh-label">Workflow A</div>
+                    <div class="sh-text">Think in Chat. Summarize. Build in Cowork.</div>
+                </div>
+                <div class="shorthand-card">
+                    <div class="sh-label">Workflow B</div>
+                    <div class="sh-text">Everything in Cowork. Chat only for disposable lookups.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span class="brand">Michael Gardon</span>
+        <div class="footer-label">CHIEF AI Accelerator — Claude Chat vs. Cowork</div>
+    </footer>
+
+</body>
+</html>
