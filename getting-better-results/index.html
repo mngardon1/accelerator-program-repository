@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Getting Better Results | CHIEF AI Accelerator</title>
+    <meta name="description" content="The common failure modes of working with AI, the iteration mindset, the 4D framework for AI Fluency, and a lightweight approach to evaluating AI for your work.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #132539;
+            --paper: #F9F8F5;
+            --teal: #13B5A2;
+            --teal-deep: #12917E;
+            --teal-light: #5DCFC1;
+            --mint: #D5F0EC;
+            --slate: #6B7A8D;
+            --slate-deep: #2A3F54;
+            --white: #FFFFFF;
+            --warning: #D4A338;
+
+            --text-on-dark: rgba(255,255,255,0.92);
+            --text-muted-dark: rgba(255,255,255,0.72);
+            --text-faint-dark: rgba(255,255,255,0.55);
+
+            --font-display: 'Sora', Arial, sans-serif;
+            --font-body: 'Inter', Arial, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --max-content: 880px;
+            --max-wide: 1080px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            background: var(--paper);
+            color: var(--navy);
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a { color: var(--teal); text-decoration: none; }
+        a:hover { color: var(--teal-deep); }
+
+        /* ─────────── Header ─────────── */
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(19, 37, 57, 0.08);
+            background: var(--paper);
+        }
+
+        .brand {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .header-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--teal);
+        }
+
+        /* ─────────── Breadcrumb ─────────── */
+        .breadcrumb-wrap {
+            max-width: var(--max-wide);
+            margin: 0 auto;
+            padding: 28px 40px 0;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--slate);
+        }
+
+        .breadcrumb a { color: var(--slate); }
+        .breadcrumb a:hover { color: var(--navy); }
+        .breadcrumb span { margin: 0 8px; }
+
+        /* ─────────── Hero ─────────── */
+        .hero {
+            background: var(--navy);
+            color: var(--white);
+            padding: 80px 40px 96px;
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .hero .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(40px, 6vw, 60px);
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+
+        .hero .subtitle {
+            font-size: 19px;
+            color: var(--text-muted-dark);
+            max-width: 640px;
+            margin: 0 auto 28px;
+            line-height: 1.6;
+        }
+
+        .meta-pill {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-on-dark);
+        }
+
+        /* ─────────── Sections ─────────── */
+        .section {
+            padding: 96px 40px;
+        }
+
+        .section.dark {
+            background: var(--navy);
+            color: var(--text-on-dark);
+        }
+
+        .section.dark h2,
+        .section.dark h3 {
+            color: var(--white);
+        }
+
+        .section.dark .eyebrow { color: var(--teal); }
+
+        .section-inner {
+            max-width: var(--max-content);
+            margin: 0 auto;
+        }
+
+        .section-inner.wide { max-width: var(--max-wide); }
+
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--slate);
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(30px, 4vw, 40px);
+            line-height: 1.15;
+            color: var(--navy);
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+
+        .section-intro {
+            font-size: 18px;
+            color: var(--slate-deep);
+            max-width: 680px;
+            margin-bottom: 48px;
+            line-height: 1.65;
+        }
+
+        .section.dark .section-intro { color: var(--text-muted-dark); }
+
+        h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 1.3;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        p { margin-bottom: 16px; }
+        p:last-child { margin-bottom: 0; }
+
+        strong { font-weight: 600; color: var(--navy); }
+        .section.dark strong { color: var(--white); }
+
+        /* ─────────── Challenges table ─────────── */
+        .challenge-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+            background: var(--white);
+            border: 1px solid rgba(19, 37, 57, 0.08);
+        }
+
+        .challenge-table th,
+        .challenge-table td {
+            padding: 20px 24px;
+            text-align: left;
+            border-bottom: 1px solid rgba(19, 37, 57, 0.06);
+            vertical-align: top;
+        }
+
+        .challenge-table th {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--slate);
+            background: var(--paper);
+        }
+
+        .challenge-table td { font-size: 16px; color: var(--slate-deep); line-height: 1.6; }
+        .challenge-table td.col-symptom { width: 28%; font-family: var(--font-display); font-weight: 600; color: var(--navy); }
+        .challenge-table td.col-cause { width: 32%; }
+        .challenge-table td.col-fix { width: 40%; }
+        .challenge-table td .example {
+            display: block;
+            margin-top: 10px;
+            padding: 10px 12px;
+            background: var(--paper);
+            border-left: 2px solid var(--teal);
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--slate-deep);
+            font-style: italic;
+        }
+        .challenge-table tr:last-child td { border-bottom: none; }
+
+        /* ─────────── Iteration list ─────────── */
+        .iteration-list {
+            list-style: none;
+            counter-reset: itemcount;
+            margin-top: 24px;
+        }
+
+        .iteration-list li {
+            counter-increment: itemcount;
+            position: relative;
+            padding-left: 64px;
+            padding-bottom: 28px;
+            min-height: 56px;
+        }
+
+        .iteration-list li::before {
+            content: counter(itemcount, decimal-leading-zero);
+            position: absolute;
+            left: 0;
+            top: -2px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--teal);
+        }
+
+        .iteration-list .item-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .section.dark .iteration-list .item-title { color: var(--white); }
+
+        .iteration-list .item-body {
+            color: var(--slate-deep);
+            font-size: 16px;
+            line-height: 1.65;
+        }
+
+        .section.dark .iteration-list .item-body { color: var(--text-on-dark); }
+
+        /* ─────────── 4D cards ─────────── */
+        .d-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .d-card {
+            background: var(--white);
+            border: 1px solid rgba(19, 37, 57, 0.08);
+            border-top: 3px solid var(--teal);
+            padding: 28px 28px;
+        }
+
+        .d-card .d-num {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--teal-deep);
+            margin-bottom: 8px;
+        }
+
+        .d-card h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 22px;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .d-card p {
+            font-size: 15.5px;
+            color: var(--slate-deep);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ─────────── Pull quote ─────────── */
+        .pull {
+            margin-top: 40px;
+            padding: 28px 32px;
+            background: var(--white);
+            border-left: 3px solid var(--teal);
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.4;
+        }
+
+        .section.dark .pull {
+            background: rgba(255,255,255,0.05);
+            color: var(--white);
+        }
+
+        /* ─────────── Eval block ─────────── */
+        .eval-steps {
+            margin-top: 24px;
+        }
+
+        .eval-step {
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(19, 37, 57, 0.08);
+        }
+
+        .eval-step:last-child { border-bottom: none; }
+
+        .eval-step .step-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--teal-deep);
+            margin-bottom: 6px;
+        }
+
+        .eval-step h3 { margin-bottom: 8px; font-size: 19px; }
+
+        .eval-step p { color: var(--slate-deep); font-size: 16px; }
+
+        .eval-step ul {
+            margin-top: 10px;
+            padding-left: 20px;
+            color: var(--slate-deep);
+            font-size: 15.5px;
+            line-height: 1.65;
+        }
+
+        /* ─────────── Reflection callout ─────────── */
+        .reflection {
+            margin-top: 32px;
+            padding: 32px 36px;
+            background: rgba(212,163,56,0.10);
+            border-left: 3px solid var(--warning);
+        }
+
+        .reflection .label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--warning);
+            margin-bottom: 12px;
+        }
+
+        .section.dark .reflection {
+            background: rgba(212,163,56,0.12);
+        }
+
+        .reflection ul {
+            margin: 0;
+            padding-left: 22px;
+            color: var(--text-on-dark);
+            font-size: 16.5px;
+            line-height: 1.7;
+        }
+
+        .reflection ul li + li { margin-top: 10px; }
+
+        /* ─────────── Footer ─────────── */
+        footer {
+            padding: 48px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(19, 37, 57, 0.08);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--slate);
+        }
+
+        /* ─────────── Mobile ─────────── */
+        @media (max-width: 900px) {
+            .d-grid { grid-template-columns: 1fr; }
+            .challenge-table, .challenge-table thead, .challenge-table tbody, .challenge-table tr, .challenge-table th, .challenge-table td { display: block; }
+            .challenge-table thead { display: none; }
+            .challenge-table tr {
+                border-bottom: 1px solid rgba(19, 37, 57, 0.08);
+                padding: 8px 0;
+            }
+            .challenge-table td { width: 100% !important; padding: 8px 20px; }
+            .challenge-table td.col-symptom { padding-top: 20px; font-size: 17px; }
+            .challenge-table td.col-cause::before,
+            .challenge-table td.col-fix::before {
+                display: block;
+                font-family: var(--font-mono);
+                font-size: 10px;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: var(--slate);
+                margin-bottom: 6px;
+            }
+            .challenge-table td.col-cause::before { content: "What's happening"; }
+            .challenge-table td.col-fix::before { content: "Try this"; }
+        }
+
+        /* ─────────── Next-step bridge ─────────── */
+        .next-bridge {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--slate-deep) 100%);
+            color: var(--white);
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .next-bridge .eyebrow { color: var(--teal); }
+        .next-bridge h2 { color: var(--white); }
+
+        .next-bridge .next-intro {
+            font-size: 18px;
+            color: var(--text-muted-dark);
+            max-width: 640px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .next-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 28px;
+            background: var(--teal);
+            color: var(--navy);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.01em;
+            border-radius: 4px;
+            transition: background 0.15s ease, transform 0.15s ease;
+        }
+
+        .next-cta:hover {
+            background: var(--teal-light);
+            color: var(--navy);
+            transform: translateY(-1px);
+        }
+
+        .next-cta .arrow {
+            font-family: var(--font-mono);
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .next-meta {
+            display: block;
+            margin-top: 16px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-faint-dark);
+        }
+
+        @media (max-width: 700px) {
+            .section { padding: 64px 24px; }
+            .hero { padding: 64px 24px 72px; }
+            .next-bridge { padding: 64px 24px; }
+            header { padding: 16px 24px; }
+            .breadcrumb-wrap { padding: 20px 24px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="brand">CHIEF Accelerator</a>
+    <span class="header-label">Module 1 · Reference</span>
+</header>
+
+<div class="breadcrumb-wrap">
+    <div class="breadcrumb">
+        Accelerator <span>/</span>
+        Module 1 <span>/</span>
+        Getting Better Results
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="eyebrow">Module 1 · Foundations</div>
+    <h1>Getting Better Results</h1>
+    <p class="subtitle">
+        Your first prompt is rarely the right one. The work is knowing what went wrong,
+        what to change, and how to build judgment about where your AI is worth trusting.
+    </p>
+    <div class="meta-pill">15 min read</div>
+</section>
+
+<!-- WHY THIS PAGE -->
+<section class="section">
+    <div class="section-inner">
+        <div class="eyebrow">Why this lesson exists</div>
+        <h2>The first underwhelm is the lesson.</h2>
+        <p class="section-intro">
+            Most executives try AI, get a generic answer, and conclude the tool is dumb.
+            The tool isn't dumb. The prompt was thin, the context was missing, and the
+            iteration never happened. This page covers the three skills that close that
+            gap: spotting what broke, iterating instead of starting over, and developing
+            real judgment about where your AI earns your trust.
+        </p>
+        <p style="font-size:16px; color:var(--slate-deep);">
+            By the end of this reference, you'll be able to:
+        </p>
+        <ul style="margin-top:12px; padding-left:22px; color:var(--slate-deep); font-size:16px; line-height:1.7;">
+            <li>Recognize the five common failure modes when working with AI and fix each one.</li>
+            <li>Define AI Fluency and know the four competencies that compose it.</li>
+            <li>Run a lightweight eval to see how your AI performs on the work that actually matters to you.</li>
+        </ul>
+    </div>
+</section>
+
+<!-- COMMON CHALLENGES -->
+<section class="section dark">
+    <div class="section-inner wide">
+        <div class="eyebrow">Part 1 · Failure modes</div>
+        <h2>Five things that go wrong — and what to do.</h2>
+        <p class="section-intro">
+            When the response isn't what you wanted, it's almost always one of these five
+            patterns. Each one is fixable in seconds once you can name it.
+        </p>
+
+        <table class="challenge-table">
+            <thead>
+                <tr>
+                    <th>Symptom</th>
+                    <th>What's happening</th>
+                    <th>The fix</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-symptom">The response is generic.</td>
+                    <td class="col-cause">Your prompt didn't tell the AI who it's for, what role you're in, or what constraints matter.</td>
+                    <td class="col-fix">
+                        Add audience, role, and stakes.
+                        <span class="example">"Write a delay note to our largest enterprise client. The integration slips by two weeks — this is the second slip. Keep it professional but acknowledge their patience."</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-symptom">It's too long. Or too short.</td>
+                    <td class="col-cause">You didn't specify length, so the AI guessed.</td>
+                    <td class="col-fix">Be explicit: "Two paragraphs." "Under 100 words." "Comprehensive — length doesn't matter."</td>
+                </tr>
+                <tr>
+                    <td class="col-symptom">It ignored the format you wanted.</td>
+                    <td class="col-cause">The AI understood the topic but not the shape.</td>
+                    <td class="col-fix">Show, don't just tell. Paste an example of the format you want, or describe the structure: "Bullet list with bold section headers."</td>
+                </tr>
+                <tr>
+                    <td class="col-symptom">It sounded confident but was wrong.</td>
+                    <td class="col-cause">AI sometimes generates fluent, plausible-sounding output on specifics it doesn't actually know. This is especially true for niche facts, recent events, and numbers.</td>
+                    <td class="col-fix">For anything that matters, verify the facts yourself. Ask for sources. Ask the AI to flag uncertainty. Enable web search for anything time-sensitive.</td>
+                </tr>
+                <tr>
+                    <td class="col-symptom">The tone is off.</td>
+                    <td class="col-cause">Default AI voice is helpful and professional — which is often wrong for your context.</td>
+                    <td class="col-fix">Name the tone in plain English: "More conversational." "Direct and a little blunt." "Sound like a senior partner, not a junior associate." Or paste a sample of writing you want it to match.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- ITERATION MINDSET -->
+<section class="section">
+    <div class="section-inner">
+        <div class="eyebrow">Part 2 · The iteration mindset</div>
+        <h2>Treat the first response as a draft, not a verdict.</h2>
+        <p class="section-intro">
+            The biggest shift in working with AI well is dropping the one-shot mindset.
+            You are not asking an oracle for The Answer. You are starting a working session
+            with a fast collaborator who needs steering.
+        </p>
+
+        <ol class="iteration-list">
+            <li>
+                <div class="item-title">Read the first draft as information about your prompt.</div>
+                <div class="item-body">
+                    If the response misses, the prompt was incomplete more often than the AI was wrong.
+                    Note what's missing or off before you ask for a rewrite.
+                </div>
+            </li>
+            <li>
+                <div class="item-title">Give the AI specific feedback, not vague feedback.</div>
+                <div class="item-body">
+                    "Make it shorter" is fine. <em>"Cut the first two paragraphs. Make the
+                    conclusion action-oriented and end on the ask"</em> is better. Treat the
+                    AI like a smart new hire who needs clear edits.
+                </div>
+            </li>
+            <li>
+                <div class="item-title">Know when to scrap the chat and start fresh.</div>
+                <div class="item-body">
+                    Long, off-track conversations accumulate noise. If you've corrected the
+                    same thing three times, open a new chat with a sharper prompt. Sometimes
+                    a clean slate is faster than rescue.
+                </div>
+            </li>
+        </ol>
+
+        <div class="pull">
+            The skill isn't writing a perfect prompt. The skill is iterating fast.
+        </div>
+    </div>
+</section>
+
+<!-- AI FLUENCY -->
+<section class="section dark">
+    <div class="section-inner">
+        <div class="eyebrow">Part 3 · The bigger frame</div>
+        <h2>AI Fluency: the four competencies.</h2>
+        <p class="section-intro">
+            AI Fluency is the ability to work with AI tools effectively — not just knowing
+            which buttons to click, but having the judgment to use the tool well across
+            situations that don't look like each other. The 4D framework — developed by
+            Professor Rick Dakan (Ringling College of Art and Design) and Professor Joseph
+            Feller (University College Cork) — names the four skills that compose it.
+        </p>
+
+        <div class="d-grid">
+            <div class="d-card">
+                <div class="d-num">D · 1</div>
+                <h4>Delegation</h4>
+                <p>Deciding what work belongs to you, what work belongs to the AI, and how to split tasks between you. Requires understanding your goals, the model's capabilities, and where the seam should sit.</p>
+            </div>
+            <div class="d-card">
+                <div class="d-num">D · 2</div>
+                <h4>Description</h4>
+                <p>Communicating with AI clearly. Defining what you want, guiding the process, and specifying behaviors so the output matches the work in your head.</p>
+            </div>
+            <div class="d-card">
+                <div class="d-num">D · 3</div>
+                <h4>Discernment</h4>
+                <p>Evaluating what comes back. Judging quality, accuracy, and fit — and naming what needs to change. This is the muscle that prevents you from shipping confident-but-wrong work.</p>
+            </div>
+            <div class="d-card">
+                <div class="d-num">D · 4</div>
+                <h4>Diligence</h4>
+                <p>Using AI responsibly. Owning the output as your work, being transparent about how it was made, and staying accountable for what you put into the world.</p>
+            </div>
+        </div>
+
+        <div class="pull">
+            Description gets you a good draft. Discernment is what makes the draft trustworthy.
+        </div>
+    </div>
+</section>
+
+<!-- EVALS -->
+<section class="section">
+    <div class="section-inner">
+        <div class="eyebrow">Part 4 · Evaluating AI for your work</div>
+        <h2>How do you know if your AI is actually good at this?</h2>
+        <p class="section-intro">
+            Your work is specific. The AI might be excellent at one thing in your job and
+            mediocre at another. An eval is a lightweight, structured way to find out — so
+            you stop guessing where to trust it and start knowing.
+        </p>
+
+        <h3 style="margin-top:8px;">Why evals matter for executives</h3>
+        <p style="color:var(--slate-deep);">
+            Running a simple eval gives you three things at once:
+        </p>
+        <ul style="margin-top:12px; padding-left:22px; color:var(--slate-deep); font-size:16px; line-height:1.7;">
+            <li>A real picture of where AI adds the most leverage to your workflow.</li>
+            <li>An early warning on the tasks where you'll need to invest in better context.</li>
+            <li>Confidence to delegate the recurring work that you've now verified.</li>
+        </ul>
+
+        <h3 style="margin-top:40px;">A simple four-step eval</h3>
+        <div class="eval-steps">
+            <div class="eval-step">
+                <div class="step-label">Step 1</div>
+                <h3>Gather examples.</h3>
+                <p>Pull 5–10 examples of a task you do regularly — emails, briefs, analyses, board updates, debrief notes. The actual artifacts, not summaries of them.</p>
+            </div>
+            <div class="eval-step">
+                <div class="step-label">Step 2</div>
+                <h3>Write the prompts you would have used.</h3>
+                <p>For each example, write a prompt that would plausibly produce that artifact. Include the context you'd naturally have on hand.</p>
+            </div>
+            <div class="eval-step">
+                <div class="step-label">Step 3</div>
+                <h3>Compare side by side.</h3>
+                <p>Run the prompts and put your AI's output next to your original. Ask:</p>
+                <ul>
+                    <li>Does it capture the key information?</li>
+                    <li>Is the tone and the angle right?</li>
+                    <li>What's missing? What's wrong? What's surprisingly good?</li>
+                </ul>
+            </div>
+            <div class="eval-step">
+                <div class="step-label">Step 4</div>
+                <h3>Refine — and decide where humans stay in the loop.</h3>
+                <p>Adjust the prompt. Add example outputs so the AI can see what "good" looks like. Mark the tasks where review is non-negotiable — and the tasks where you've now earned the right to let it run.</p>
+            </div>
+        </div>
+
+        <div class="pull">
+            You don't need an evals team. You need ten real examples and an afternoon.
+        </div>
+    </div>
+</section>
+
+<!-- REFLECTION -->
+<section class="section dark">
+    <div class="section-inner">
+        <div class="eyebrow">Before you move on</div>
+        <h2>Three questions to sit with.</h2>
+        <p class="section-intro">
+            This is the work between sessions. Don't skip it — the answers shape what you
+            build next.
+        </p>
+
+        <div class="reflection">
+            <div class="label">Reflection</div>
+            <ul>
+                <li>Which of the five failure modes have you already hit? Which would you have called the AI's fault before reading this?</li>
+                <li>Where in your week could a simple eval tell you whether AI is a real fit — or just a parlor trick?</li>
+                <li>Of the 4Ds — Delegation, Description, Discernment, Diligence — which is your weakest? What would investing in it for one month change about your work?</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- NEXT STEP BRIDGE -->
+<section class="next-bridge">
+    <div class="eyebrow">Next step</div>
+    <h2>The Winter Method</h2>
+    <p class="next-intro">
+        You know what goes wrong and how to fix it. The Winter Method gives you the
+        repeatable system for getting it right the first time — the working approach
+        we'll use for the rest of the program.
+    </p>
+    <a href="/winter-method/" class="next-cta">
+        Continue to the Winter Method
+        <span class="arrow">→</span>
+    </a>
+    <span class="next-meta">Module 1 · Up next</span>
+</section>
+
+<footer>
+    CHIEF Accelerator · Module 1 · Getting Better Results
+</footer>
+
+</body>
+</html>
