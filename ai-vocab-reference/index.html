@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>AI Vocab Reference Across LLMs | CHIEF AI Accelerator</title>
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--navy);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:32px 24px 80px}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-mute)}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.logo{width:22px;height:22px;background:var(--teal);border-radius:5px;position:relative;flex:0 0 22px}
+.logo::after{content:"";position:absolute;inset:6px;background:var(--cream);border-radius:2px}
+.brand .eyebrow{font-weight:600;letter-spacing:.16em}
+.crumb{margin-bottom:18px}
+.pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--teal);padding:5px 11px;border-radius:999px}
+h1{font-family:var(--serif);font-size:44px;line-height:1.06;font-weight:700;margin:16px 0 12px;letter-spacing:-.01em}
+.lede{font-size:18px;color:var(--navy-light);max-width:62ch}
+.meta{margin-top:14px}
+section{margin-top:48px}
+.s-label{margin-bottom:6px}
+h2{font-family:var(--serif);font-size:27px;font-weight:700;line-height:1.18;margin-bottom:8px;letter-spacing:-.01em}
+h3.sub{font-family:var(--serif);font-size:19px;font-weight:700;margin:26px 0 10px;letter-spacing:-.01em}
+p{margin-bottom:14px;color:#23364a}
+.big{font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--navy);margin:18px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:12px}
+.card.frame{border-left:3px solid var(--teal)}
+
+/* tool legend chips */
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 4px}
+.tool{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 15px;min-width:150px;flex:1}
+.tool .name{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--navy)}
+.tool .vendor{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy-mute);margin-top:2px}
+
+/* tables */
+.tablecard{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:12px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+thead th{background:var(--navy);color:#fff;text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:11px 14px;vertical-align:bottom}
+thead th:first-child{background:var(--teal-dark)}
+tbody td{padding:12px 14px;border-top:1px solid var(--line);color:#23364a;vertical-align:top;line-height:1.45}
+tbody td:first-child{font-weight:600;color:var(--navy);background:var(--cream-deep);width:26%}
+tbody tr:nth-child(even) td:not(:first-child){background:rgba(19,37,57,0.015)}
+td strong{color:var(--navy)}
+
+/* watchout / callout cards */
+.callout{font-family:var(--serif);font-size:21px;line-height:1.4;color:var(--navy);background:var(--teal-light);border:1px solid rgba(19,181,162,.22);border-radius:12px;padding:20px 22px;margin:16px 0}
+.watchout{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:16px 20px;margin:12px 0}
+.watchout .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.watchout p{margin:5px 0 0;font-size:14.5px}
+.asym{background:var(--teal-light);border:1px solid rgba(19,181,162,.22);border-radius:12px;padding:18px 22px;margin:14px 0}
+.asym .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark);font-weight:600}
+.asym p{margin:5px 0 0;font-size:15px;color:#23364a}
+
+/* principles steps */
+.step{background:#fff;border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:14px 20px;margin-bottom:10px}
+.step .n{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark);font-weight:600}
+.step p{margin:4px 0 0;font-size:15px}
+
+.use{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 22px}
+.use ul{list-style:none;margin:0;padding:0}
+.use li{padding:9px 0;border-top:1px solid var(--line);font-size:15px;color:#23364a}
+.use li:first-child{border-top:none;padding-top:0}
+.use li strong{color:var(--navy)}
+
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-mute)}
+
+@media(max-width:680px){
+  .wrap{padding:24px 16px 64px}
+  h1{font-size:33px}
+  .tablecard{overflow-x:auto}
+  table{min-width:560px}
+  .tool{min-width:120px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">
+    <span class="logo"></span>
+    <span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span>
+  </div>
+
+  <div class="crumb eyebrow">Accelerator / Curriculum / Reference</div>
+  <span class="pill">Reference Sheet</span>
+
+  <h1>AI Vocab Reference Across LLMs</h1>
+  <p class="lede">Every major AI system has the same core functionality, but each one calls it something different. This guide matches them up, so you can find the equivalent feature in whatever tool you actually use.</p>
+  <div class="meta eyebrow">Pre-read · Module 1</div>
+
+  <section>
+    <div class="s-label eyebrow">Tools Covered</div>
+    <h2>Four systems, one set of ideas</h2>
+    <div class="tools">
+      <div class="tool"><span class="name">Claude</span><span class="vendor">Anthropic</span></div>
+      <div class="tool"><span class="name">ChatGPT</span><span class="vendor">OpenAI</span></div>
+      <div class="tool"><span class="name">M365 CoPilot</span><span class="vendor">Microsoft 365</span></div>
+      <div class="tool"><span class="name">Gemini</span><span class="vendor">Google</span></div>
+    </div>
+    <div class="watchout">
+      <span class="tag">A note on CoPilot</span>
+      <p>"CoPilot" is a family. This sheet means M365 CoPilot — the chat surface inside Word, Excel, Outlook, and Teams, the one most execs encounter at work — unless flagged. Copilot Studio is the separate agent-building product, called out where relevant.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Ring 1</div>
+    <h2>Tool concepts</h2>
+
+    <h3 class="sub">The conversation surface</h3>
+    <div class="tablecard">
+      <table>
+        <thead><tr><th>Concept</th><th>Claude</th><th>ChatGPT</th><th>M365 CoPilot</th><th>Gemini</th></tr></thead>
+        <tbody>
+          <tr><td>A single conversation</td><td>Chat</td><td>Chat</td><td>Chat</td><td>Chat</td></tr>
+          <tr><td>A new thread</td><td>New chat</td><td>New chat</td><td>New chat</td><td>New chat</td></tr>
+          <tr><td>Underlying model selector</td><td>Model dropdown (Sonnet / Opus / Haiku)</td><td>Model dropdown (GPT-5, etc.)</td><td>Mostly hidden; "Smart" vs "Quick"</td><td>Model dropdown (Pro, Flash)</td></tr>
+          <tr><td>Web access</td><td>"Web search" tool toggle</td><td>"Web" toggle</td><td>Built-in (BizChat / Work mode)</td><td>Built-in</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Telling it who to be / how to behave</h3>
+    <div class="tablecard">
+      <table>
+        <thead><tr><th>Concept</th><th>Claude</th><th>ChatGPT</th><th>M365 CoPilot</th><th>Gemini</th></tr></thead>
+        <tbody>
+          <tr><td>Persistent "about me / how to respond"</td><td>Settings → Profile → "What should Claude call you" + traits</td><td>Settings → Personalization → Custom Instructions</td><td>Limited; partial via "personalization" settings</td><td>"Saved info" / personalization</td></tr>
+          <tr><td>One-off role for this chat</td><td>Just write it in the prompt</td><td>Just write it in the prompt</td><td>Just write it in the prompt</td><td>Just write it in the prompt</td></tr>
+          <tr><td>API-level system prompt</td><td>"system" parameter</td><td>"system" role</td><td>N/A for end users</td><td>"system_instruction"</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="watchout">
+      <span class="tag">Watchout</span>
+      <p>"Custom Instructions" in ChatGPT and "Profile traits" in Claude do similar things but apply differently. ChatGPT's are global. Claude's profile is global; Project instructions override per-project. M365 CoPilot has the weakest per-user personalization.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Ring 2</div>
+    <h2>Collaborator concepts</h2>
+
+    <h3 class="sub">Grouping work + giving it context</h3>
+    <div class="tablecard">
+      <table>
+        <thead><tr><th>Concept</th><th>Claude</th><th>ChatGPT</th><th>M365 CoPilot</th><th>Gemini</th></tr></thead>
+        <tbody>
+          <tr><td>A folder for related chats + files + instructions</td><td><strong>Projects</strong></td><td><strong>Projects</strong></td><td><strong>Pages</strong> + grounded sources</td><td><strong>Gems</strong> (closest, but lighter)</td></tr>
+          <tr><td>Upload reference files</td><td>Drag into Project or chat</td><td>Drag into Project or chat</td><td>Reference files via @mention or attach</td><td>Add files in Gems / attach</td></tr>
+          <tr><td>Auto-grounding in your company data</td><td>No (must upload)</td><td>No (must upload)</td><td><strong>Yes — M365 graph</strong> (SharePoint, OneDrive, email, Teams, calendar)</td><td>Workspace grounding (Drive, Gmail, Calendar) — varies by edition</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="asym">
+      <span class="tag">The biggest asymmetry in the sheet</span>
+      <p>M365 CoPilot's killer feature is auto-grounding in your company data. Claude and ChatGPT require explicit uploads. Gemini sits in between. For CoPilot users, knowledge-library work happens <em>in M365 itself</em> — folder structure, naming, permissions. For Claude/ChatGPT users, it's about uploading and structuring files into Projects.</p>
+    </div>
+
+    <h3 class="sub">Encoding a reusable workflow — Ring 2's core skill</h3>
+    <div class="tablecard">
+      <table>
+        <thead><tr><th>Concept</th><th>Claude</th><th>ChatGPT</th><th>M365 CoPilot</th><th>Gemini</th></tr></thead>
+        <tbody>
+          <tr><td>A reusable "do this kind of work this way"</td><td><strong>Claude Skills</strong></td><td><strong>Custom GPTs</strong></td><td><strong>Agents</strong> (Copilot Studio) or simpler <strong>Prompts</strong></td><td><strong>Gems</strong></td></tr>
+          <tr><td>Lightweight reusable prompt</td><td>Project-level instructions</td><td>Custom GPT description</td><td>Prompt library / saved prompts</td><td>Gem</td></tr>
+          <tr><td>Sharing with team</td><td>Skill share (org or public)</td><td>GPT shared via link or workspace</td><td>Agent shared via M365 admin</td><td>Gem shared in workspace</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="watchout">
+      <span class="tag">Vocabulary alert</span>
+      <p>This is the row most likely to cause confusion. Teach "build a skill" and a CoPilot exec will hunt for a button labeled "skill" and find nothing. Translation: in CoPilot the same idea is an <strong>Agent</strong> (heavier, built in Copilot Studio) or a saved <strong>Prompt</strong> (lighter). Most execs only need the lighter version to start.</p>
+    </div>
+
+    <h3 class="sub">Style / voice</h3>
+    <div class="tablecard">
+      <table>
+        <thead><tr><th>Concept</th><th>Claude</th><th>ChatGPT</th><th>M365 CoPilot</th><th>Gemini</th></tr></thead>
+        <tbody>
+          <tr><td>Reusable voice / tone</td><td><strong>Styles</strong> (chat-level)</td><td>Style baked into Custom GPT or Custom Instructions</td><td>Tone presets per task</td><td>Built into a Gem</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Ring 3</div>
+    <h2>Delegate concepts</h2>
+    <p>This whole ring is the most volatile vocabulary. The principle — trust calibration, bounded delegation, verification — is stable. The buttons move every six months.</p>
+
+    <h3 class="sub">Running on a schedule</h3>
+    <div class="tablecard">
+      <table>
+        <thead><tr><th>Concept</th><th>Claude</th><th>ChatGPT</th><th>M365 CoPilot</th><th>Gemini</th></tr></thead>
+        <tbody>
+          <tr><td>Recurring scheduled task</td><td><strong>Scheduled Tasks</strong> (Claude Code / Cowork)</td><td><strong>Tasks</strong> (in ChatGPT)</td><td><strong>Power Automate</strong> flows triggered by Copilot</td><td>Scheduled actions (limited)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Letting it take actions in other systems</h3>
+    <div class="tablecard">
+      <table>
+        <thead><tr><th>Concept</th><th>Claude</th><th>ChatGPT</th><th>M365 CoPilot</th><th>Gemini</th></tr></thead>
+        <tbody>
+          <tr><td>Connect to external systems</td><td><strong>MCP servers</strong> (Model Context Protocol)</td><td><strong>Actions</strong> in Custom GPTs; <strong>Connectors</strong></td><td><strong>Connectors</strong> + <strong>Power Automate</strong></td><td><strong>Extensions</strong> + Workspace apps</td></tr>
+          <tr><td>Built-in tool catalog</td><td>MCP marketplace</td><td>GPT Store actions / Apps</td><td>M365 admin connectors</td><td>Extensions</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="watchout">
+      <span class="tag">Watchout</span>
+      <p>MCP (Anthropic-led, now adopted broadly) is becoming the cross-vendor standard for tool connection. Worth knowing the term even if not every exec's tool uses it yet.</p>
+    </div>
+
+    <h3 class="sub">Memory across sessions</h3>
+    <div class="tablecard">
+      <table>
+        <thead><tr><th>Concept</th><th>Claude</th><th>ChatGPT</th><th>M365 CoPilot</th><th>Gemini</th></tr></thead>
+        <tbody>
+          <tr><td>Persistent memory across chats</td><td>Limited (Project-scoped)</td><td><strong>Memory</strong> (global, user-controlled)</td><td>Personalization signals from M365 graph</td><td><strong>Saved info</strong> / personalization</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="watchout">
+      <span class="tag">Watchout</span>
+      <p>ChatGPT's Memory is the most aggressive at remembering — users should know they can view and delete it. Claude is more conservative by design. CoPilot's "memory" is your M365 activity, not stored conversational memory.</p>
+    </div>
+
+    <h3 class="sub">Autonomous multi-step agents</h3>
+    <div class="tablecard">
+      <table>
+        <thead><tr><th>Concept</th><th>Claude</th><th>ChatGPT</th><th>M365 CoPilot</th><th>Gemini</th></tr></thead>
+        <tbody>
+          <tr><td>Agent that plans + executes a multi-step task</td><td><strong>Claude Agents</strong> (Sonnet w/ tools), Skills with tools, Claude Code</td><td><strong>GPT Agents</strong> (formerly Operator-style), Custom GPTs w/ Actions</td><td><strong>Copilot Studio Agents</strong>, Researcher / Analyst agents</td><td><strong>Project Mariner</strong>, Gemini agents (research, deep research)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">The Constant</div>
+    <h2>The principles that don't change</h2>
+    <p>Regardless of tool, these stay true. This is what the curriculum actually teaches.</p>
+    <div class="step"><span class="n">01 · The 4 C's</span><p>Context, Charge, Constraints, Cut. Durable. Every model rewards specificity in these four dimensions.</p></div>
+    <div class="step"><span class="n">02 · The Chief of Staff frame</span><p>Durable. AI is a relationship, not a feature.</p></div>
+    <div class="step"><span class="n">03 · The Three Rings</span><p>Tool → Collaborator → Delegate. Durable. Every tool maps to these.</p></div>
+    <div class="step"><span class="n">04 · Encoding your judgment</span><p>Durable. The artifact's name changes — Skill / GPT / Agent / Gem — but the practice is the same.</p></div>
+    <div class="step"><span class="n">05 · Trust calibration</span><p>Durable. Every automation needs verification regardless of platform.</p></div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">How To Use This Sheet</div>
+    <h2>Recognition, not recall</h2>
+    <div class="use">
+      <ul>
+        <li><strong>Distribute as a pre-read</strong> before Module 1. Identify which column is yours.</li>
+        <li><strong>Reference during drills.</strong> When the lesson says "encode a workflow," point to the relevant row.</li>
+        <li><strong>Expect a half-life.</strong> This sheet gets updated quarterly. The buttons move; the principles don't.</li>
+        <li><strong>Don't memorize.</strong> The point is recognition, not recall. You look it up.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>Michael Gardon · CHIEF AI Accelerator — Reference · AI Vocab</footer>
+
+</div>
+</body>
+</html>
