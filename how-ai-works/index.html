@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>How AI Thinks & Remembers | CHIEF AI Accelerator</title>
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--navy);font-family:var(--sans);line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:32px 24px 80px}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-mute)}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.logo{width:22px;height:22px;background:var(--teal);border-radius:5px;position:relative;flex:0 0 22px}
+.logo::after{content:"";position:absolute;inset:6px;background:var(--cream);border-radius:2px}
+.brand .eyebrow{font-weight:600;letter-spacing:.16em}
+.crumb{margin-bottom:18px}
+.pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--navy-light);padding:5px 11px;border-radius:999px}
+h1{font-family:var(--serif);font-size:44px;line-height:1.06;font-weight:700;margin:16px 0 12px;letter-spacing:-.01em}
+.lede{font-size:18px;color:var(--navy-light);max-width:62ch}
+.meta{margin-top:14px}
+.partlabel{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-dark);font-weight:600;margin:52px 0 4px;padding-top:20px;border-top:2px solid var(--teal)}
+section{margin-top:34px}
+.s-label{margin-bottom:6px}
+h2{font-family:var(--serif);font-size:25px;font-weight:700;line-height:1.2;margin-bottom:12px;letter-spacing:-.01em}
+p{margin-bottom:13px;color:#23364a}
+.take{font-weight:700;color:var(--navy)}
+.def{border-bottom:1px dotted var(--navy-mute)}
+.callout{font-family:var(--serif);font-size:21px;line-height:1.4;color:var(--navy);background:var(--teal-light);border:1px solid rgba(19,181,162,.22);border-radius:12px;padding:20px 22px;margin:8px 0 18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:10px}
+.card.accent{border-left:3px solid var(--teal)}
+.lead-take{font-family:var(--serif);font-size:19px;color:var(--navy);margin:10px 0}
+table{width:100%;border-collapse:collapse;margin:6px 0 14px;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy-mute);background:var(--cream-deep)}
+td:first-child{font-weight:600}
+tr:last-child td{border-bottom:none}
+.flavor{background:#fff;border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:14px 18px;margin-bottom:9px}
+.flavor b{font-family:var(--serif)}
+.pitfall{margin-bottom:10px}
+.pitfall .h{font-weight:700;color:var(--navy)}
+.pitfall .do{color:var(--navy-mute);font-size:14px}
+.payoff{background:#fff;border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:16px 20px;margin-bottom:9px}
+.payoff b{font-family:var(--serif);font-size:16px}
+.gloss{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 22px}
+.gloss dt{font-weight:700;font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--teal-dark);margin-top:12px}
+.gloss dt:first-child{margin-top:0}
+.gloss dd{margin:2px 0 0;font-size:14.5px;color:#23364a}
+footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-mute)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><span class="logo"></span><span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span></div>
+  <div class="crumb eyebrow">Accelerator / Reference / How AI Works</div>
+  <span class="pill">Reference · Optional</span>
+
+  <h1>How AI thinks &amp; remembers</h1>
+  <p class="lede">The honest, plain-English version of what's happening inside the box. Skim it if you're curious. Skip it if you just want to get to work.</p>
+  <div class="meta eyebrow">~12 min · Reference, not a module</div>
+
+  <!-- PART A -->
+  <div class="partlabel">Part A · How it thinks</div>
+
+  <section>
+    <div class="s-label eyebrow">The one-sentence version</div>
+    <div class="callout">An AI model reads everything in front of it and predicts the next small piece of text. Then it does it again, and again, until the answer is done. Every impressive thing it does is a consequence of doing that one thing extremely well.</div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">What it's actually doing</div>
+    <h2>It predicts. It doesn't look things up.</h2>
+    <p>It works in <b>tokens</b> <span class="def">(a token is a chunk of text, roughly a short word or part of one)</span>. It predicts one token, adds it to what it's written, and predicts the next. When you ask a question, it isn't searching a database. It's extending a pattern.</p>
+    <p class="take">Pattern, not knowledge. That's the whole machine.</p>
+    <p>It's fluent because the patterns it learned are dense. It's sometimes wrong because how true things <em>sound</em> and what is actually <em>true</em> are not the same pattern.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">From words to work</div>
+    <h2>So how did it just build you a deck?</h2>
+    <p>It only ever outputs text. So to <em>do</em> something, it writes instructions: either code that gets run, or a <b>tool call</b> <span class="def">(structured text the system hands off to a tool)</span>. A runtime carries those out and hands back the file.</p>
+    <p class="take">Even the doing is just text, pointed at a tool. Nothing new under the hood.</p>
+    <p>This is where <b>skills</b> come in. A skill is reusable instructions, written down, for how to do a task well, sometimes with a script or reference file attached. The model follows the skill to get a reliable result. It's not magic baked into the model. It's a recipe in plain English.</p>
+    <p>Two things follow. First, whether it can actually do the thing depends on your tool having somewhere to run code: Claude with Cowork, ChatGPT's tools, Copilot inside Microsoft 365. Same brain, different ceilings. Second, and this is the door to the rest of the program: if a skill is just written-down know-how, you can write your own. That's what Ring 2 and Ring 3 are. Encoding your instructions so the work runs the way you'd do it.</p>
+    <div class="card accent">This very program, its decks, its files, these pages, was built by AI following skills exactly like these. The program is built with the thing it teaches.</div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">How it learned</div>
+    <h2>Three stages, plain.</h2>
+    <p><b>It read a huge slice of human writing</b>, books, the web, code, and learned the shape of language: grammar, facts, styles, how arguments hang together. That's the raw capability.</p>
+    <p><b>It was taught to be helpful</b>, trained on examples of good question-and-answer behavior so it responds to you instead of rambling.</p>
+    <p><b>It was tuned on human preference</b>: people ranked its answers better or worse, and it was adjusted toward what people preferred. That's why it's polite and structured, and part of why it over-agrees.</p>
+    <p class="take">It learned the shape of a good answer, not a catalog of facts. That one distinction explains most of its strengths and most of its failures.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Why it makes things up</div>
+    <h2>Confidently wrong is a feature of the design, not a glitch.</h2>
+    <p>Because it always produces a plausible next piece, it produces one even when it doesn't actually know. A confident, fluent, wrong answer is called a <b>hallucination</b>.</p>
+    <p>The deeper reason, from 2025 research: the way these models are trained and graded rewards confident guessing over admitting uncertainty. Like a test where a blank scores zero but a guess might earn points, the model learns to always answer rather than say "I don't know." So it bluffs.</p>
+    <p class="take">Confidence is not correctness. Verify anything that matters, and tell it plainly that "I don't know" is an acceptable answer.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">The "thinking" models</div>
+    <h2>Sometimes it pays to let it think first.</h2>
+    <p>Newer models have a <b>thinking</b>, or reasoning, mode: instead of answering right away, they spend extra time working through the problem privately before responding.</p>
+    <p>Worth it for hard, multi-step problems, analysis, math, careful planning. Overkill for quick drafting, where it just makes you wait. As of 2026 you'll see it as Claude's extended thinking, OpenAI's o-series, and Gemini's thinking mode. The names will change. The idea, more time, more deliberation, won't.</p>
+  </section>
+
+  <!-- PART B -->
+  <div class="partlabel">Part B · How it remembers</div>
+
+  <section>
+    <div class="s-label eyebrow">What "memory" means</div>
+    <h2>There are four kinds, and they're not the same.</h2>
+    <p>"Memory" in AI is broader than "does it remember me." Knowing which kind is which tells you what it actually knows when you sit down to work.</p>
+    <div class="flavor"><b>Conversation memory.</b> It remembers within this chat. Open a new one and it's gone. The default everywhere.</div>
+    <div class="flavor"><b>Project memory.</b> Context that persists inside a container, a Claude Project, a ChatGPT Project or Custom GPT, a Gem. Everything in that space starts loaded.</div>
+    <div class="flavor"><b>User-level memory.</b> It remembers you across chats (ChatGPT's Memory, Gemini's Saved Info). Off by default in Claude.</div>
+    <div class="flavor"><b>Environmental.</b> It reads your work environment live, Copilot across Microsoft 365, Gemini across Google Workspace. Not stored memory, but it feels like it.</div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">How each tool handles it</div>
+    <h2>No two tools draw the lines the same place.</h2>
+    <table>
+      <tr><th>Tool</th><th>Conversation</th><th>Project</th><th>User-level</th><th>Environmental</th></tr>
+      <tr><td>Claude</td><td>Yes</td><td>Projects (toggle)</td><td>Limited / off by default</td><td>None</td></tr>
+      <tr><td>ChatGPT</td><td>Yes</td><td>Projects, Custom GPTs</td><td>Memory (auto, global)</td><td>None</td></tr>
+      <tr><td>Gemini</td><td>Yes</td><td>Gems</td><td>Saved Info</td><td>Google Workspace</td></tr>
+      <tr><td>Copilot</td><td>Yes</td><td>Notebooks</td><td>Personalization</td><td>Microsoft 365 (always on)</td></tr>
+    </table>
+    <p class="take">Your assumptions from one tool won't transfer to another. Check before you trust it.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">When memory helps vs. hurts</div>
+    <h2>The same memory can be an asset or a liability.</h2>
+    <p>While you're still <b>figuring something out</b>, memory of the journey helps. It holds the thread and remembers what you already ruled out.</p>
+    <p>Once you've <b>decided and moved on</b>, that same memory starts pulling stale "we considered…" thinking into work that should build on the decision, not the exploration.</p>
+    <p class="take">Ask yourself: am I still figuring this out, or have I decided? Still figuring it out, memory helps. Decided, it starts to pollute.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Common pitfalls</div>
+    <h2>You'll know them when you hit them.</h2>
+    <div class="pitfall"><span class="h">"Wait, did I tell it that?"</span> It surfaces something from weeks ago. <span class="do">Check your memory settings now and then; delete what's stale.</span></div>
+    <div class="pitfall"><span class="h">Staleness.</span> It positions a just-launched product around the idea you discarded. <span class="do">Update your context when you decide. Don't trust auto-summaries of decided work.</span></div>
+    <div class="pitfall"><span class="h">The fake fresh start.</span> Opening a new chat doesn't reset user-level memory. <span class="do">If you need a clean slate, turn memory off.</span></div>
+    <div class="pitfall"><span class="h">Project sprawl.</span> Six overlapping projects, context bleeding between them. <span class="do">One project, one scope, named in a sentence. If you can't name it, it shouldn't exist yet.</span></div>
+  </section>
+
+  <!-- PART C -->
+  <div class="partlabel">So what</div>
+
+  <section>
+    <div class="s-label eyebrow">The payoff</div>
+    <h2>Five things to carry out of this.</h2>
+    <div class="payoff"><b>Context is the lever.</b> It learned patterns, not your facts. Supply your facts and the output sharpens the same day.</div>
+    <div class="payoff"><b>Confidence is not correctness.</b> It bluffs. Verify what matters; invite "I don't know."</div>
+    <div class="payoff"><b>Use thinking mode for hard calls,</b> plain mode for fast ones.</div>
+    <div class="payoff"><b>The model tier matters.</b> A better model has denser, sharper patterns.</div>
+    <div class="payoff"><b>A skill is just written-down know-how,</b> and you can write your own. That's the rest of the program.</div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Mini-glossary</div>
+    <dl class="gloss">
+      <dt>Token</dt><dd>A chunk of text, roughly a short word or part of one. The unit the model predicts.</dd>
+      <dt>Context window</dt><dd>How much text the model can hold in view at once. Its short-term working memory for this chat.</dd>
+      <dt>Prompt</dt><dd>What you type in. The starting context the model extends.</dd>
+      <dt>Hallucination</dt><dd>When the model states something false as if it were true.</dd>
+      <dt>Thinking / reasoning mode</dt><dd>When the model spends extra time working a problem privately before answering.</dd>
+      <dt>Tool call</dt><dd>Structured text the model produces that the surrounding system routes to a tool to actually do something.</dd>
+      <dt>Skill</dt><dd>Reusable, written-down instructions for how to do a task well. A recipe the model follows.</dd>
+    </dl>
+  </section>
+
+  <footer>Michael Gardon · CHIEF AI Accelerator — Reference · How AI Thinks &amp; Remembers</footer>
+
+</div>
+</body>
+</html>
