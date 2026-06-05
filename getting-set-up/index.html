@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<meta name="robots" content="noindex, nofollow">
+<title>Getting Set Up | CHIEF AI Accelerator</title>
+<meta name="description" content="Get on the right account, into the tool, and through one real interaction, so the only new thing in the next module is the skill, not the software.">
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--navy);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:32px 24px 80px}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-mute)}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.logo{width:22px;height:22px;background:var(--teal);border-radius:5px;position:relative;flex:0 0 22px}
+.logo::after{content:"";position:absolute;inset:6px;background:var(--cream);border-radius:2px}
+.brand .eyebrow{font-weight:600;letter-spacing:.16em}
+.crumb{margin-bottom:18px}
+.pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--teal);padding:5px 11px;border-radius:999px}
+h1{font-family:var(--serif);font-size:44px;line-height:1.06;font-weight:700;margin:16px 0 12px;letter-spacing:-.01em}
+.lede{font-size:18px;color:var(--navy-light);max-width:60ch}
+.meta{margin-top:14px}
+section{margin-top:48px}
+.s-label{margin-bottom:6px}
+h2{font-family:var(--serif);font-size:27px;font-weight:700;line-height:1.18;margin-bottom:14px;letter-spacing:-.01em}
+h3.sub{font-family:var(--serif);font-size:19px;font-weight:700;margin:24px 0 8px;letter-spacing:-.01em}
+p{margin-bottom:14px;color:#23364a}
+.big{font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--navy);margin:18px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:12px}
+.card.frame{border-left:3px solid var(--teal)}
+.callout{font-family:var(--serif);font-size:21px;line-height:1.4;color:var(--navy);background:var(--teal-light);border:1px solid rgba(19,181,162,.22);border-radius:12px;padding:20px 22px;margin:16px 0}
+
+/* steps */
+.step{background:#fff;border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:14px 20px;margin-bottom:10px}
+.step .n{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark);font-weight:600}
+.step .t{font-family:var(--serif);font-size:17px;font-weight:700;margin:3px 0 4px;color:var(--navy)}
+.step p{margin:0;font-size:15px}
+
+/* watchout / note */
+.watchout{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:16px 20px;margin:12px 0}
+.watchout .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.watchout p{margin:5px 0 0;font-size:14.5px}
+
+/* tier table */
+.tablecard{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:14px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+thead th{background:var(--navy);color:#fff;text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:11px 14px}
+thead th:first-child{background:var(--teal-dark)}
+tbody td{padding:12px 14px;border-top:1px solid var(--line);color:#23364a;vertical-align:top;line-height:1.45}
+tbody td:first-child{font-weight:600;color:var(--navy);background:var(--cream-deep);width:24%}
+tbody tr.primary td{background:var(--teal-light)}
+tbody tr.primary td:first-child{color:var(--teal-dark);background:rgba(19,181,162,.16)}
+
+/* vocab list */
+.use{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-top:6px}
+.use ul{list-style:none;margin:0;padding:0}
+.use li{padding:12px 0;border-top:1px solid var(--line);font-size:15px;color:#23364a}
+.use li:first-child{border-top:none;padding-top:0}
+.use li b{display:block;font-family:var(--serif);font-size:16px;color:var(--navy);margin-bottom:2px}
+
+/* prompt block with copy */
+.prompt{position:relative;background:var(--navy);color:#fff;border-radius:12px;padding:18px 52px 18px 20px;font-family:var(--mono);font-size:13px;line-height:1.65;margin:14px 0}
+.prompt .copy{position:absolute;top:12px;right:12px;display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.22);color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 9px;border-radius:7px;cursor:pointer;transition:background .15s}
+.prompt .copy:hover{background:rgba(255,255,255,0.18)}
+.prompt .copy.done{background:var(--teal);border-color:var(--teal)}
+
+/* checklist */
+.checklist{background:#fff;border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:8px 22px;margin-top:6px}
+.checklist ul{list-style:none;margin:0;padding:0}
+.checklist li{display:flex;align-items:center;gap:13px;padding:13px 0;border-top:1px solid var(--line);font-size:16px;color:var(--navy)}
+.checklist li:first-child{border-top:none}
+.checklist .box{width:20px;height:20px;border:2px solid var(--teal);border-radius:5px;flex:0 0 20px}
+
+/* next bridge */
+.bridge{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:22px 24px;margin-top:14px}
+.bridge a{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:#fff;background:var(--navy);padding:9px 15px;border-radius:7px;text-decoration:none}
+.bridge a:hover{background:var(--navy-light)}
+
+a{color:var(--teal-dark);text-decoration:none;font-weight:600}
+a:hover{text-decoration:underline}
+
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-mute)}
+
+@media(max-width:620px){.wrap{padding:24px 18px 64px}h1{font-size:34px}.tablecard{overflow-x:auto}table{min-width:480px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">
+    <span class="logo"></span>
+    <span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span>
+  </div>
+
+  <div class="crumb eyebrow">Accelerator / Curriculum / 0.4 Getting Set Up</div>
+  <span class="pill">Phase 0 · Foundations</span>
+
+  <h1>Getting set up</h1>
+  <p class="lede">Get on the right account, into the tool, and through one real interaction. When the skills start, the only new thing is the skill, not the software.</p>
+  <div class="meta eyebrow">8 min read · about 15 min to do</div>
+
+  <section>
+    <div class="s-label eyebrow">Start Here</div>
+    <h2>By the end of this page, you're set up and running.</h2>
+    <p>Four things happen here. You get on a paid plan. You open the tool where you'll actually use it. You learn where everything on the screen lives. And you run one real interaction that works. That's the floor the rest of the program stands on.</p>
+    <p>Already oriented and on a paid plan? Skip ahead. Everything on this page is the floor, not the skill. Nobody's watching if you move fast.</p>
+    <div class="watchout">
+      <span class="tag">In the program</span>
+      <p>We set this up together in your live Week 1 session. This page is your backup. Read it again when you get home and want to redo it on your own, or follow it on your own time if you're moving ahead.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Step 1</div>
+    <h2>A free account makes AI look dumb. Get the paid one.</h2>
+    <p>We teach on Claude. Every tool we cover has the same parts, so if you already use a different one, you can follow along. We'll point out the match as we go.</p>
+    <p>Here's the part most people get wrong. The free account gives you an older, weaker version. Most people who tried AI and walked away unimpressed were judging that weak version. The paid account is about <b>$20 a month</b>. That's the price of seeing what this actually does. Get on it before you judge anything.</p>
+
+    <div class="tablecard">
+      <table>
+        <thead>
+          <tr><th>Maker</th><th>The tool</th><th>The plan you want</th></tr>
+        </thead>
+        <tbody>
+          <tr class="primary"><td>Anthropic</td><td>Claude (what we teach on)</td><td>Claude Pro</td></tr>
+          <tr><td>OpenAI</td><td>ChatGPT</td><td>ChatGPT Plus</td></tr>
+          <tr><td>Microsoft</td><td>Copilot</td><td>Copilot Pro / M365 Copilot</td></tr>
+          <tr><td>Google</td><td>Gemini</td><td>Gemini Advanced (Google One AI)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="watchout">
+      <span class="tag">Why the paid plan, in full</span>
+      <p>The free-vs-paid gap comes down to which model you're talking to. We pull that apart in <a href="/frontier-models/">Frontier Models</a>, the next reference. If you want the full reason a weak model leads people to write off AI, that's where it lives.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Step 2</div>
+    <h2>Open it in one place and stay there.</h2>
+    <p>"Open Claude" is really three different things. Pick one place to work so you're not deciding every time. For most people that's the website or the desktop app.</p>
+
+    <div class="step">
+      <span class="n">Start here · Website</span>
+      <div class="t">In your web browser</div>
+      <p>Type <b>claude.ai</b> into the address bar. That's the long box at the very top of the browser window, the same place any web address goes. Then sign in. This works on any computer, with nothing to install.</p>
+    </div>
+    <div class="step">
+      <span class="n">Start here · Desktop app</span>
+      <div class="t">As a program on your computer</div>
+      <p>Download the Claude app from <b>claude.ai/download</b> and open it like any other program. The difference from the website: this is its own window, not a tab inside your browser. If you've ever mixed up "an app" with "a browser tab," this is that difference. It trips up plenty of people.</p>
+    </div>
+    <div class="watchout">
+      <span class="tag">Also there · Phone</span>
+      <p>Claude has an app in the iPhone and Android stores. It's handy for catching a thought on the go. Set up the website or desktop app as your main spot first. We come back to the phone later.</p>
+    </div>
+    <div class="watchout">
+      <span class="tag">On ChatGPT, Copilot, or Gemini?</span>
+      <p>Same idea. Each one has a website you sign into and an app you can download. Find the official site, sign in with the account you just put on a paid plan, and you're in.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Step 3</div>
+    <h2>Five things to find on the screen.</h2>
+    <p>This is the smallest set of words you need to follow any later instruction. You don't have to use them yet. Just be able to point at each one.</p>
+
+    <!-- SCREENSHOT TO ADD: annotated Claude home screen, arrows to the five items below. Use current, real UI. Add a "captured [date]" caption when inserted. -->
+
+    <div class="use">
+      <ul>
+        <li><b>The message box</b>Where you type what you want. Usually at the bottom or center of the screen.</li>
+        <li><b>New chat</b>Starts a fresh conversation. You'd start one when you move to a new, unrelated topic.</li>
+        <li><b>Chat history</b>The list down the left side where your past conversations live. They stay there. You can reopen them.</li>
+        <li><b>Projects</b>A place to group related work. We set this up later in the program. For now, just know the word.</li>
+        <li><b>Settings and your account</b>Where your name, your plan, and your preferences live. This is where you check that you're on the paid plan.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Step 4</div>
+    <h2>Where your chats and files actually go.</h2>
+    <p>Three things throw almost everyone in the first week. Here's the plain answer to each.</p>
+
+    <h3 class="sub">A chat versus your history</h3>
+    <p>The conversation in front of you is the chat. Older ones sit in the list down the left side. Closing the window doesn't lose them. They're saved, and you can reopen any of them.</p>
+
+    <h3 class="sub">Files</h3>
+    <p>When you upload a file, it attaches to the chat you're in. When the AI makes something for you, like a document or a spreadsheet, it shows up in that same chat, with a button to download it. The file work in Cowork stores things a little differently. We cover that in <a href="/chat-vs-cowork/">Chat vs. Cowork</a>.</p>
+
+    <h3 class="sub">This chat versus a fresh one</h3>
+    <p>What you say in a chat stays available inside that chat. Start a brand-new one and it won't carry over what you said in the last. The full story of what the AI remembers is its own topic, <b>How AI Remembers</b>, later in Foundations. That one line is enough to get going.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Step 5</div>
+    <h2>Run one prompt and feel it work.</h2>
+    <p>One move so you feel the difference. This isn't a lesson in writing prompts. That's next. It's a check. Paste this into the message box, swap in your own role and business, and send it.</p>
+
+    <div class="prompt" data-copy>
+      <button class="copy" onclick="copyPrompt(this)" type="button" aria-label="Copy prompt"><span class="ci">⧉</span><span class="cl">Copy</span></button>
+      <span class="ptext">I'm a [your role] at a [kind of business]. In two sentences, explain what you can help me with, and ask me one question that would make your help better.</span>
+    </div>
+
+    <p>It comes back with something useful, then asks you a question. That back-and-forth is the point. It's the moment this stops feeling like a search box and starts feeling like something you can work with.</p>
+
+    <h3 class="sub">Now keep what it learned</h3>
+    <p>Don't let that context vanish when you close the chat. Paste this next:</p>
+
+    <div class="prompt" data-copy>
+      <button class="copy" onclick="copyPrompt(this)" type="button" aria-label="Copy prompt"><span class="ci">⧉</span><span class="cl">Copy</span></button>
+      <span class="ptext">Sum up what you now know about me and my work in one short note I can reuse. Keep it to a few lines.</span>
+    </div>
+
+    <p>Save that note. In Claude, you keep reusable context like this in a <b>Project</b>, so the AI starts every chat already knowing you instead of from scratch. We build your Projects properly in a later module. For now, hang on to the file. It's the first piece of context you'll load in.</p>
+    <div class="callout">Every minute you spend giving the AI context, it pays back in better output. This little note is where that starts.</div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Step 6</div>
+    <h2>You're set up.</h2>
+    <p>Tick these off. If all four are true, you've cleared the floor, and the next module assumes nothing more.</p>
+    <div class="checklist">
+      <ul>
+        <li><span class="box"></span> I'm on a paid plan</li>
+        <li><span class="box"></span> The tool is open where I'll actually use it</li>
+        <li><span class="box"></span> I can find the message box, a new chat, and my history</li>
+        <li><span class="box"></span> I ran one interaction and saved a short note about my work</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Next in the Sequence</div>
+    <h2>You're in. Now learn what to trust.</h2>
+    <div class="bridge">
+      <p style="margin:0">Before the skills begin, one short read sets the right expectations: what to trust, what to double-check, and what's safe to put in.</p>
+      <a href="/">Next: What to Watch For →</a>
+    </div>
+  </section>
+
+  <footer>Michael Gardon · CHIEF AI Accelerator — Phase 0 · 0.4 Getting Set Up</footer>
+
+</div>
+
+<script>
+function copyPrompt(btn){
+  var block = btn.closest('[data-copy]');
+  var text = block.querySelector('.ptext').innerText;
+  var label = btn.querySelector('.cl');
+  function done(){
+    btn.classList.add('done');
+    label.textContent = 'Copied';
+    setTimeout(function(){ btn.classList.remove('done'); label.textContent = 'Copy'; }, 1800);
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(fallback);
+  } else { fallback(); }
+  function fallback(){
+    var ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta); done();
+  }
+}
+</script>
+
+</body>
+</html>
