@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>Frontier Models: The Tier Sets the Ceiling | CHIEF AI Accelerator</title>
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--navy);font-family:var(--sans);line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:32px 24px 80px}
+a{color:var(--teal-dark)}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-mute)}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.logo{width:22px;height:22px;background:var(--teal);border-radius:5px;position:relative;flex:0 0 22px}
+.logo::after{content:"";position:absolute;inset:6px;background:var(--cream);border-radius:2px}
+.brand .eyebrow{font-weight:600;letter-spacing:.16em}
+.crumb{margin-bottom:18px}
+.pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--teal);padding:5px 11px;border-radius:999px}
+h1{font-family:var(--serif);font-size:42px;line-height:1.08;font-weight:700;margin:16px 0 12px;letter-spacing:-.01em}
+.lede{font-size:18px;color:var(--navy-light);max-width:62ch}
+.meta{margin-top:14px}
+section{margin-top:34px}
+.s-label{margin-bottom:6px}
+h2{font-family:var(--serif);font-size:25px;font-weight:700;line-height:1.2;margin-bottom:12px;letter-spacing:-.01em}
+p{margin-bottom:13px;color:#23364a}
+ul{margin:0 0 13px 20px}
+li{margin-bottom:8px;color:#23364a}
+.take{font-weight:700;color:var(--navy)}
+.callout{font-family:var(--serif);font-size:20px;line-height:1.4;color:var(--navy);background:var(--teal-light);border:1px solid rgba(19,181,162,.22);border-radius:12px;padding:18px 22px;margin:10px 0 14px}
+table{width:100%;border-collapse:collapse;margin:6px 0 12px;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy-mute);background:var(--cream-deep)}
+td:first-child{font-weight:600}
+tr:last-child td{border-bottom:none}
+.attrib{font-size:13px;color:var(--navy-mute);font-style:italic;margin-top:2px}
+.bridge{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:18px 20px}
+.bridge .dname{font-family:var(--serif);font-weight:700;font-size:18px;color:var(--navy);margin-bottom:6px}
+.btn{display:inline-block;background:var(--navy);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border-radius:8px;text-decoration:none;margin-top:6px}
+footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-mute)}
+@media(max-width:560px){h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><span class="logo"></span><span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span></div>
+  <div class="crumb eyebrow">Accelerator / Phase 0 / 0.2 Frontier Models</div>
+  <span class="pill">Phase 0 · Module 0.2</span>
+
+  <h1>Frontier models: the tier you're on sets the ceiling</h1>
+  <p class="lede">A great prompt on a weak model still gives you a weak answer. Which model you use decides what everything else can become.</p>
+  <div class="meta eyebrow">~5 min · Foundations</div>
+
+  <section>
+    <div class="s-label eyebrow">The underwhelm</div>
+    <h2>"I tried AI and it was underwhelming"</h2>
+    <p>Almost everyone who says this hit one of two things:</p>
+    <ul>
+      <li>A thin prompt. That's a Description problem, and we fix it in Phase 1.</li>
+      <li>A weak model. That's this page.</li>
+    </ul>
+    <p class="take">The model you use sets the ceiling on everything else.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Definition</div>
+    <h2>What a frontier model is</h2>
+    <ul>
+      <li>A <b>frontier model</b> is the newest, most capable model a lab has released. The front of the line.</li>
+      <li>Every lab ships a range: small and fast and cheap, up to large and slower and smartest. The frontier one is the smartest.</li>
+      <li>"Frontier" keeps moving. Today's frontier model is next year's baseline. The names change every few months. The idea doesn't.</li>
+    </ul>
+
+    <figure style="margin:20px 0 0">
+      <svg viewBox="0 0 720 470" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#D4A338"/></marker>
+          <style>
+            .ttl{font-family:'Iowan Old Style',Charter,Georgia,serif;font-weight:700;fill:#132539}
+            .sub{fill:#6E7A88;font-size:13px}
+            .ax{font-family:'SF Mono',Menlo,monospace;font-size:10px;letter-spacing:.06em;fill:#6E7A88}
+            .note{font-family:'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;fill:#12917E}
+            .cap{fill:#9AA4AF;font-size:11px;font-style:italic}
+            .grid{stroke:#EDEBE5;stroke-width:1}
+            .axis{stroke:#D7D3CA;stroke-width:1.5}
+          </style>
+        </defs>
+        <text x="40" y="42" class="ttl" font-size="22">The capability curve is bending up</text>
+        <text x="40" y="64" class="sub">How long a task a top model can finish on its own (in human time)</text>
+        <g>
+          <line class="grid" x1="96" y1="85"  x2="690" y2="85"/>
+          <line class="grid" x1="96" y1="235" x2="690" y2="235"/>
+          <line class="grid" x1="96" y1="310" x2="690" y2="310"/>
+          <line class="grid" x1="96" y1="360" x2="690" y2="360"/>
+          <line class="grid" x1="96" y1="379" x2="690" y2="379"/>
+          <text x="88" y="89"  text-anchor="end" class="ax">12 hrs</text>
+          <text x="88" y="239" text-anchor="end" class="ax">6 hrs</text>
+          <text x="88" y="314" text-anchor="end" class="ax">3 hrs</text>
+          <text x="88" y="364" text-anchor="end" class="ax">1 hr</text>
+          <text x="88" y="382" text-anchor="end" class="ax">15 min</text>
+          <text x="88" y="396" text-anchor="end" class="ax">30 sec</text>
+        </g>
+        <line class="axis" x1="96" y1="85" x2="96" y2="385"/>
+        <line class="axis" x1="96" y1="385" x2="690" y2="385"/>
+        <path d="M120 385 L187 384 L255 384 L322 382 L390 378 L457 367 L525 342 L592 280 L660 130 L660 385 Z" fill="#DCFAF5" opacity="0.7"/>
+        <polyline points="120,385 187,384 255,384 322,382 390,378 457,367 525,342 592,280 660,130" fill="none" stroke="#13B5A2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M660 130 L702 60" fill="none" stroke="#D4A338" stroke-width="2.5" stroke-dasharray="5 5" marker-end="url(#ar)"/>
+        <g>
+          <circle cx="120" cy="385" r="5" fill="#13B5A2" stroke="#fff" stroke-width="2"/>
+          <circle cx="255" cy="384" r="5" fill="#13B5A2" stroke="#fff" stroke-width="2"/>
+          <circle cx="390" cy="378" r="5" fill="#13B5A2" stroke="#fff" stroke-width="2"/>
+          <circle cx="525" cy="342" r="5" fill="#13B5A2" stroke="#fff" stroke-width="2"/>
+          <circle cx="660" cy="130" r="6.5" fill="#132539" stroke="#fff" stroke-width="2"/>
+        </g>
+        <g>
+          <text x="120" y="402" text-anchor="middle" class="ax">2022</text>
+          <text x="255" y="402" text-anchor="middle" class="ax">2023</text>
+          <text x="390" y="402" text-anchor="middle" class="ax">2024</text>
+          <text x="525" y="402" text-anchor="middle" class="ax">2025</text>
+          <text x="660" y="402" text-anchor="middle" class="ax">2026</text>
+        </g>
+        <text x="150" y="150" class="note">Doubling every ~4–7 months</text>
+        <text x="150" y="168" class="note" fill="#9AA4AF">and the doubling is speeding up</text>
+        <text x="40" y="452" class="cap">Shape based on METR task time-horizon data (2025–26). Vertical axis is real time on a linear scale.</text>
+      </svg>
+    </figure>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Free vs. frontier</div>
+    <h2>Why the tier matters</h2>
+    <ul>
+      <li>Free models are usually outdated: an older or smaller version, a step or two behind the current frontier.</li>
+      <li>An outdated model is bland, shallow, and more likely to be wrong. A lot of AI underwhelm starts right here.</li>
+      <li>The gap from a free model to a frontier model is not a small upgrade. It's the difference between a clever intern and a sharp senior operator.</li>
+      <li>Going paid is well worth it. You can't judge what AI can really do until you've seen it run on a frontier model.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Beyond quality</div>
+    <h2>It's not just the model</h2>
+    <p>Free costs you more than quality. It also locks out the things that make AI actually useful downstream:</p>
+    <ul>
+      <li><b>Connections to your tools.</b> Paid tiers let the AI plug into what you already use: email, calendar, Drive, Slack, Notion. That's where it stops being a chat box and starts doing real work. Most of these are gated behind paid.</li>
+      <li><b>Plugins and skills.</b> The add-ons that extend what the AI can do, and the ability to build your own, are largely paid-only.</li>
+      <li><b>Bigger inputs and web access.</b> Uploading large files, working across long documents, and live web search are limited or off on free.</li>
+      <li><b>You get cut off.</b> Free plans cap how much you can do. Hit the limit and you're locked out, waiting for it to reset, usually right in the middle of something. The technical term is "running out of tokens." In practice, the chat just stops and you wait.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Bottom line</div>
+    <h2>The paid tier is the price of admission</h2>
+    <div class="callout">Around $20 a month is the price of admission. It's the cost of seeing what this actually does.</div>
+    <ul>
+      <li>Frontier models sit behind the paid tier. The free tier is most of the reason you were underwhelmed.</li>
+      <li>This is the one place we tell you to spend before you start. Everything else in the program assumes you're on it.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">The landscape</div>
+    <h2>The landscape</h2>
+    <p>The program teaches on <b>Claude</b>. Everything we teach has an equivalent in the other major tools, so if you're committed to one of them, you can follow along. Get on the paid tier of whichever you choose.</p>
+    <table>
+      <tr><th>Vendor</th><th>The tool</th><th>The paid tier you want</th></tr>
+      <tr><td>Anthropic</td><td>Claude</td><td>Claude Pro</td></tr>
+      <tr><td>OpenAI</td><td>ChatGPT</td><td>ChatGPT Plus</td></tr>
+      <tr><td>Google</td><td>Gemini</td><td>Google AI Pro</td></tr>
+      <tr><td>Microsoft</td><td>Copilot</td><td>Microsoft 365 Premium</td></tr>
+    </table>
+    <p class="attrib">Current flagships, mid-2026: Claude Opus, OpenAI's GPT-5.5, Google's Gemini 3.1 Pro. There are also heavy-use tiers ($100 to $200 a month, like Claude Max and ChatGPT Pro). You don't need those to start. The standard ~$20 plan is the right call.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">What's next</div>
+    <div class="bridge">
+      <div class="eyebrow" style="color:var(--gold)">Up next</div>
+      <div class="dname">Getting Set Up</div>
+      <p>You've picked a frontier model and a paid tier. Next, get into the tool and through your first real interaction.</p>
+      <a class="btn" href="/getting-set-up/">Module 0.4 · Getting Set Up →</a>
+    </div>
+  </section>
+
+  <footer>Michael Gardon · CHIEF AI Accelerator — Phase 0 · 0.2 Frontier Models</footer>
+
+</div>
+</body>
+</html>
