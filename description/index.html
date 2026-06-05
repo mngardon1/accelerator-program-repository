@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>Description: Scope What You Actually Want | CHIEF AI Accelerator</title>
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--navy);font-family:var(--sans);line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:32px 24px 80px}
+a{color:var(--teal-dark)}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-mute)}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.logo{width:22px;height:22px;background:var(--teal);border-radius:5px;position:relative;flex:0 0 22px}
+.logo::after{content:"";position:absolute;inset:6px;background:var(--cream);border-radius:2px}
+.brand .eyebrow{font-weight:600;letter-spacing:.16em}
+.crumb{margin-bottom:18px}
+.pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--teal);padding:5px 11px;border-radius:999px}
+h1{font-family:var(--serif);font-size:42px;line-height:1.08;font-weight:700;margin:16px 0 12px;letter-spacing:-.01em}
+.lede{font-size:18px;color:var(--navy-light);max-width:62ch}
+.meta{margin-top:14px}
+section{margin-top:34px}
+.s-label{margin-bottom:6px}
+h2{font-family:var(--serif);font-size:25px;font-weight:700;line-height:1.2;margin-bottom:12px;letter-spacing:-.01em}
+h3{font-family:var(--serif);font-size:18px;font-weight:700;margin:18px 0 6px}
+p{margin-bottom:13px;color:#23364a}
+ul{margin:0 0 13px 20px}
+li{margin-bottom:7px;color:#23364a}
+.take{font-weight:700;color:var(--navy)}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px}
+.card.accent{border-left:3px solid var(--teal)}
+.dlabel{color:var(--teal-dark);margin-bottom:3px}
+.dname{font-family:var(--serif);font-weight:700;font-size:18px;color:var(--navy);margin-bottom:6px}
+.card p{margin-bottom:0;font-size:15px}
+.callout{font-family:var(--serif);font-size:19px;line-height:1.45;color:var(--navy);background:var(--teal-light);border:1px solid rgba(19,181,162,.22);border-radius:12px;padding:18px 20px;margin:10px 0 14px}
+.prompt{font-family:var(--mono);font-size:13px;line-height:1.6;border-radius:10px;padding:13px 15px;margin:6px 0 10px}
+.prompt .lbl{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px;color:var(--navy-mute)}
+.prompt.bad{background:var(--cream-deep);color:var(--navy-mute);border:1px solid var(--line)}
+.prompt.good{background:var(--teal-light);color:#0f3b35;border:1px solid rgba(19,181,162,.22)}
+.prompt.good .lbl{color:var(--teal-dark)}
+.prompt.good b{color:var(--navy)}
+.result{font-size:14.5px;color:#23364a;margin:0 0 16px}
+table{width:100%;border-collapse:collapse;margin:6px 0 14px;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy-mute);background:var(--cream-deep)}
+td:first-child{font-weight:600}
+tr:last-child td{border-bottom:none}
+.bridge{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:18px 20px}
+.btn{display:inline-block;background:var(--navy);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border-radius:8px;text-decoration:none;margin-top:6px}
+footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-mute)}
+@media(max-width:560px){h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><span class="logo"></span><span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span></div>
+  <div class="crumb eyebrow">Accelerator / Phase 1 / 1.2 Description</div>
+  <span class="pill">Phase 1 · Module 1.2</span>
+
+  <h1>Description: scope what you actually want in detail</h1>
+  <p class="lede">Good inputs, good outputs. The 4 C's are how you give the AI enough to actually get what you want.</p>
+  <div class="meta eyebrow">~7 min · Phase 1 · The first D</div>
+
+  <section>
+    <div class="s-label eyebrow">The principle</div>
+    <h2>Good inputs, good outputs</h2>
+    <p>Garbage in, garbage out. It's an old line, and it's still true. The quality of what you get back is set by the quality of what you put in.</p>
+    <p>Most AI problems come down to one thing: we don't actually know how to describe what we want. We hold it clearly in our own heads and assume a few words will carry it across. They don't. The failures from the last lesson (generic, wrong length, wrong format, off tone) are almost always a thin input, not a dumb tool.</p>
+    <p>And most problems are Description problems. Even a task you hand off that flops is usually a description failure underneath: the scope was vague, or the ask was too big to do in one shot. Get good at describing and everything else gets easier.</p>
+    <p class="take">That's why the 4 C's exist: a repeatable way to scope what you want in enough detail to actually get it.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Why it matters</div>
+    <h2>This isn't prompt engineering</h2>
+    <p>You're not learning prompt tricks. You're learning the semantics of working with AI: how to say what you mean clearly enough that a machine can act on it. That's the base skill for everything that comes later. Once you have it, you can:</p>
+    <div class="card accent"><b>Encode</b> your thinking, processes, and taste into reference files, so you don't have to re-explain yourself.</div>
+    <div class="card accent"><b>Build</b> skills, workflows, and agents that execute for you.</div>
+    <div class="card accent"><b>Learn</b> by saving and updating your thinking, your approach, and how the work gets done, so the system keeps getting better.</div>
+    <p class="take">Get describing right now, and every ring after this gets easier.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">The method</div>
+    <h2>The 4 C's</h2>
+    <div class="card accent">
+      <div class="dlabel eyebrow">C1</div>
+      <div class="dname">Context</div>
+      <p>Who it's for, your role, the situation, what you've already tried, and the material the AI should work from. The biggest lever. More on it below.</p>
+    </div>
+    <div class="card accent">
+      <div class="dlabel eyebrow">C2</div>
+      <div class="dname">Charge</div>
+      <p>The outcome you want, and the mode you want the AI working in. Sometimes that's a deliverable: write, summarize, draft, compare. Sometimes it's a way of working: "just help me think this through," "blue sky, don't critique yet," "don't build anything, we're still scoping." Naming the mode keeps the AI from red-teaming your brainstorm, or running off to build before you're ready.</p>
+    </div>
+    <div class="card accent">
+      <div class="dlabel eyebrow">C3</div>
+      <div class="dname">Constraints</div>
+      <p>Length, tone, what to avoid, what's non-negotiable.</p>
+    </div>
+    <div class="card accent">
+      <div class="dlabel eyebrow">C4</div>
+      <div class="dname">Cut</div>
+      <p>The shape and form of the output. An email, memo, table, bullets, one paragraph. It can also be a deliverable type: a knowledge document, a process, or even a task ("capture this as a task").</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">The biggest C</div>
+    <h2>Context is the biggest one</h2>
+    <p>You are rarely short on context. You leave it in your head, or sitting in a file on your computer. The fix is to actually give it to the AI. It comes from four places:</p>
+    <ul>
+      <li><b>From your prompt.</b> What you type: your role, the situation, the backstory, what you've already tried. The fastest source, and the most underused.</li>
+      <li><b>From files you attach.</b> Hand it the actual PowerPoint, Excel, Word doc, or PDF. "Rewrite this deck." "Pull the trend out of this spreadsheet." "Match the format of this contract." It works from the real thing, not your description of it.</li>
+      <li><b>From examples, screenshots, and links.</b> When something is hard to put into words, show it. Paste a screenshot of a layout, an email whose tone you want matched, or a URL to reference.</li>
+      <li><b>From saved knowledge.</b> Context you store once so it loads every time: a voice doc, company facts, a style guide. The most powerful source. We build these in Phase 2.</li>
+    </ul>
+
+    <figure style="margin:18px 0">
+      <svg viewBox="0 0 760 600" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#13B5A2"/>
+          </marker>
+          <style>
+            .card{fill:#fff;stroke:#E7E5DF;stroke-width:1.5;}
+            .bar{fill:#13B5A2;}
+            .lbl{fill:#132539;font-weight:700;font-size:18px;font-family:'Iowan Old Style',Charter,Georgia,serif;}
+            .sub{fill:#6E7A88;font-size:12.5px;}
+            .tag{fill:#12917E;font-size:9.5px;letter-spacing:.14em;font-family:'SF Mono',Menlo,monospace;}
+            .mono{font-family:'SF Mono',Menlo,monospace;}
+            .hubt{font-family:'Iowan Old Style',Charter,Georgia,serif;font-weight:700;fill:#132539;}
+            .flow{stroke:#7FCFC4;stroke-width:2;stroke-dasharray:5 5;fill:none;}
+          </style>
+        </defs>
+        <path class="flow" marker-end="url(#arrow)" d="M300 158 C338 205 350 225 350 254"/>
+        <path class="flow" marker-end="url(#arrow)" d="M460 158 C422 205 410 225 410 254"/>
+        <path class="flow" marker-end="url(#arrow)" d="M300 462 C338 415 350 395 350 366"/>
+        <path class="flow" marker-end="url(#arrow)" d="M460 462 C422 415 410 395 410 366"/>
+        <circle cx="380" cy="310" r="62" fill="#DCFAF5" stroke="#13B5A2" stroke-width="2"/>
+        <text x="380" y="304" text-anchor="middle" class="hubt" font-size="22">Context</text>
+        <text x="380" y="322" text-anchor="middle" class="sub" font-size="10.5">what the AI</text>
+        <text x="380" y="335" text-anchor="middle" class="sub" font-size="10.5">works from</text>
+        <g transform="translate(24,46)">
+          <rect class="card" x="0" y="0" width="296" height="120" rx="14"/>
+          <rect class="bar" x="0" y="10" width="4" height="100" rx="2"/>
+          <text x="280" y="26" text-anchor="end" class="tag">01</text>
+          <g transform="translate(22,32)">
+            <rect x="0" y="0" width="60" height="46" rx="9" fill="#F9F8F5" stroke="#132539" stroke-width="2"/>
+            <path d="M11 14 L20 23 L11 32" fill="none" stroke="#13B5A2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="27" y="16" width="24" height="3.5" rx="1.75" fill="#9AA4AF"/>
+            <rect x="27" y="26" width="16" height="3.5" rx="1.75" fill="#9AA4AF"/>
+            <rect x="45" y="25" width="2.5" height="9" rx="1" fill="#13B5A2"/>
+          </g>
+          <text x="100" y="54" class="lbl">Prompt directions</text>
+          <text x="100" y="76" class="sub">What you type into the chat</text>
+        </g>
+        <g transform="translate(440,46)">
+          <rect class="card" x="0" y="0" width="296" height="120" rx="14"/>
+          <rect class="bar" x="0" y="10" width="4" height="100" rx="2"/>
+          <text x="280" y="26" text-anchor="end" class="tag">02</text>
+          <g transform="translate(22,28)">
+            <path d="M0 6 a4 4 0 0 1 4 -4 h14 l5 6 h21 a4 4 0 0 1 4 4 v6 h-48 z" fill="#13B5A2"/>
+            <rect x="0" y="12" width="48" height="20" rx="4" fill="#1B9C8B"/>
+            <path d="M10 36 V46 H22 M10 46 V56 H22" fill="none" stroke="#9AA4AF" stroke-width="2"/>
+            <rect x="24" y="40" width="22" height="13" rx="2.5" fill="#fff" stroke="#9AA4AF" stroke-width="1.5"/>
+            <rect x="24" y="51" width="22" height="13" rx="2.5" fill="#fff" stroke="#9AA4AF" stroke-width="1.5"/>
+            <line x1="28" y1="46.5" x2="42" y2="46.5" stroke="#C9CED4" stroke-width="1.5"/>
+            <line x1="28" y1="57.5" x2="42" y2="57.5" stroke="#C9CED4" stroke-width="1.5"/>
+          </g>
+          <text x="100" y="50" class="lbl">Encoded knowledge</text>
+          <text x="100" y="72" class="sub">Saved files that load every time</text>
+        </g>
+        <g transform="translate(24,454)">
+          <rect class="card" x="0" y="0" width="296" height="120" rx="14"/>
+          <rect class="bar" x="0" y="10" width="4" height="100" rx="2"/>
+          <text x="280" y="26" text-anchor="end" class="tag">03</text>
+          <g transform="translate(20,30)">
+            <g transform="translate(28,8)">
+              <path d="M0 4 a4 4 0 0 1 4 -4 h22 l10 10 v40 a4 4 0 0 1 -4 4 h-28 a4 4 0 0 1 -4 -4 z" fill="#fff" stroke="#1D6F42" stroke-width="2"/>
+              <path d="M26 0 l10 10 h-10 z" fill="#1D6F42" opacity="0.22"/>
+              <rect x="6" y="34" width="26" height="14" rx="2" fill="#1D6F42"/>
+              <text x="19" y="44.5" text-anchor="middle" fill="#fff" class="mono" font-size="8.5" font-weight="700">XLS</text>
+            </g>
+            <g transform="translate(0,2)">
+              <path d="M0 4 a4 4 0 0 1 4 -4 h22 l10 10 v40 a4 4 0 0 1 -4 4 h-28 a4 4 0 0 1 -4 -4 z" fill="#fff" stroke="#D24726" stroke-width="2"/>
+              <path d="M26 0 l10 10 h-10 z" fill="#D24726" opacity="0.22"/>
+              <rect x="6" y="34" width="26" height="14" rx="2" fill="#D24726"/>
+              <text x="19" y="44.5" text-anchor="middle" fill="#fff" class="mono" font-size="8.5" font-weight="700">PPT</text>
+            </g>
+          </g>
+          <text x="100" y="50" class="lbl">Work reference files</text>
+          <text x="100" y="72" class="sub">PowerPoint, Excel, Word, PDF</text>
+        </g>
+        <g transform="translate(440,454)">
+          <rect class="card" x="0" y="0" width="296" height="120" rx="14"/>
+          <rect class="bar" x="0" y="10" width="4" height="100" rx="2"/>
+          <text x="280" y="26" text-anchor="end" class="tag">04</text>
+          <g transform="translate(22,26)">
+            <rect x="0" y="2" width="50" height="40" rx="6" fill="#F9F8F5" stroke="#132539" stroke-width="2"/>
+            <circle cx="14" cy="15" r="5" fill="#D4A338"/>
+            <path d="M4 40 L19 24 L30 35 L40 27 L46 33 V40 z" fill="#13B5A2"/>
+            <g transform="translate(8,46)">
+              <rect x="0" y="0" width="58" height="20" rx="10" fill="#DCFAF5" stroke="#13B5A2" stroke-width="1.5"/>
+              <path d="M12 10 a4 4 0 0 1 4 -4 h4 M22 10 a4 4 0 0 1 -4 4 h-4" fill="none" stroke="#12917E" stroke-width="2" stroke-linecap="round"/>
+              <line x1="14" y1="10" x2="20" y2="10" stroke="#12917E" stroke-width="2"/>
+              <text x="41" y="13.5" text-anchor="middle" fill="#12917E" class="mono" font-size="8">URL</text>
+            </g>
+          </g>
+          <text x="100" y="50" class="lbl">Examples</text>
+          <text x="100" y="72" class="sub">Screenshots, links, samples</text>
+        </g>
+      </svg>
+    </figure>
+
+    <p>Before writing a long prompt, ask: what do I already have that the AI could just read? Then paste it, attach it, or point to it.</p>
+    <div class="callout">The context you supply over and over does not have to be retyped. Any time you type the same thing twice, that's a signal to save it. Encode it once into the documents and workflows the AI references on its own, and it pays off every time after. That compounding is the real unlock, and it's where we're headed.</div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Worked examples</div>
+    <h2>See it: before and after</h2>
+
+    <h3>Example A: the delay email</h3>
+    <div class="prompt bad"><span class="lbl">Thin prompt</span>Write an email about the project delay.</div>
+    <p class="result">You get a generic, hollow note that could be from anyone, about any project.</p>
+    <div class="prompt good"><span class="lbl">The 4 C's prompt</span><b>Context:</b> I'm the COO. I need to tell our largest enterprise client the integration is slipping two weeks. This is the second slip, and they've been patient.<br><b>Charge:</b> Write the email.<br><b>Constraints:</b> Professional but honest. Own the delay without groveling. Three short paragraphs.<br><b>Cut:</b> A ready-to-send email with a subject line.</div>
+    <p class="result">You get a note to that client, about that situation, in your voice, that you can almost send as-is.</p>
+
+    <h3>Example B: the board update</h3>
+    <div class="prompt bad"><span class="lbl">Thin prompt</span>Summarize Q1 for the board.</div>
+    <p class="result">You get the numbers restated. The board already has the numbers.</p>
+    <div class="prompt good"><span class="lbl">The 4 C's prompt</span><b>Context:</b> Q1 update on an underperforming portfolio company. The board already knows revenue missed. What they don't know is the turnaround plan.<br><b>Charge:</b> Write the update that frames the miss and makes the case for the plan.<br><b>Constraints:</b> One page. Direct. No spin.<br><b>Cut:</b> A short narrative up top, then a table of the key metrics.</div>
+    <p class="result">The thin version restates what they already have. The 4 C's version drives the decision you actually need from them.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Map</div>
+    <h2>Which C fixes which failure</h2>
+    <table>
+      <tr><th>When this goes wrong</th><th>The C that fixes it</th></tr>
+      <tr><td>Generic</td><td>Context + Charge</td></tr>
+      <tr><td>Wrong length</td><td>Constraints</td></tr>
+      <tr><td>Off tone</td><td>Constraints</td></tr>
+      <tr><td>Wrong format</td><td>Cut</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Reuse</div>
+    <h2>A skeleton you can steal</h2>
+    <p>Paste this and fill in the blanks:</p>
+    <div class="prompt good"><span class="lbl">Prompt skeleton</span><b>Context:</b> I'm [role] at [kind of business]. [The situation, what I've tried.]<br><b>Charge:</b> [What you want, and the mode: build it, draft it, or just think it through.]<br><b>Constraints:</b> [Length, tone, what to avoid.]<br><b>Cut:</b> [Format or deliverable type: email, doc, process, task.]</div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Your turn</div>
+    <h2>Try it</h2>
+    <ul>
+      <li>Take one real task you have this week.</li>
+      <li>Write it with the 4 C's. Attach a file or paste an example if you have one.</li>
+      <li>Run it, and notice what improved over your usual one-liner.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">What's next</div>
+    <div class="bridge">
+      <div class="eyebrow" style="color:var(--gold)">Up next</div>
+      <div class="dname">Discernment</div>
+      <p>The 4 C's get you a good draft. Knowing whether that draft is actually right is the next lever.</p>
+      <a class="btn" href="#">Module 1.3 · Discernment →</a>
+    </div>
+    <p style="margin-top:14px">Go deeper on prompting: <a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview">Anthropic's prompt engineering guide →</a></p>
+  </section>
+
+  <footer>Michael Gardon · CHIEF AI Accelerator — Phase 1 · 1.2 Description</footer>
+
+</div>
+</body>
+</html>

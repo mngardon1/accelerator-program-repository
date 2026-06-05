@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>Getting Better Results: The 4 Ds | CHIEF AI Accelerator</title>
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--navy);font-family:var(--sans);line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:32px 24px 80px}
+a{color:var(--teal-dark)}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-mute)}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.logo{width:22px;height:22px;background:var(--teal);border-radius:5px;position:relative;flex:0 0 22px}
+.logo::after{content:"";position:absolute;inset:6px;background:var(--cream);border-radius:2px}
+.brand .eyebrow{font-weight:600;letter-spacing:.16em}
+.crumb{margin-bottom:18px}
+.pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--teal);padding:5px 11px;border-radius:999px}
+h1{font-family:var(--serif);font-size:44px;line-height:1.06;font-weight:700;margin:16px 0 12px;letter-spacing:-.01em}
+.lede{font-size:18px;color:var(--navy-light);max-width:62ch}
+.meta{margin-top:14px}
+section{margin-top:34px}
+.s-label{margin-bottom:6px}
+h2{font-family:var(--serif);font-size:25px;font-weight:700;line-height:1.2;margin-bottom:12px;letter-spacing:-.01em}
+p{margin-bottom:13px;color:#23364a}
+ul{margin:0 0 13px 20px}
+li{margin-bottom:7px;color:#23364a}
+.take{font-weight:700;color:var(--navy)}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px}
+.card.accent{border-left:3px solid var(--teal)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 14px}
+.grid2 .card{margin-bottom:0}
+.dlabel{color:var(--teal-dark);margin-bottom:3px}
+.dname{font-family:var(--serif);font-weight:700;font-size:18px;color:var(--navy);margin-bottom:6px}
+.grid2 p{margin-bottom:0;font-size:14.5px}
+.attrib{font-size:13px;color:var(--navy-mute);font-style:italic;margin-top:4px}
+table{width:100%;border-collapse:collapse;margin:6px 0 14px;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy-mute);background:var(--cream-deep)}
+td:first-child{font-weight:600}
+tr:last-child td{border-bottom:none}
+.bridge{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:18px 20px}
+.btn{display:inline-block;background:var(--navy);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border-radius:8px;text-decoration:none;margin-top:6px}
+footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-mute)}
+@media(max-width:560px){.grid2{grid-template-columns:1fr}h1{font-size:36px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><span class="logo"></span><span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span></div>
+  <div class="crumb eyebrow">Accelerator / Phase 1 / 1.1 The 4 Ds</div>
+  <span class="pill">Phase 1 · Module 1.1</span>
+
+  <h1>Getting better results: the 4 Ds</h1>
+  <p class="lede">Every AI failure has a cause, and a specific fix. This is the map of which is which.</p>
+  <div class="meta eyebrow">~4 min · Phase 1 orientation</div>
+
+  <section>
+    <div class="s-label eyebrow">When it doesn't work</div>
+    <h2>AI FAIL</h2>
+    <p>We've all had the moment. You ask AI to do something and it just doesn't.</p>
+    <ul>
+      <li>It gives you something generic, the kind of thing that could've been written for anyone.</li>
+      <li>It makes something up and says it with total confidence.</li>
+      <li>It sounds nothing like you.</li>
+      <li>It's too long, too short, or ignores the format you asked for.</li>
+    </ul>
+    <p>That's AI failure. It's normal. It's common. And it's fixable.</p>
+    <p class="take">Every one of those failures has a cause, and every cause has a specific fix. Name the failure, pull the right lever.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">What goes wrong</div>
+    <h2>The failure modes</h2>
+    <p>The common ways it goes wrong:</p>
+    <ul>
+      <li><b>Generic.</b> Bland, could-be-anyone output.</li>
+      <li><b>Wrong length.</b> Too long, or too short.</li>
+      <li><b>Wrong format.</b> Ignored the shape you asked for.</li>
+      <li><b>Confident but wrong.</b> Fluent, plausible, and completely made up.</li>
+      <li><b>Off tone.</b> Doesn't sound like you, or like the moment.</li>
+    </ul>
+    <p class="take">None of these mean the AI is dumb. Each one points to something you can fix.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">The framework</div>
+    <h2>The 4 Ds</h2>
+    <p>The fix is a framework called the 4 Ds: the four skills of working well with AI. Get these right and the failures above mostly disappear.</p>
+    <div class="grid2">
+      <div class="card accent">
+        <div class="dlabel eyebrow">D1</div>
+        <div class="dname">Description</div>
+        <p>Telling the AI clearly what you want. The work, the context, the format, the tone.</p>
+      </div>
+      <div class="card accent">
+        <div class="dlabel eyebrow">D2</div>
+        <div class="dname">Discernment</div>
+        <p>Judging what comes back. Spotting what's wrong, weak, or made up before it goes anywhere.</p>
+      </div>
+      <div class="card accent">
+        <div class="dlabel eyebrow">D3</div>
+        <div class="dname">Delegation</div>
+        <p>Deciding what's yours and what's the AI's. Handing over the right work, keeping the rest.</p>
+      </div>
+      <div class="card accent">
+        <div class="dlabel eyebrow">D4</div>
+        <div class="dname">Diligence</div>
+        <p>Owning the output as your work. Checking it, standing behind it, using AI responsibly.</p>
+      </div>
+    </div>
+    <p class="attrib">The 4 Ds is the AI Fluency framework from Anthropic, developed with Professor Rick Dakan (Ringling College of Art and Design) and Professor Joseph Feller (University College Cork).</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Connect them</div>
+    <h2>Each failure maps to a D</h2>
+    <p>Now connect them. Every failure mode traces to one of the four.</p>
+    <table>
+      <tr><th>When this goes wrong</th><th>The lever</th><th>What it means</th></tr>
+      <tr><td>Generic, wrong length, wrong format, off tone</td><td>Description</td><td>Telling the AI clearly what you want</td></tr>
+      <tr><td>Confident but wrong</td><td>Discernment</td><td>Judging what comes back</td></tr>
+      <tr><td>You handed it the wrong task</td><td>Delegation</td><td>Deciding what's yours vs. the AI's</td></tr>
+      <tr><td>You shipped it without checking</td><td>Diligence</td><td>Owning the output as your work</td></tr>
+    </table>
+    <p class="take">Four failures, four levers. The rest of Phase 1 is one module per D.</p>
+    <p>One mindset to carry in: the first response is a draft to steer, not a verdict to accept or reject. The good results come on the second and third pass.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">What's next</div>
+    <div class="bridge">
+      <div class="eyebrow" style="color:var(--gold)">Up next</div>
+      <div class="dname">Start with Description</div>
+      <p>It fixes the biggest cluster of everyday failures, and it's where we get into prompting and the 4Cs method.</p>
+      <a class="btn" href="/description/">Module 1.2 · Description →</a>
+    </div>
+    <p style="margin-top:14px">Go deeper on the 4 Ds: <a href="https://www.anthropic.com/ai-fluency/overview">Anthropic's AI Fluency guide →</a></p>
+  </section>
+
+  <footer>Michael Gardon · CHIEF AI Accelerator — Phase 1 · 1.1 The 4 Ds</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<svg viewBox="0 0 760 600" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#13B5A2"/>
+    </marker>
+    <style>
+      .card{fill:#fff;stroke:#E7E5DF;stroke-width:1.5;}
+      .bar{fill:#13B5A2;}
+      .lbl{fill:#132539;font-weight:700;font-size:18px;font-family:'Iowan Old Style',Charter,Georgia,serif;}
+      .sub{fill:#6E7A88;font-size:12.5px;}
+      .tag{fill:#12917E;font-size:9.5px;letter-spacing:.14em;font-family:'SF Mono',Menlo,monospace;}
+      .mono{font-family:'SF Mono',Menlo,monospace;}
+      .hubt{font-family:'Iowan Old Style',Charter,Georgia,serif;font-weight:700;fill:#132539;}
+      .flow{stroke:#7FCFC4;stroke-width:2;stroke-dasharray:5 5;fill:none;}
+    </style>
+  </defs>
+
+  <!-- converging flow lines -->
+  <path class="flow" marker-end="url(#arrow)" d="M300 158 C338 205 350 225 350 254"/>
+  <path class="flow" marker-end="url(#arrow)" d="M460 158 C422 205 410 225 410 254"/>
+  <path class="flow" marker-end="url(#arrow)" d="M300 462 C338 415 350 395 350 366"/>
+  <path class="flow" marker-end="url(#arrow)" d="M460 462 C422 415 410 395 410 366"/>
+
+  <!-- ============ CENTER HUB ============ -->
+  <circle cx="380" cy="310" r="62" fill="#DCFAF5" stroke="#13B5A2" stroke-width="2"/>
+  <text x="380" y="304" text-anchor="middle" class="hubt" font-size="22">Context</text>
+  <text x="380" y="322" text-anchor="middle" class="sub" font-size="10.5">what the AI</text>
+  <text x="380" y="335" text-anchor="middle" class="sub" font-size="10.5">works from</text>
+
+  <!-- ============ TOP-LEFT: PROMPT DIRECTIONS ============ -->
+  <g transform="translate(24,46)">
+    <rect class="card" x="0" y="0" width="296" height="120" rx="14"/>
+    <rect class="bar" x="0" y="10" width="4" height="100" rx="2"/>
+    <text x="280" y="26" text-anchor="end" class="tag">01</text>
+    <g transform="translate(22,32)">
+      <rect x="0" y="0" width="60" height="46" rx="9" fill="#F9F8F5" stroke="#132539" stroke-width="2"/>
+      <path d="M11 14 L20 23 L11 32" fill="none" stroke="#13B5A2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="27" y="16" width="24" height="3.5" rx="1.75" fill="#9AA4AF"/>
+      <rect x="27" y="26" width="16" height="3.5" rx="1.75" fill="#9AA4AF"/>
+      <rect x="45" y="25" width="2.5" height="9" rx="1" fill="#13B5A2"/>
+    </g>
+    <text x="100" y="54" class="lbl">Prompt directions</text>
+    <text x="100" y="76" class="sub">What you type into the chat</text>
+  </g>
+
+  <!-- ============ TOP-RIGHT: ENCODED KNOWLEDGE ============ -->
+  <g transform="translate(440,46)">
+    <rect class="card" x="0" y="0" width="296" height="120" rx="14"/>
+    <rect class="bar" x="0" y="10" width="4" height="100" rx="2"/>
+    <text x="280" y="26" text-anchor="end" class="tag">02</text>
+    <g transform="translate(22,28)">
+      <path d="M0 6 a4 4 0 0 1 4 -4 h14 l5 6 h21 a4 4 0 0 1 4 4 v6 h-48 z" fill="#13B5A2"/>
+      <rect x="0" y="12" width="48" height="20" rx="4" fill="#1B9C8B"/>
+      <path d="M10 36 V46 H22 M10 46 V56 H22" fill="none" stroke="#9AA4AF" stroke-width="2"/>
+      <rect x="24" y="40" width="22" height="13" rx="2.5" fill="#fff" stroke="#9AA4AF" stroke-width="1.5"/>
+      <rect x="24" y="51" width="22" height="13" rx="2.5" fill="#fff" stroke="#9AA4AF" stroke-width="1.5"/>
+      <line x1="28" y1="46.5" x2="42" y2="46.5" stroke="#C9CED4" stroke-width="1.5"/>
+      <line x1="28" y1="57.5" x2="42" y2="57.5" stroke="#C9CED4" stroke-width="1.5"/>
+    </g>
+    <text x="100" y="50" class="lbl">Encoded knowledge</text>
+    <text x="100" y="72" class="sub">Saved files that load every time</text>
+  </g>
+
+  <!-- ============ BOTTOM-LEFT: WORK REFERENCE FILES ============ -->
+  <g transform="translate(24,454)">
+    <rect class="card" x="0" y="0" width="296" height="120" rx="14"/>
+    <rect class="bar" x="0" y="10" width="4" height="100" rx="2"/>
+    <text x="280" y="26" text-anchor="end" class="tag">03</text>
+    <g transform="translate(20,30)">
+      <!-- XLS (behind) -->
+      <g transform="translate(28,8)">
+        <path d="M0 4 a4 4 0 0 1 4 -4 h22 l10 10 v40 a4 4 0 0 1 -4 4 h-28 a4 4 0 0 1 -4 -4 z" fill="#fff" stroke="#1D6F42" stroke-width="2"/>
+        <path d="M26 0 l10 10 h-10 z" fill="#1D6F42" opacity="0.22"/>
+        <rect x="6" y="34" width="26" height="14" rx="2" fill="#1D6F42"/>
+        <text x="19" y="44.5" text-anchor="middle" fill="#fff" class="mono" font-size="8.5" font-weight="700">XLS</text>
+      </g>
+      <!-- PPT (front) -->
+      <g transform="translate(0,2)">
+        <path d="M0 4 a4 4 0 0 1 4 -4 h22 l10 10 v40 a4 4 0 0 1 -4 4 h-28 a4 4 0 0 1 -4 -4 z" fill="#fff" stroke="#D24726" stroke-width="2"/>
+        <path d="M26 0 l10 10 h-10 z" fill="#D24726" opacity="0.22"/>
+        <rect x="6" y="34" width="26" height="14" rx="2" fill="#D24726"/>
+        <text x="19" y="44.5" text-anchor="middle" fill="#fff" class="mono" font-size="8.5" font-weight="700">PPT</text>
+      </g>
+    </g>
+    <text x="100" y="50" class="lbl">Work reference files</text>
+    <text x="100" y="72" class="sub">PowerPoint, Excel, Word, PDF</text>
+  </g>
+
+  <!-- ============ BOTTOM-RIGHT: EXAMPLES ============ -->
+  <g transform="translate(440,454)">
+    <rect class="card" x="0" y="0" width="296" height="120" rx="14"/>
+    <rect class="bar" x="0" y="10" width="4" height="100" rx="2"/>
+    <text x="280" y="26" text-anchor="end" class="tag">04</text>
+    <g transform="translate(22,26)">
+      <rect x="0" y="2" width="50" height="40" rx="6" fill="#F9F8F5" stroke="#132539" stroke-width="2"/>
+      <circle cx="14" cy="15" r="5" fill="#D4A338"/>
+      <path d="M4 40 L19 24 L30 35 L40 27 L46 33 V40 z" fill="#13B5A2"/>
+      <g transform="translate(8,46)">
+        <rect x="0" y="0" width="58" height="20" rx="10" fill="#DCFAF5" stroke="#13B5A2" stroke-width="1.5"/>
+        <path d="M12 10 a4 4 0 0 1 4 -4 h4 M22 10 a4 4 0 0 1 -4 4 h-4" fill="none" stroke="#12917E" stroke-width="2" stroke-linecap="round"/>
+        <line x1="14" y1="10" x2="20" y2="10" stroke="#12917E" stroke-width="2"/>
+        <text x="41" y="13.5" text-anchor="middle" fill="#12917E" class="mono" font-size="8">URL</text>
+      </g>
+    </g>
+    <text x="100" y="50" class="lbl">Examples</text>
+    <text x="100" y="72" class="sub">Screenshots, links, samples</text>
+  </g>
+
+</svg>
