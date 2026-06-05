@@ -1,672 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Module 1A — Mental Model | CHIEF AI Accelerator</title>
-    <meta name="description" content="Get the working model that turns AI from a slot machine into a Chief of Staff.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --navy: #132539;
-            --paper: #F9F8F5;
-            --teal: #13B5A2;
-            --teal-deep: #12917E;
-            --teal-light: #5DCFC1;
-            --mint: #D5F0EC;
-            --slate: #6B7A8D;
-            --slate-deep: #2A3F54;
-            --white: #FFFFFF;
-            --warning: #D4A338;
-
-            --text-on-dark: rgba(255,255,255,0.92);
-            --text-muted-dark: rgba(255,255,255,0.72);
-            --text-faint-dark: rgba(255,255,255,0.55);
-
-            --font-display: 'Sora', Arial, sans-serif;
-            --font-body: 'Inter', Arial, sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-
-            --max-content: 880px;
-            --max-wide: 1080px;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { background: var(--paper); color: var(--navy); }
-        body {
-            font-family: var(--font-body);
-            font-size: 17px;
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-        }
-        a { color: var(--teal); text-decoration: none; }
-        a:hover { color: var(--teal-deep); }
-
-        header {
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(19,37,57,0.08);
-        }
-        .brand {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 17px;
-            color: var(--navy);
-        }
-        .header-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--teal);
-        }
-
-        .breadcrumb-wrap {
-            max-width: var(--max-wide);
-            margin: 0 auto;
-            padding: 28px 40px 0;
-        }
-        .breadcrumb {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--slate);
-        }
-        .breadcrumb a { color: var(--slate); }
-        .breadcrumb a:hover { color: var(--navy); }
-        .breadcrumb span { margin: 0 8px; }
-
-        .hero {
-            background: var(--navy);
-            color: var(--white);
-            padding: 80px 40px 96px;
-            text-align: center;
-            margin-top: 32px;
-        }
-        .hero .eyebrow {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--teal);
-            margin-bottom: 24px;
-        }
-        .hero h1 {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: clamp(40px, 6vw, 60px);
-            line-height: 1.1;
-            color: var(--white);
-            margin-bottom: 20px;
-            letter-spacing: -0.01em;
-        }
-        .hero .subtitle {
-            font-size: 19px;
-            color: var(--text-muted-dark);
-            max-width: 680px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        .hero .meta-pill {
-            display: inline-flex;
-            gap: 24px;
-            margin-top: 32px;
-            padding: 12px 24px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 999px;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-on-dark);
-        }
-        .hero .meta-pill .sep { color: rgba(255,255,255,0.4); }
-
-        .section {
-            padding: 88px 40px;
-        }
-        .section.dark {
-            background: var(--navy);
-            color: var(--white);
-        }
-        .section.dark h2,
-        .section.dark h3 { color: var(--white); }
-        .section.dark .eyebrow { color: var(--teal); }
-        .section-inner {
-            max-width: var(--max-content);
-            margin: 0 auto;
-        }
-        .section-inner.wide { max-width: var(--max-wide); }
-        .eyebrow {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--slate);
-            margin-bottom: 16px;
-        }
-        h2 {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: clamp(30px, 4vw, 40px);
-            line-height: 1.15;
-            color: var(--navy);
-            margin-bottom: 24px;
-            letter-spacing: -0.01em;
-        }
-        .section-intro {
-            font-size: 18px;
-            color: var(--slate);
-            max-width: 700px;
-            margin-bottom: 36px;
-            line-height: 1.65;
-        }
-        .section.dark .section-intro { color: var(--text-muted-dark); }
-        h3 {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 20px;
-            line-height: 1.3;
-            color: var(--navy);
-            margin-bottom: 10px;
-        }
-        p { margin-bottom: 18px; }
-        p:last-child { margin-bottom: 0; }
-        strong { font-weight: 600; color: var(--navy); }
-        .section.dark strong { color: var(--white); }
-        em { font-style: italic; }
-
-        .pull-quote {
-            margin: 32px 0;
-            padding: 24px 32px;
-            background: var(--white);
-            border-left: 3px solid var(--teal);
-            font-family: var(--font-display);
-            font-size: 19px;
-            font-weight: 600;
-            color: var(--navy);
-            line-height: 1.4;
-        }
-        .section.dark .pull-quote {
-            background: rgba(255,255,255,0.05);
-            color: var(--white);
-        }
-
-        /* The opening Chief of Staff card */
-        .frame-card {
-            background: var(--white);
-            border: 1px solid rgba(19,37,57,0.08);
-            border-top: 4px solid var(--teal);
-            padding: 36px 40px;
-            margin-top: 8px;
-        }
-        .frame-card p {
-            font-size: 17.5px;
-            color: var(--slate-deep);
-            line-height: 1.65;
-        }
-        .frame-card .punchline {
-            font-family: var(--font-display);
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--navy);
-            margin-top: 8px;
-            line-height: 1.3;
-        }
-
-        /* Three rings — SVG figure + side callouts */
-        .rings-figure {
-            display: grid;
-            grid-template-columns: 1.05fr 1fr;
-            gap: 48px;
-            align-items: center;
-            margin-top: 32px;
-        }
-        .rings-svg {
-            width: 100%;
-            height: auto;
-            max-width: 520px;
-        }
-        .rings-callouts {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .ring-row {
-            display: grid;
-            grid-template-columns: 28px 1fr;
-            gap: 16px;
-            padding: 18px 0;
-            border-bottom: 1px solid rgba(19,37,57,0.08);
-        }
-        .ring-row:last-child { border-bottom: none; }
-        .ring-dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 999px;
-            margin-top: 6px;
-        }
-        .ring-dot.r1 { background: var(--teal); }
-        .ring-dot.r2 { background: var(--teal-deep); }
-        .ring-dot.r3 { background: var(--slate); }
-        .ring-row .r-head {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--slate);
-            margin-bottom: 4px;
-        }
-        .ring-row h3 {
-            font-size: 22px;
-            margin-bottom: 6px;
-        }
-        .ring-row .r-quote {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-size: 14px;
-            color: var(--slate);
-            margin-bottom: 10px;
-        }
-        .ring-row p {
-            font-size: 15px;
-            color: var(--slate-deep);
-            line-height: 1.6;
-            margin: 0 0 10px;
-        }
-        .ring-row .r-skill {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            color: var(--teal-deep);
-            text-transform: uppercase;
-            margin: 0;
-        }
-        @media (max-width: 900px) {
-            .rings-figure {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-            .rings-svg { max-width: 100%; margin: 0 auto; }
-        }
-
-        /* Shift — numbered list, lighter (paper) section */
-        .shift-list {
-            list-style: none;
-            counter-reset: shift;
-            margin-top: 20px;
-        }
-        .shift-list li {
-            counter-increment: shift;
-            position: relative;
-            padding: 20px 0 20px 56px;
-            border-bottom: 1px solid rgba(19,37,57,0.08);
-        }
-        .shift-list li:last-child { border-bottom: none; }
-        .shift-list li::before {
-            content: counter(shift, decimal-leading-zero);
-            position: absolute;
-            left: 0;
-            top: 20px;
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--teal);
-        }
-        .shift-list .s-title {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--navy);
-            margin-bottom: 6px;
-        }
-        .shift-list .s-desc {
-            font-size: 15px;
-            color: var(--slate-deep);
-            line-height: 1.6;
-        }
-
-        /* Diagnostic — three cards on dark section, light surfaces, dark text */
-        .diagnostic-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-top: 28px;
-        }
-        .diag-card {
-            background: var(--white);
-            border: 1px solid rgba(19,37,57,0.08);
-            padding: 28px 26px;
-        }
-        .section.dark .diag-card h3 { color: var(--navy); }
-        .diag-card .d-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--teal-deep);
-            margin-bottom: 8px;
-        }
-        .diag-card h3 {
-            font-size: 17px;
-            margin-bottom: 10px;
-            color: var(--navy);
-        }
-        .diag-card .d-answer {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--slate);
-            margin: 0;
-        }
-
-        /* CTA strip — points to next module */
-        .cta-strip {
-            background: var(--teal);
-            color: var(--white);
-            padding: 56px 40px;
-            text-align: center;
-        }
-        .cta-strip .cta-eyebrow {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.75);
-            margin-bottom: 12px;
-        }
-        .cta-strip h2 {
-            color: var(--white);
-            font-size: clamp(24px, 3vw, 30px);
-            margin-bottom: 16px;
-        }
-        .cta-strip p {
-            color: rgba(255,255,255,0.9);
-            font-size: 16px;
-            max-width: 580px;
-            margin: 0 auto 24px;
-        }
-        .cta-button {
-            display: inline-block;
-            background: var(--navy);
-            color: var(--white);
-            padding: 14px 32px;
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: 15px;
-            letter-spacing: 0.02em;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-        .cta-button:hover {
-            background: var(--slate-deep);
-            color: var(--white);
-        }
-
-        footer {
-            background: var(--navy);
-            color: var(--text-muted-dark);
-            padding: 48px 40px;
-            text-align: center;
-            font-size: 14px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        footer .brand {
-            color: var(--white);
-            font-size: 14px;
-            margin-bottom: 8px;
-            display: block;
-        }
-        footer .footer-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--teal);
-        }
-
-        @media (max-width: 900px) {
-            .rings-grid { grid-template-columns: 1fr; }
-            .diagnostic-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 700px) {
-            header { padding: 16px 24px; }
-            .hero { padding: 56px 24px 64px; }
-            .section { padding: 56px 24px; }
-            .cta-strip { padding: 40px 24px; }
-            .frame-card { padding: 28px 24px; }
-            .frame-card .punchline { font-size: 19px; }
-            .hero .meta-pill { flex-direction: column; gap: 8px; padding: 16px 20px; }
-            .hero .meta-pill .sep { display: none; }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>Congrats — You Just Hired a Chief of Staff | CHIEF AI Accelerator</title>
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--navy);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:32px 24px 80px}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-mute)}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.logo{width:22px;height:22px;background:var(--teal);border-radius:5px;position:relative;flex:0 0 22px}
+.logo::after{content:"";position:absolute;inset:6px;background:var(--cream);border-radius:2px}
+.brand .eyebrow{font-weight:600;letter-spacing:.16em}
+.crumb{margin-bottom:18px}
+.pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--teal);padding:5px 11px;border-radius:999px}
+h1{font-family:var(--serif);font-size:44px;line-height:1.06;font-weight:700;margin:16px 0 12px;letter-spacing:-.01em}
+.lede{font-size:18px;color:var(--navy-light);max-width:60ch}
+.meta{margin-top:14px}
+section{margin-top:48px}
+.s-label{margin-bottom:6px}
+h2{font-family:var(--serif);font-size:27px;font-weight:700;line-height:1.18;margin-bottom:16px;letter-spacing:-.01em}
+p{margin-bottom:14px;color:#23364a}
+.big{font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--navy);margin:18px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:12px}
+.card.frame{border-left:3px solid var(--teal)}
+.callout{font-family:var(--serif);font-size:21px;line-height:1.4;color:var(--navy);background:var(--teal-light);border:1px solid rgba(19,181,162,.22);border-radius:12px;padding:20px 22px;margin:16px 0}
+.step{background:#fff;border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:16px 20px;margin-bottom:10px}
+.step .n{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark);font-weight:600}
+.step p{margin:4px 0 0;font-size:15px}
+.land{font-family:var(--serif);font-size:20px;line-height:1.4;color:var(--navy);margin-top:16px}
+.rings{display:flex;gap:24px;align-items:center;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:14px}
+.rings .legend{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy-mute)}
+.ringcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;border-left:3px solid var(--teal);margin-bottom:10px}
+.ringcard .n{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark);font-weight:600}
+.ringcard h3{font-family:var(--serif);font-size:19px;font-weight:700;margin:2px 0 6px}
+.ringcard .quote{font-style:italic;color:var(--navy-light);margin:6px 0}
+.ringcard .skill{font-family:var(--mono);font-size:11px;color:var(--navy-mute);margin-top:8px;display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:620px){.grid2{grid-template-columns:1fr}.wrap{padding:24px 18px 64px}h1{font-size:34px}}
+.shift{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.shift h3{font-family:var(--serif);font-size:16px;font-weight:700;margin-bottom:6px}
+.shift p{font-size:14.5px;margin:0 0 8px;color:#23364a}
+.shift .anec{font-size:13.5px;color:var(--navy-mute);font-style:italic;margin:0}
+.prompt-bad{font-size:14px;color:var(--navy-mute);text-decoration:line-through;margin:0 0 8px}
+.prompt-good{font-family:var(--mono);font-size:12.5px;line-height:1.5;color:var(--navy);background:var(--teal-light);border:1px solid rgba(19,181,162,.22);border-radius:8px;padding:12px 14px;margin:0}
+.bridge{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:22px 24px;margin-top:14px}
+.bridge a{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:#fff;background:var(--navy);padding:9px 15px;border-radius:7px;text-decoration:none}
+.bridge a:hover{background:var(--navy-light)}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-mute)}
+</style>
 </head>
 <body>
+<div class="wrap">
 
-    <header>
-        <a href="/" class="brand">Michael Gardon</a>
-        <div class="header-label">CHIEF AI Accelerator</div>
-    </header>
+  <div class="brand">
+    <span class="logo"></span>
+    <span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span>
+  </div>
 
-    <div class="breadcrumb-wrap">
-        <div class="breadcrumb">
-            <a href="/">Accelerator</a>
-            <span>/</span>
-            <a href="/">Curriculum</a>
-            <span>/</span>
-            Module 1A — Mental Model
-        </div>
+  <div class="crumb eyebrow">Accelerator / Curriculum / 0.1 Mental Model</div>
+  <span class="pill">Phase 0 · Foundations</span>
+
+  <h1>Congrats — you just hired a brilliant new Chief of Staff</h1>
+  <p class="lede">Get the working model that makes AI compound for you.</p>
+  <div class="meta eyebrow">Foundations</div>
+
+  <section>
+    <div class="s-label eyebrow">The Mental Model</div>
+    <h2>Your new hire</h2>
+    <div class="card frame">
+      <p>You just hired a Harvard MBA, the sharpest researcher, writer, and analyst you've ever worked with. It can run circles around anyone in your office when it comes to execution: a true Excel ninja, the best PowerPoint designer, and it knows every tool or system you could possibly throw at it. AND it can code, like really code. Not just code, but design and execute systems at speed.</p>
+      <p>There's just one catch: it's also basically an insecure millennial. It walked in this morning knowing nothing about you. Not what you want, not what matters to you, not where anything lives, not your standards. It needs constant feedback and validation.</p>
+      <p style="margin-bottom:0">But the good news is that it's an absolute beast of a learning machine, one that eventually can make your life sane and your performance world class.</p>
     </div>
+    <div class="callout">The question is: how would you leverage and cultivate a promising new hire?</div>
+    <p class="big">That's the whole mental model. Every framework in the program, prompting, projects, context, delegation, is a different answer to one question: how do you make a brilliant-but-new Chief of Staff useful?</p>
+  </section>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="eyebrow">Phase 1 · Module 1A · Foundations</div>
-        <h1>How AI Actually Thinks</h1>
-        <p class="subtitle">Get the working model that turns AI from a slot machine into a Chief of Staff.</p>
-        <div class="meta-pill">
-            <span>20 min read</span>
-            <span class="sep">·</span>
-            <span>The mental model under everything else</span>
-        </div>
-    </section>
+  <section>
+    <div class="s-label eyebrow">The Goal</div>
+    <h2>Compound your time value</h2>
+    <p>Why hire a Chief of Staff? To make your life easier, so you're freed up to do what you do best, and do what others can't do. Otherwise, what's the point?</p>
+    <p>Same with AI. Execs who invest in learning AI now, through building, not only become more strategic, unlock their own creativity, and execute faster. They also understand how to push AI usage down through their organizations. That payoff helps the whole org move faster and more efficiently.</p>
+  </section>
 
-    <!-- THE FRAME -->
-    <section class="section">
-        <div class="section-inner">
-            <div class="eyebrow">The Frame</div>
-            <h2>Congrats — you just hired AI.</h2>
-            <p class="section-intro">The whole accelerator rests on one frame. Get this right and the rest of the program clicks into place. Get this wrong and every prompting trick you learn lands as a hack instead of a discipline.</p>
+  <section>
+    <div class="s-label eyebrow">The Frame</div>
+    <h2>The relationship progression</h2>
+    <p>Think about how you'd onboard a Chief of Staff.</p>
+    <div class="step"><span class="n">Setup</span><p>Getting their tools and credentials, showing them where to find the right information, describing workflows.</p></div>
+    <div class="step"><span class="n">Trial</span><p>You give them some basic tasks like research, right out of the gate. Scoped work you're pretty sure they can handle. Nothing crazy.</p></div>
+    <div class="step"><span class="n">Closer collaboration</span><p>You bring them into the fold. Daily meetings where you download context: what's going on, what's important this quarter, what you need today. You start bringing them in on key deliverables. Scope is still tight, and they're getting better at understanding how you do things and what you like, your taste and judgment.</p></div>
+    <div class="step"><span class="n">Delegate</span><p>You let them run and execute autonomously in their wheelhouse. They start taking initiative. Feedback loops get tighter, their capabilities expand, your life gets easier.</p></div>
+    <p class="land">This is exactly how the AI relationship matures. Except, to work, you need to encode what you want, how you want it, and how <em>you'd</em> do it, in files.</p>
+  </section>
 
-            <div class="frame-card">
-                <p>Imagine you just hired a brilliant Chief of Staff. They are the smartest, most capable person you've ever seen at research, execution, automation, and reasoning. The only problem? They're also a dumb Millennial. They know nothing about what you actually want, what matters to you, where things are to reference, and they need constant validation and feedback.</p>
-                <p class="punchline">Congrats. You just hired AI.</p>
-            </div>
+  <section>
+    <div class="s-label eyebrow">The Model</div>
+    <h2>The executive AI progression</h2>
+    <div class="rings">
+      <svg width="200" height="200" viewBox="0 0 200 200" aria-label="Three concentric rings">
+        <circle cx="108" cy="100" r="88" fill="none" stroke="#13B5A2" stroke-opacity="0.30" stroke-width="2"/>
+        <circle cx="84"  cy="100" r="64" fill="none" stroke="#13B5A2" stroke-opacity="0.55" stroke-width="2"/>
+        <circle cx="60"  cy="100" r="40" fill="#DCFAF5" stroke="#13B5A2" stroke-width="2"/>
+        <text x="56"  y="104" font-size="10" fill="#12917E" text-anchor="middle">R1</text>
+        <text x="138" y="50"  font-size="10" fill="#2A3F54" text-anchor="middle">R2</text>
+        <text x="178" y="102" font-size="10" fill="#2A3F54" text-anchor="middle">R3</text>
+      </svg>
+      <span class="legend">Skills compound · relationship matures →</span>
+    </div>
+    <div class="ringcard">
+      <span class="n">01 · Tool</span>
+      <h3>Scoped single tasks. One prompt, one answer.</h3>
+      <div class="quote">"What is the answer to this question?"</div>
+      <p style="margin:0;color:#23364a">You describe what you want; AI produces information. Most people start and stop here.</p>
+      <span class="skill">Skill installed: prompting · how to scope · the 4 C's</span>
+    </div>
+    <div class="ringcard">
+      <span class="n">02 · Collaborator</span>
+      <h3>Iterative, multi-step work, judgment shared.</h3>
+      <div class="quote">"Help me think through how that answer affects my business."</div>
+      <p style="margin:0;color:#23364a">Research, analysis, drafting. You encode taste, voice, and process so the AI references them automatically.</p>
+      <span class="skill">+ Context architecture · Projects · Reusable skills</span>
+    </div>
+    <div class="ringcard">
+      <span class="n">03 · Delegate</span>
+      <h3>Agents act on your behalf, with verification.</h3>
+      <div class="quote">"Build a system to deploy our solution and monitor its effects."</div>
+      <p style="margin:0;color:#23364a">Bounded autonomy inside rules you set. You keep the boundary; the system runs. Only works because Ring 2 came first.</p>
+      <span class="skill">+ Connections · Scheduled tasks · Agent design</span>
+    </div>
+    <p style="margin-top:14px">Each ring is a transfer of a different kind of judgment. Ring 1, you transfer the task and keep all judgment. Ring 2, you transfer process and taste, and keep the decision. Ring 3, you transfer decision authority within bounds, and keep verification.</p>
+  </section>
 
-            <p style="margin-top:28px;">That's the whole mental model. Every framework in the program — prompting, projects, context, delegation — is a different answer to the same question: <strong>how do you make a brilliant-but-blank Chief of Staff useful?</strong></p>
+  <section>
+    <div class="s-label eyebrow">The Executive Shift</div>
+    <h2>Four habits that come straight from the frame.</h2>
+    <p>Most executives treat AI like a search box, then complain when the output is generic. The Chief of Staff frame fixes that without teaching you a single prompt trick. Treat AI as an employee: ask, spar, iterate, encode.</p>
+    <div class="grid2">
+      <div class="shift">
+        <h3>Encode context as the asset</h3>
+        <p>Every minute you spend giving context, the AI repays in output quality. Move from prompted context to encoded file context. This is the highest-leverage piece. You are encoding your taste, preference, judgment, and what matters to YOU.</p>
+      </div>
+      <div class="shift">
+        <h3>Be radically specific</h3>
+        <p class="prompt-bad">"How do I automate my marketing?"</p>
+        <p class="prompt-good">"Think like a system architect. I need a high-level brief on how to automate my email marketing campaigns. Include the top-level system and sub-components. Flag any needs from a human as blockers, and provide time and cost estimates so I can decide how to proceed."</p>
+      </div>
+      <div class="shift">
+        <h3>Make it ask you for what it needs</h3>
+        <p>Tell it to ask you questions about scope. Then tell it to capture the context for later encoding.</p>
+      </div>
+      <div class="shift">
+        <h3>Ask it how to do things outside your comfort zone</h3>
+        <p>Non-technical? Ask for step-by-step instructions and to define terms you don't know.</p>
+        <p class="anec">(I have no technical experience, and every single day I'm using Terminal and building code, just because I ask. I also fixed my lawnmower and took apart a carburetor.)</p>
+      </div>
+    </div>
+  </section>
 
-            <p>The work isn't learning AI. The work is becoming the kind of principal a brilliant new hire can actually be useful to.</p>
-        </div>
-    </section>
+  <section>
+    <div class="s-label eyebrow">Expectations Reset</div>
+    <h2>AI doesn't need to level up. You do.</h2>
+    <p>It's hard to comprehend what AI is capable of right now. Most execs want to jump straight to automation, but this is a big trap, because your capability set isn't there. And by capability, I don't mean your technical ability. That doesn't really matter anymore. I mean your ability to extract your knowledge and judgment into English for the benefit of a system. Turns out this is hard for many execs.</p>
+    <p>I know that's a lot to take in. But learning to operate with a machine, to scope, chunk, guide, direct, evaluate, and decide, can completely transform the way you work and your results for the better. You will get there. You may not be slinging code or building a fully autonomous organization, but you'll be able to delegate exactly what you want to someone who can execute automation with AI.</p>
+    <p>The target isn't to push everything to Ring 3. It's to be able to operate in the native AI future. This wave is moving faster than any technological advancement in history, and you need to know how to operate in it. This program will get you there.</p>
+  </section>
 
-    <!-- WHAT'S INSIDE THE BOX -->
-    <section class="section dark">
-        <div class="section-inner">
-            <div class="eyebrow">What's Inside The Box</div>
-            <h2>Pattern, not knowledge. That's the whole machine.</h2>
-            <p class="section-intro">The model does one thing well. It predicts what comes next, given everything it has already read. Trained on a vast slice of human writing, it has learned the shape of how ideas, sentences, and arguments fit together.</p>
+  <section>
+    <div class="s-label eyebrow">Next in the Sequence</div>
+    <h2>You have the model. Next, learn to brief.</h2>
+    <div class="bridge">
+      <p style="margin:0">Before the prompting craft of Ring 1, one short reading bridges the philosophy and the tactics: Dr. Robert Winter on using AI to surface assumptions without outsourcing your judgment.</p>
+      <a href="/bridge-winter-method/">Open the Winter Method →</a>
+    </div>
+  </section>
 
-            <p style="color:rgba(255,255,255,0.85);">When you prompt it, you are not querying a database. You are handing the model a starting context and asking it to extend the pattern. The output is fluent because the patterns are dense. The output is sometimes wrong because patterns of writing and patterns of truth are not the same thing.</p>
+  <footer>Michael Gardon · CHIEF AI Accelerator — Phase 0 · 0.1 Mental Model</footer>
 
-            <div class="pull-quote">
-                The quality of what you get back is downstream of the context you put in. Garbage context, generic output. Sharp context, sharp output. The model is not the bottleneck. You are.
-            </div>
-
-            <p style="color:rgba(255,255,255,0.85);">Two practical implications follow. <strong>First, the model has no memory of you unless you give it one.</strong> Every chat starts at zero. <strong>Second, it will confidently invent things to keep the pattern going if you do not constrain it.</strong> Both facts shape every skill you will learn next.</p>
-        </div>
-    </section>
-
-    <!-- THE RINGS -->
-    <section class="section">
-        <div class="section-inner wide">
-            <div class="eyebrow">The Relationship</div>
-            <h2>Three rings describe how the relationship matures.</h2>
-            <p class="section-intro">Each ring expands what your Chief of Staff does on your behalf. The skills compound. You cannot skip a ring without paying for it later — you cannot delegate what you cannot encode, and you cannot encode what you cannot specify.</p>
-
-            <div class="rings-figure">
-                <svg class="rings-svg" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="rings-title rings-desc">
-                    <title id="rings-title">The Three Rings of AI Maturity</title>
-                    <desc id="rings-desc">Three concentric circles tangent on the left edge. Inner ring labeled Ring 1 Tool. Middle ring labeled Ring 2 Collaborator. Outer ring labeled Ring 3 Delegate. Each ring expands outward from the last.</desc>
-
-                    <!-- Ring 3 — outermost (Delegate) -->
-                    <circle cx="240" cy="220" r="218" fill="rgba(107,122,141,0.06)" stroke="#6B7A8D" stroke-width="1.5"/>
-
-                    <!-- Ring 2 — middle (Collaborator) -->
-                    <circle cx="160" cy="220" r="138" fill="rgba(18,145,126,0.10)" stroke="#12917E" stroke-width="1.5"/>
-
-                    <!-- Ring 1 — innermost (Tool), solid teal -->
-                    <circle cx="100" cy="220" r="78" fill="#13B5A2"/>
-
-                    <!-- Ring 1 label inside the solid teal disc -->
-                    <text x="100" y="215" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2" fill="#FFFFFF">RING 1</text>
-                    <text x="100" y="240" text-anchor="middle" font-family="Sora, sans-serif" font-weight="700" font-size="20" fill="#FFFFFF">TOOL</text>
-
-                    <!-- Ring 2 label in the middle band on the right -->
-                    <text x="240" y="215" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2" fill="#12917E">RING 2</text>
-                    <text x="240" y="240" text-anchor="middle" font-family="Sora, sans-serif" font-weight="700" font-size="18" fill="#132539">COLLABORATOR</text>
-
-                    <!-- Ring 3 label in the outer band on the right -->
-                    <text x="380" y="215" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2" fill="#6B7A8D">RING 3</text>
-                    <text x="380" y="240" text-anchor="middle" font-family="Sora, sans-serif" font-weight="700" font-size="18" fill="#132539">DELEGATE</text>
-
-                    <!-- Outward arrow BELOW the rings (Ring 3 bottom is at y=438) -->
-                    <line x1="22" y1="472" x2="450" y2="472" stroke="#6B7A8D" stroke-width="1" stroke-dasharray="3 4" opacity="0.5"/>
-                    <polygon points="458,472 448,467 448,477" fill="#6B7A8D" opacity="0.6"/>
-                    <text x="22" y="500" font-family="JetBrains Mono, monospace" font-size="11" fill="#6B7A8D" letter-spacing="2">SKILLS COMPOUND  ·  RELATIONSHIP MATURES</text>
-                </svg>
-
-                <div class="rings-callouts">
-                    <div class="ring-row">
-                        <div class="ring-dot r1"></div>
-                        <div>
-                            <div class="r-head">01 · Tool</div>
-                            <h3>Single tasks. One prompt, one answer.</h3>
-                            <p class="r-quote">"Do this one thing for me."</p>
-                            <p>You describe what you want; AI produces information. Most people start and stop here.</p>
-                            <p class="r-skill">Skill installed: prompting · the 4 C's</p>
-                        </div>
-                    </div>
-                    <div class="ring-row">
-                        <div class="ring-dot r2"></div>
-                        <div>
-                            <div class="r-head">02 · Collaborator</div>
-                            <h3>Multi-step work, judgment shared.</h3>
-                            <p class="r-quote">"Help me think this through with me."</p>
-                            <p>Research, analysis, drafting. You encode taste, voice, and process so the AI references them automatically.</p>
-                            <p class="r-skill">+ Context architecture · Projects · Reusable skills</p>
-                        </div>
-                    </div>
-                    <div class="ring-row">
-                        <div class="ring-dot r3"></div>
-                        <div>
-                            <div class="r-head">03 · Delegate</div>
-                            <h3>Agents act on your behalf, with verification.</h3>
-                            <p class="r-quote">"Just handle this. Tell me if something needs me."</p>
-                            <p>Bounded autonomy inside rules you set. You keep the boundary; the system runs. Only works because Ring 2 came first.</p>
-                            <p class="r-skill">+ Connections · Scheduled tasks · Agent design</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <p style="margin-top:36px;">Each ring is a transfer of a different kind of judgment. Ring 1, you transfer the task and keep all judgment. Ring 2, you transfer process and taste, and keep the decision. Ring 3, you transfer decision authority within bounds, and keep verification.</p>
-
-            <div class="pull-quote">
-                You cannot delegate what you cannot encode. You cannot encode what you cannot specify. The rings build on each other for a reason.
-            </div>
-        </div>
-    </section>
-
-    <!-- THE SHIFT -->
-    <section class="section" style="background:#F1EFEA;">
-        <div class="section-inner">
-            <div class="eyebrow">The Executive Shift</div>
-            <h2>Four habits that come straight from the frame.</h2>
-            <p class="section-intro">Most executives treat AI like a search box, then complain when the output is generic. The Chief of Staff frame fixes that without teaching you a single prompt trick. Drop these expectations and the quality of your AI output changes the same day.</p>
-
-            <ol class="shift-list">
-                <li>
-                    <div class="s-title">Stop expecting the model to know you</div>
-                    <div class="s-desc">It doesn't. Every chat starts at zero unless you supply context. That isn't a limitation to work around. It's the design. Brief it the way you would a new hire on day one.</div>
-                </li>
-                <li>
-                    <div class="s-title">Stop expecting the model to push back</div>
-                    <div class="s-desc">It defaults to agreement and validation. If you want a real read, ask for it explicitly. "Find three weak spots in this." "Steelman the opposite." "Don't tell me this is good unless it actually is."</div>
-                </li>
-                <li>
-                    <div class="s-title">Stop expecting one prompt to do the job</div>
-                    <div class="s-desc">The first response is a draft, not an answer. Stay in the conversation. "Closer. The part that's off is X. Fix that part." Refining beats restarting.</div>
-                </li>
-                <li>
-                    <div class="s-title">Start treating context as the asset</div>
-                    <div class="s-desc">Every minute you spend giving context, the AI repays in output quality. The execs who win are the ones who get good at briefing. Everything else in the program is just a structured way to do this well.</div>
-                </li>
-            </ol>
-        </div>
-    </section>
-
-    <!-- DIAGNOSTIC -->
-    <section class="section dark">
-        <div class="section-inner wide">
-            <div class="eyebrow">Locate Yourself</div>
-            <h2>Three questions that don't lie.</h2>
-            <p class="section-intro">Most execs over-rate themselves by one ring. Show, don't tell. Try to answer each of these from your own work this week — the artifacts reveal where you actually are.</p>
-
-            <div class="diagnostic-grid">
-                <div class="diag-card">
-                    <div class="d-label">Ring 1 · Tool</div>
-                    <h3>Show me a prompt you wrote this week.</h3>
-                    <p class="d-answer">If you can — you're operating at Tool.</p>
-                </div>
-                <div class="diag-card">
-                    <div class="d-label">Ring 2 · Collaborator</div>
-                    <h3>Show me a skill or saved instruction you reuse.</h3>
-                    <p class="d-answer">If you can — you're operating at Collaborator.</p>
-                </div>
-                <div class="diag-card">
-                    <div class="d-label">Ring 3 · Delegate</div>
-                    <h3>Show me something that runs without you.</h3>
-                    <p class="d-answer">If you can — you're operating at Delegate.</p>
-                </div>
-            </div>
-
-            <p style="margin-top:36px;color:rgba(255,255,255,0.85);">The target isn't to push everything to Ring 3. It's to know which ring each piece of your work belongs in, and to do that ring well. A mature exec operator has a handful of Ring 1 prompts they fire daily, a working library and five to fifteen Ring 2 skills they reuse, and one to five Ring 3 workflows running with verification.</p>
-        </div>
-    </section>
-
-    <!-- CTA TO NEXT -->
-    <section class="cta-strip">
-        <div class="cta-eyebrow">Next in the Sequence</div>
-        <h2>You have the model. Next, learn to brief.</h2>
-        <p>Before Phase 2 (prompting craft), one short reading bridges the philosophy and the tactics — Dr. Robert Winter on using AI to surface assumptions without outsourcing your judgment.</p>
-        <a href="/bridge-winter-method/" class="cta-button">Open the Winter Method →</a>
-    </section>
-
-    <footer>
-        <span class="brand">Michael Gardon</span>
-        <div class="footer-label">CHIEF AI Accelerator — Module 1A · Mental Model</div>
-    </footer>
-
+</div>
 </body>
 </html>
