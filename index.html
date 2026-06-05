@@ -1,341 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chief Accelerator — Program Map</title>
-<meta name="description" content="The reference library for the Chief AI Fluency Accelerator. Frameworks, decision aids, and module references.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>Program Map | CHIEF AI Accelerator</title>
+<meta name="description" content="The Chief AI Fluency Accelerator program map. Phases, modules, and reference library.">
 <style>
-  :root {
-    --navy:        #132539;
-    --paper:       #F9F8F5;
-    --teal:        #13B5A2;
-    --teal-deep:   #12917E;
-    --teal-light:  #5DCFC1;
-    --mint:        #D5F0EC;
-    --slate:       #6B7A8D;
-    --slate-deep:  #2A3F54;
-    --white:       #FFFFFF;
-    --warning:     #D4A338;
-    --text-on-dark:      rgba(255,255,255,0.92);
-    --text-muted-dark:   rgba(255,255,255,0.72);
-    --text-faint-dark:   rgba(255,255,255,0.55);
-    --font-display: 'Sora', Arial, sans-serif;
-    --font-body:    'Inter', Arial, sans-serif;
-    --font-mono:    'JetBrains Mono', monospace;
-  }
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08); --soon:#C9CCC6;
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--navy);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:32px 24px 80px}
+a{color:var(--teal-dark)}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-mute)}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.logo{width:22px;height:22px;background:var(--teal);border-radius:5px;position:relative;flex:0 0 22px}
+.logo::after{content:"";position:absolute;inset:6px;background:var(--cream);border-radius:2px}
+.brand .eyebrow{font-weight:600;letter-spacing:.16em}
+h1{font-family:var(--serif);font-size:42px;line-height:1.06;font-weight:700;margin:10px 0 12px;letter-spacing:-.01em}
+.lede{font-size:18px;color:var(--navy-light);max-width:60ch}
+.hint{margin-top:10px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy-mute)}
 
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    font-family: var(--font-body);
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--slate-deep);
-    background: var(--paper);
-    -webkit-font-smoothing: antialiased;
-  }
+.group{margin-top:14px}
+details{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+summary{cursor:pointer;list-style:none;padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+summary::-webkit-details-marker{display:none}
+.p-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:5px}
+.p-title{font-family:var(--serif);font-size:23px;font-weight:700;line-height:1.15;color:var(--navy)}
+.p-sub{font-size:14px;color:var(--navy-mute);margin-top:3px}
+.p-right{display:flex;align-items:center;gap:12px;flex:0 0 auto;padding-top:4px}
+.count{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--navy-mute)}
+.chev{font-family:var(--serif);font-size:22px;color:var(--teal);transition:transform .2s ease;line-height:1}
+details[open] .chev{transform:rotate(90deg)}
+.mod-list{padding:2px 18px 18px}
 
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    border-bottom: 1px solid rgba(19,37,57,0.08);
-    background: var(--paper);
-  }
-  .brand {
-    font-family: var(--font-display);
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--navy);
-    letter-spacing: -0.01em;
-  }
-  .header-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--teal);
-  }
+.mod{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:13px 15px;border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:10px;margin:8px 0;text-decoration:none;color:inherit;background:#fff;transition:transform .15s ease,box-shadow .15s ease}
+.mod:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(19,37,57,.07)}
+.mod-eyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:3px}
+.mod-title{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--navy);line-height:1.2}
+.mod-desc{font-size:13.5px;color:var(--navy-mute);margin-top:3px}
+.mod-cta{flex:0 0 auto;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark)}
 
-  .hero {
-    background: var(--navy);
-    color: var(--white);
-    padding: 96px 40px 88px;
-    text-align: center;
-  }
-  .hero-inner { max-width: 880px; margin: 0 auto; }
-  .hero .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--teal);
-    margin-bottom: 20px;
-  }
-  .hero h1 {
-    font-family: var(--font-display);
-    font-size: clamp(40px, 6vw, 60px);
-    font-weight: 700;
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-    margin: 0 0 24px;
-    color: var(--white);
-  }
-  .hero .subtitle {
-    font-size: 18px;
-    line-height: 1.55;
-    color: var(--text-muted-dark);
-    max-width: 680px;
-    margin: 0 auto;
-  }
-  .meta-pill {
-    display: inline-block;
-    margin-top: 36px;
-    padding: 8px 18px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-faint-dark);
-  }
+.mod.soon{border-left-color:var(--soon);background:#FBFAF7;cursor:default}
+.mod.soon:hover{transform:none;box-shadow:none}
+.mod.soon .mod-eyebrow{color:var(--navy-mute)}
+.mod.soon .mod-title{color:var(--navy-mute)}
+.mod.soon .mod-cta{color:#9AA4AF;background:var(--cream-deep);padding:5px 10px;border-radius:999px}
 
-  .section { padding: 80px 40px; }
-  .section.light { background: var(--paper); }
-  .section.alt { background: var(--white); }
-  .section-inner { max-width: 1080px; margin: 0 auto; }
-  .section .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--teal);
-    margin-bottom: 14px;
-  }
-  .section h2 {
-    font-family: var(--font-display);
-    font-size: clamp(28px, 3.6vw, 36px);
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-    color: var(--navy);
-    margin: 0 0 16px;
-  }
-  .section-intro {
-    font-size: 17px;
-    color: var(--slate);
-    max-width: 680px;
-    margin: 0 0 40px;
-    line-height: 1.55;
-  }
-
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 18px;
-  }
-  .card {
-    display: block;
-    background: var(--white);
-    border: 1px solid rgba(19,37,57,0.08);
-    border-top: 3px solid var(--teal);
-    padding: 28px;
-    border-radius: 4px;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-  }
-  .card:hover {
-    transform: translateY(-2px);
-    border-top-color: var(--teal-deep);
-    box-shadow: 0 8px 24px rgba(19,37,57,0.06);
-  }
-  .section.alt .card { background: var(--paper); }
-  .card .card-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--slate);
-    margin-bottom: 10px;
-  }
-  .card h3 {
-    font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.25;
-    color: var(--navy);
-    margin: 0 0 10px;
-  }
-  .card p {
-    font-size: 15px;
-    line-height: 1.5;
-    color: var(--slate-deep);
-    margin: 0;
-  }
-  .card .card-link {
-    margin-top: 16px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--teal);
-  }
-  .card.coming-soon {
-    border-top-color: rgba(19,37,57,0.15);
-    opacity: 0.7;
-  }
-  .card.coming-soon h3 { color: var(--slate); }
-  .card.coming-soon .card-link { color: var(--slate); }
-
-  footer {
-    background: var(--navy);
-    color: var(--text-muted-dark);
-    padding: 48px 40px;
-    text-align: center;
-    font-size: 14px;
-  }
-  footer .footer-brand {
-    font-family: var(--font-display);
-    color: var(--white);
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-  footer a { color: var(--teal); text-decoration: none; }
-
-  @media (max-width: 700px) {
-    header { padding: 16px 24px; }
-    .hero { padding: 64px 24px 56px; }
-    .section { padding: 56px 24px; }
-    .card { padding: 24px; }
-  }
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-mute);text-align:center}
+footer a{color:var(--teal-dark)}
+@media(max-width:560px){h1{font-size:34px}.p-sub{display:none}}
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<header>
-  <div class="brand">CHIEF Accelerator</div>
-  <div class="header-label">Program Map</div>
-</header>
+  <div class="brand"><span class="logo"></span><span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span></div>
 
-<section class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">Reference Library</div>
-    <h1>The Chief Accelerator Map</h1>
-    <p class="subtitle">Frameworks, decision aids, and module references for the AI Fluency Accelerator. Bookmark this page — it's the front door to every working document we use in the program.</p>
-    <span class="meta-pill">Living document · Updated continuously</span>
+  <h1>The program map</h1>
+  <p class="lede">Every phase, module, and reference in the accelerator, in one place. Open it while you're in the work, not just once.</p>
+  <p class="hint">Click a phase to see its modules</p>
+
+  <div class="group">
+
+    <!-- PHASE 0 -->
+    <details>
+      <summary>
+        <div>
+          <div class="p-eyebrow">Phase 0 · Get started</div>
+          <div class="p-title">Set the foundation.</div>
+          <div class="p-sub">Level-set, get oriented, and get in the door.</div>
+        </div>
+        <div class="p-right"><span class="count">2 / 5</span><span class="chev">›</span></div>
+      </summary>
+      <div class="mod-list">
+        <div class="mod soon">
+          <div><div class="mod-eyebrow">Pre-work</div><div class="mod-title">Bring Your Chief Up To Speed</div><div class="mod-desc">What to forward before Session 1.</div></div>
+          <div class="mod-cta">Coming soon</div>
+        </div>
+        <a class="mod" href="/module-1-mental-model/">
+          <div><div class="mod-eyebrow">0.1 · Mental Model</div><div class="mod-title">You just hired a brilliant Chief of Staff</div><div class="mod-desc">The working model that makes AI compound for you.</div></div>
+          <div class="mod-cta">Open →</div>
+        </a>
+        <div class="mod soon">
+          <div><div class="mod-eyebrow">0.2 · Frontier Models</div><div class="mod-title">Why the model tier matters</div><div class="mod-desc">The answer to "I tried AI and it was underwhelming."</div></div>
+          <div class="mod-cta">Coming soon</div>
+        </div>
+        <a class="mod" href="/getting-set-up/">
+          <div><div class="mod-eyebrow">0.4 · Getting Set Up</div><div class="mod-title">Getting Set Up</div><div class="mod-desc">On the right tier, into the tool, through one real interaction.</div></div>
+          <div class="mod-cta">Open →</div>
+        </a>
+        <div class="mod soon">
+          <div><div class="mod-eyebrow">0.5 · What to Watch For</div><div class="mod-title">What to Watch For</div><div class="mod-desc">Limits, hallucination, the verify posture, what not to paste.</div></div>
+          <div class="mod-cta">Coming soon</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- PHASE 1 -->
+    <details>
+      <summary>
+        <div>
+          <div class="p-eyebrow">Phase 1 · Tool</div>
+          <div class="p-title">Perfect the interaction.</div>
+          <div class="p-sub">Get better results from pure interaction.</div>
+        </div>
+        <div class="p-right"><span class="count">2 / 5</span><span class="chev">›</span></div>
+      </summary>
+      <div class="mod-list">
+        <a class="mod" href="/four-ds/">
+          <div><div class="mod-eyebrow">1.1 · The 4 Ds</div><div class="mod-title">Getting Better Results: The 4 Ds</div><div class="mod-desc">The common AI failures, and the four levers that fix them.</div></div>
+          <div class="mod-cta">Open →</div>
+        </a>
+        <a class="mod" href="/description/">
+          <div><div class="mod-eyebrow">1.2 · Description</div><div class="mod-title">Scope what you actually want</div><div class="mod-desc">The 4 C's, the four sources of context, before/after on real work.</div></div>
+          <div class="mod-cta">Open →</div>
+        </a>
+        <div class="mod soon">
+          <div><div class="mod-eyebrow">1.3 · Discernment</div><div class="mod-title">Discernment</div><div class="mod-desc">Judging what comes back: quality, accuracy, fit.</div></div>
+          <div class="mod-cta">Coming soon</div>
+        </div>
+        <div class="mod soon">
+          <div><div class="mod-eyebrow">1.4 · Delegation</div><div class="mod-title">Delegation</div><div class="mod-desc">Deciding what's yours and what's the AI's.</div></div>
+          <div class="mod-cta">Coming soon</div>
+        </div>
+        <div class="mod soon">
+          <div><div class="mod-eyebrow">1.5 · Diligence</div><div class="mod-title">Diligence</div><div class="mod-desc">Owning the output as your work.</div></div>
+          <div class="mod-cta">Coming soon</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- PHASE 2 -->
+    <details>
+      <summary>
+        <div>
+          <div class="p-eyebrow">Phase 2 · Collaborate</div>
+          <div class="p-title">Ship work with you.</div>
+          <div class="p-sub">Skills, workflows and encoded context.</div>
+        </div>
+        <div class="p-right"><span class="count">0 / 2</span><span class="chev">›</span></div>
+      </summary>
+      <div class="mod-list">
+        <div class="mod soon">
+          <div><div class="mod-eyebrow">2.1 · Projects & Context</div><div class="mod-title">Projects & Context</div><div class="mod-desc">Set up a project so the AI stops forgetting.</div></div>
+          <div class="mod-cta">Coming soon</div>
+        </div>
+        <div class="mod soon">
+          <div><div class="mod-eyebrow">2.2 · Encoding Judgment</div><div class="mod-title">Encoding Judgment</div><div class="mod-desc">Turn your standards into reusable instructions.</div></div>
+          <div class="mod-cta">Coming soon</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- PHASE 3 -->
+    <details>
+      <summary>
+        <div>
+          <div class="p-eyebrow">Phase 3 · Delegate</div>
+          <div class="p-title">Work that runs without you</div>
+          <div class="p-sub">Scope and automate.</div>
+        </div>
+        <div class="p-right"><span class="count">0 / 1</span><span class="chev">›</span></div>
+      </summary>
+      <div class="mod-list">
+        <div class="mod soon">
+          <div><div class="mod-eyebrow">3.1 · Trust Calibration</div><div class="mod-title">Delegation & Trust Calibration</div><div class="mod-desc">Build the judgment to let work run on its own.</div></div>
+          <div class="mod-cta">Coming soon</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- REFERENCE -->
+    <details>
+      <summary>
+        <div>
+          <div class="p-eyebrow">Reference</div>
+          <div class="p-title">The reference library</div>
+          <div class="p-sub">Standing references and decision aids, open them anytime.</div>
+        </div>
+        <div class="p-right"><span class="count">6</span><span class="chev">›</span></div>
+      </summary>
+      <div class="mod-list">
+        <a class="mod" href="/how-ai-works/">
+          <div><div class="mod-eyebrow">Reference</div><div class="mod-title">How AI Thinks & Remembers</div><div class="mod-desc">The plain-English version of what's happening inside the box.</div></div>
+          <div class="mod-cta">Open →</div>
+        </a>
+        <a class="mod" href="/getting-better-results/">
+          <div><div class="mod-eyebrow">Reference</div><div class="mod-title">Getting Better Results</div><div class="mod-desc">The five failure modes, the iteration mindset, a lightweight eval.</div></div>
+          <div class="mod-cta">Open →</div>
+        </a>
+        <a class="mod" href="/ai-vocab-reference/">
+          <div><div class="mod-eyebrow">Reference</div><div class="mod-title">AI Vocab Across Tools</div><div class="mod-desc">The same feature, named across Claude, ChatGPT, Copilot, Gemini.</div></div>
+          <div class="mod-cta">Open →</div>
+        </a>
+        <a class="mod" href="/help-me-decide/">
+          <div><div class="mod-eyebrow">Decision aid</div><div class="mod-title">Help Me Decide</div><div class="mod-desc">A decision tree for picking the right AI surface for the job.</div></div>
+          <div class="mod-cta">Open →</div>
+        </a>
+        <a class="mod" href="/chat-vs-cowork/">
+          <div><div class="mod-eyebrow">Guide</div><div class="mod-title">Chat vs. Cowork</div><div class="mod-desc">When to use a chat window, and when to use Cowork mode.</div></div>
+          <div class="mod-cta">Open →</div>
+        </a>
+        <a class="mod" href="/working-with-projects/">
+          <div><div class="mod-eyebrow">Guide</div><div class="mod-title">Working With Projects</div><div class="mod-desc">Set up, structure, and maintain a project that actually helps.</div></div>
+          <div class="mod-cta">Open →</div>
+        </a>
+      </div>
+    </details>
+
   </div>
-</section>
 
-<section class="section light">
-  <div class="section-inner">
-    <div class="eyebrow">Live now</div>
-    <h2>Start here</h2>
-    <p class="section-intro">The first set of working references. Open them while you're in the work — they're not built to be read once.</p>
-    <div class="card-grid">
-      <a href="/getting-set-up/" class="card">
-        <div class="card-eyebrow">0.4 · Foundations</div>
-        <h3>Getting Set Up</h3>
-        <p>Get on the right tier, into the tool, and through one real interaction — the floor everything else assumes.</p>
-        <div class="card-link">Open →</div>
-      </a>
-      <a href="/module-1-mental-model/" class="card">
-        <div class="card-eyebrow">0.1 · Mental Model</div>
-        <h3>Congrats — you just hired a brilliant new Chief of Staff</h3>
-        <p>Get the working model that makes AI compound for you.</p>
-        <div class="card-link">Open →</div>
-      </a>
-      <a href="/getting-better-results/" class="card">
-        <div class="card-eyebrow">Module 1B · Foundations</div>
-        <h3>Getting Better Results</h3>
-        <p>The five failure modes, the iteration mindset, and a lightweight eval to know when to trust your AI.</p>
-        <div class="card-link">Open →</div>
-      </a>
-      <a href="/four-ds/" class="card">
-        <div class="card-eyebrow">1.1 · Phase 1</div>
-        <h3>Getting Better Results: The 4 Ds</h3>
-        <p>The common AI failures, and the four levers that fix them. The map for Phase 1.</p>
-        <div class="card-link">Open →</div>
-      </a>
-      <a href="/description/" class="card">
-        <div class="card-eyebrow">1.2 · Phase 1</div>
-        <h3>Description: Scope What You Want</h3>
-        <p>The 4 C's, the four sources of context, and before/after prompts on real exec work.</p>
-        <div class="card-link">Open →</div>
-      </a>
-      <a href="/help-me-decide/" class="card">
-        <div class="card-eyebrow">Decision aid</div>
-        <h3>Help Me Decide</h3>
-        <p>A decision tree for picking the right AI surface for the job in front of you.</p>
-        <div class="card-link">Open →</div>
-      </a>
-      <a href="/chat-vs-cowork/" class="card">
-        <div class="card-eyebrow">Guide</div>
-        <h3>Chat vs. Cowork</h3>
-        <p>When to use a chat window and when to use Cowork mode. The two are not interchangeable.</p>
-        <div class="card-link">Open →</div>
-      </a>
-      <a href="/working-with-projects/" class="card">
-        <div class="card-eyebrow">Skill</div>
-        <h3>Working With Projects</h3>
-        <p>How to set up, structure, and maintain a project so the AI actually helps instead of forgetting.</p>
-        <div class="card-link">Open →</div>
-      </a>
-      <a href="/ai-vocab-reference/" class="card">
-        <div class="card-eyebrow">Reference</div>
-        <h3>AI Vocab Reference Across LLMs</h3>
-        <p>The same feature has a different name in every tool. This sheet matches them up across Claude, ChatGPT, CoPilot, and Gemini.</p>
-        <div class="card-link">Open →</div>
-      </a>
-    </div>
-  </div>
-</section>
+  <footer>CHIEF Accelerator — an AI fluency program by <a href="https://rejoincoaching.com">Rejoin Coaching</a></footer>
 
-<section class="section alt">
-  <div class="section-inner">
-    <div class="eyebrow">In progress</div>
-    <h2>Coming next</h2>
-    <p class="section-intro">This map expands as we build. New references and modules land here first.</p>
-    <div class="card-grid">
-      <div class="card coming-soon">
-        <div class="card-eyebrow">Foundations</div>
-        <h3>The Executive AI Learning Model</h3>
-        <p>The four-layer model for why AI behaves the way it does.</p>
-        <div class="card-link">In progress</div>
-      </div>
-      <div class="card coming-soon">
-        <div class="card-eyebrow">Foundations</div>
-        <h3>Context Layers</h3>
-        <p>The hierarchy of context that shapes every AI response.</p>
-        <div class="card-link">In progress</div>
-      </div>
-      <div class="card coming-soon">
-        <div class="card-eyebrow">Foundations</div>
-        <h3>How AI Remembers</h3>
-        <p>Memory, context windows, and projects — what the model retains.</p>
-        <div class="card-link">In progress</div>
-      </div>
-      <div class="card coming-soon">
-        <div class="card-eyebrow">Ring 1</div>
-        <h3>Ring 1 Reference</h3>
-        <p>The complete reference for Ring 1 of the curriculum.</p>
-        <div class="card-link">In progress</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-brand">CHIEF Accelerator</div>
-  <div>An AI fluency program by <a href="https://rejoincoaching.com">Rejoin Coaching</a>.</div>
-</footer>
-
+</div>
 </body>
 </html>
