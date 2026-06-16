@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>Chief AI Accelerator — page build</title>
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--cream); color:#23364a; font-family:var(--sans); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+.wrap{max-width:760px; margin:0 auto; padding:40px 24px 80px;}
+
+.brand{display:flex; align-items:center; gap:10px; margin-bottom:22px;}
+.logo{width:26px; height:26px; border-radius:7px; background:var(--teal); display:inline-block; flex:none; position:relative;}
+.logo::after{content:""; position:absolute; inset:7px; background:var(--cream); border-radius:3px;}
+.eyebrow{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:var(--navy-mute);}
+.pill{display:inline-block; font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:#fff; background:var(--teal); padding:5px 10px; border-radius:6px; margin-bottom:18px;}
+
+.foil{font-family:var(--serif); font-weight:500; color:var(--navy-light); font-size:28px; line-height:1.25; letter-spacing:-.01em; margin:0 0 12px;}
+.foil .behind{color:var(--gold); font-weight:700;}
+.foil .struck{text-decoration:line-through; text-decoration-thickness:2px; text-decoration-color:rgba(19,37,57,0.35); color:var(--navy-mute);}
+.lead{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:46px; line-height:1.1; letter-spacing:-.015em; margin:0;}
+.rotate-line{font-family:var(--serif); font-weight:700; font-size:46px; line-height:1.12; letter-spacing:-.015em; margin:4px 0 0; color:var(--teal-dark); min-height:1.2em;}
+.cursor{display:inline-block; width:3px; margin-left:2px; background:var(--teal); animation:blink 1s steps(1) infinite; vertical-align:-4px; height:0.92em;}
+@keyframes blink{0%,50%{opacity:1;}50.01%,100%{opacity:0;}}
+.lede{font-size:19px; color:var(--navy-light); line-height:1.5; margin:22px 0 0; max-width:62ch;}
+.cta-row{display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin:28px 0 0;}
+.btn{display:inline-block; font-family:var(--sans); font-weight:600; font-size:15px; text-decoration:none; color:#fff; background:var(--navy); padding:13px 24px; border-radius:8px;}
+.btn-note{font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:var(--navy-mute);}
+
+.part{margin-top:64px; border-top:2px solid var(--teal); padding-top:10px;}
+.part .eyebrow{color:var(--teal-dark);}
+section{margin-top:20px;}
+h2{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:30px; line-height:1.15; letter-spacing:-.01em; margin:8px 0 14px;}
+.intro{font-size:17px; color:var(--navy-light); margin:0 0 26px; max-width:60ch;}
+
+.traps{display:grid; grid-template-columns:1fr; gap:12px;}
+.trap{background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px 22px;}
+.trap .k{font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:var(--navy-mute); margin:0 0 8px;}
+.trap h3{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:20px; line-height:1.2; margin:0 0 8px;}
+.trap p{margin:0; font-size:15px;}
+.turn{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:22px; line-height:1.3; margin:26px 0 0;}
+.turn b{color:var(--teal-dark);}
+
+.callout{background:var(--teal-light); border-left:4px solid var(--teal); border-radius:0 12px 12px 0; padding:20px 22px; margin:24px 0 28px; font-family:var(--serif); font-size:22px; line-height:1.32; color:var(--navy); font-weight:700;}
+.duo{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:6px 0;}
+.face{background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px 22px;}
+.face.tool{background:var(--cream-deep);}
+.face.cos{border-left:4px solid var(--teal);}
+.face .k{font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:var(--navy-mute); margin:0 0 8px;}
+.face.cos .k{color:var(--teal-dark);}
+.face h3{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:20px; line-height:1.18; margin:0 0 9px;}
+.face.tool h3{color:var(--navy-mute);}
+.face p{margin:0; font-size:14.5px;}
+.pillars{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;}
+.pillar{background:#fff; border:1px solid var(--line); border-left:4px solid var(--teal); border-radius:12px; padding:20px;}
+.pillar .k{font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:var(--teal-dark); margin:0 0 8px;}
+.pillar h3{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:22px; line-height:1.15; margin:0 0 10px;}
+.pillar p{margin:0; font-size:14.5px;}
+.bodyp{font-size:16.5px; color:#23364a; line-height:1.6; margin:0 0 16px; max-width:62ch;}
+.bodyp b{color:var(--navy);}
+.checks{list-style:none; margin:14px 0 18px; padding:0;}
+.checks li{position:relative; padding-left:30px; margin-bottom:11px; font-family:var(--serif); font-weight:700; font-size:19px; color:var(--navy); line-height:1.2;}
+.checks li::before{content:"✓"; position:absolute; left:0; top:1px; color:var(--teal-dark); font-weight:700; font-family:var(--sans);}
+.steps{list-style:none; margin:18px 0 0; padding:0; counter-reset:step;}
+.steps li{position:relative; padding-left:46px; margin-bottom:18px;}
+.steps li::before{counter-increment:step; content:counter(step); position:absolute; left:0; top:0; width:30px; height:30px; border-radius:50%; background:var(--teal-light); color:var(--teal-dark); font-family:var(--mono); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center;}
+.steps li b{display:block; font-family:var(--serif); font-weight:700; color:var(--navy); font-size:18px; line-height:1.2; margin-bottom:3px;}
+.steps li span{font-size:15px; color:#23364a;}
+.stage{background:#fff; border:1px solid var(--line); border-left:4px solid var(--teal); border-radius:12px; padding:22px 24px; margin-bottom:12px;}
+.stage .k{font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:var(--teal-dark); margin:0 0 8px;}
+.stage h3{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:22px; line-height:1.18; margin:0 0 9px;}
+.stage > p{margin:0; font-size:15px;}
+.stage .ex{margin-top:14px; padding:12px 14px; background:var(--cream-deep); border-radius:8px; font-size:14px; color:#23364a;}
+.stage .ex b{font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:9.5px; color:var(--navy-mute); display:block; margin-bottom:4px;}
+.ringsviz{display:flex; gap:30px; align-items:center; flex-wrap:wrap; background:#fff; border:1px solid var(--line); border-radius:12px; padding:24px 28px; margin:6px 0 20px;}
+.ringlegend > div{display:flex; align-items:center; gap:10px; font-family:var(--serif); font-weight:700; font-size:17px; color:var(--navy); margin-bottom:9px;}
+.ringlegend .dot{width:12px; height:12px; border-radius:50%; flex:none;}
+.dot.d1{background:#12917E;}
+.dot.d2{background:#13B5A2; opacity:.6;}
+.dot.d3{background:#13B5A2; opacity:.32;}
+.ringlegend .cap{font-size:13.5px; color:var(--navy-mute); margin:12px 0 0; max-width:36ch; line-height:1.5;}
+.team{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px;}
+.team > div{background:var(--cream-deep); border-radius:8px; padding:12px 14px;}
+.team .lab{font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:9.5px; color:var(--teal-dark); display:block; margin-bottom:5px;}
+.team p{font-size:13.5px; margin:0; color:#23364a;}
+.xfer{display:block; font-family:var(--mono); text-transform:uppercase; letter-spacing:.08em; font-size:10px; color:var(--navy-mute); margin-top:13px;}
+.ringblock{display:flex; gap:34px; align-items:center; margin:20px 0 6px;}
+.ringart{flex:0 0 300px;}
+.ringart svg{width:100%; height:auto; display:block;}
+.ringcards{flex:1; min-width:0;}
+.rcard{background:#fff; border:1px solid var(--line); border-left:4px solid var(--teal); border-radius:12px; padding:15px 18px; margin-bottom:11px; display:flex; gap:15px; align-items:flex-start;}
+.rcard:last-child{margin-bottom:0;}
+.rcard .num{font-family:var(--serif); font-weight:700; font-size:24px; color:var(--teal-dark); line-height:1; flex:none;}
+.rcard .body h3{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:18px; margin:0 0 3px;}
+.rcard .body p{margin:0 0 7px; font-size:15px;}
+.rcard .skills{font-family:var(--mono); text-transform:uppercase; letter-spacing:.08em; font-size:9.5px; color:var(--navy-mute); line-height:1.5;}
+.rcard .skills b{color:var(--teal-dark); font-weight:400;}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:8px 0 26px;}
+.stat{background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 16px;}
+.stat .num{font-family:var(--serif); font-weight:700; color:var(--teal-dark); font-size:30px; line-height:1; letter-spacing:-.02em;}
+.stat .cap{font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:9.5px; color:var(--navy-mute); margin-top:9px; line-height:1.4;}
+.proof{display:block; text-decoration:none; background:#fff; border:1px solid var(--line); border-left:4px solid var(--teal); border-radius:12px; padding:22px 24px; margin:10px 0 0; transition:transform .15s ease, box-shadow .15s ease;}
+.proof:hover{transform:translateY(-1px); box-shadow:0 6px 18px rgba(19,37,57,.07);}
+.proof .k{font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:var(--teal-dark); margin:0 0 8px;}
+.proof h3{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:21px; line-height:1.22; margin:0 0 8px;}
+.proof p{color:#23364a; margin:0 0 10px; font-size:15px;}
+.proof .go{font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:var(--teal-dark);}
+
+@media (max-width:620px){ .lead,.rotate-line{font-size:33px;} h2{font-size:24px;} .wrap{padding:28px 18px 64px;} .pillars{grid-template-columns:1fr;} .callout{font-size:19px;} .team{grid-template-columns:1fr;} .ringblock{flex-direction:column; align-items:stretch;} .ringart{align-self:center; flex-basis:auto; max-width:300px; width:100%;} .stats{grid-template-columns:repeat(2,1fr);} }
+@media (prefers-reduced-motion:reduce){ .cursor{animation:none;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><span class="logo"></span><span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span></div>
+  <span class="pill">Chief AI Accelerator</span>
+
+  <p class="foil"><span class="behind">Execs falling behind</span> use AI for <span class="struck">productivity</span>.</p>
+  <p class="lead">The ones pulling ahead use AI to</p>
+  <p class="rotate-line"><span id="rot"></span><span class="cursor" aria-hidden="true"></span></p>
+
+  <p class="lede">You've dabbled. Your feeds are full of "look what AI can do," and when it doesn't land the same for you, it's hard to know what you're missing. Nobody's shown you what to hand it, how to ask, or what it can actually do for someone in your seat. That isn't intelligence or effort. It's fluency, and it's what these nine weeks build.</p>
+
+  <div class="cta-row">
+    <a class="btn" href="/chief/apply/">Apply for the Chief AI Accelerator →</a>
+    <span class="btn-note">Application, not checkout. We talk before anyone joins.</span>
+  </div>
+
+  <div class="part"><span class="eyebrow">The noise</span></div>
+  <section>
+    <h2>AI is a firehose.</h2>
+    <p class="intro">AI moves faster than anything you've had to keep up with. New models, new tools, a new "this changes everything" every week. The faster it moves, the harder it is to tell what's real and what actually matters, so the confusion hardens into hesitation. And when you do reach for it, you grab one of three uses, all of which leave the real value untouched.</p>
+
+    <div class="traps">
+      <div class="trap">
+        <p class="k">Trap 01</p>
+        <h3>The busywork default</h3>
+        <p>Slammed for time, you point AI at whatever's in front of you: write the email, summarize the doc. It helps. But those small wins never feel like they're compounding into a system you can use.</p>
+      </div>
+      <div class="trap">
+        <p class="k">Trap 02</p>
+        <h3>The automation reflex</h3>
+        <p>You reach for the big swing: automate the call center, automate marketing. Today that's a heavy lift and a bigger build than it looks. Months in, the result is clunky, and you decide AI was oversold.</p>
+      </div>
+      <div class="trap">
+        <p class="k">Trap 03</p>
+        <h3>The wait-and-see</h3>
+        <p>You hold off for the company-wide AI plan from on high. But the value doesn't arrive top-down. It comes from using AI on your own work every day, and letting what you learn show you where it goes next.</p>
+      </div>
+    </div>
+
+    <p class="turn">None of these are wrong. They're what you reach for when you can't yet see what AI does for someone at your level. AI only sounds techy because most people aim it at automating the work. You're not the doer. You're the director, and that changes everything you'd point it at: <b>the three things you're actually paid for.</b></p>
+  </section>
+
+  <div class="part"><span class="eyebrow">The reframe</span></div>
+  <section>
+    <h2>You actually have a chief of staff in your pocket.</h2>
+    <p class="intro">AI isn't a tool, and it isn't a strategy. It's an augmented way of working, and most execs miss it. They operate it like a tool: ask, get a task, move on. The shift is treating it like what it actually is.</p>
+
+    <p class="bodyp" style="margin-top:24px;">AI is the most capable, eager, and loyal chief of staff you've ever hired. In one hire, you get:</p>
+
+    <ul class="checks">
+      <li>A Harvard MBA</li>
+      <li>An Excel ninja</li>
+      <li>A PowerPoint wizard</li>
+      <li>A senior developer</li>
+      <li>An organizing machine</li>
+    </ul>
+
+    <div class="callout">AI is better than you at almost everything, except the three things that matter most: how you decide, how you communicate, and how you move people. Those stay yours.</div>
+
+    <p class="bodyp">Better still: no emotion, no hidden agenda, no HR, and it will never leave you. The only catch is it's green. No street smarts, no idea how you operate. It needs clear direction, tight scope, and constant feedback.</p>
+
+    <p class="bodyp">That's the good news. Learning to give clear direction, scope, and feedback unlocks an ability that compounds, and keeps you doing what you're paid to do.</p>
+  </section>
+
+  <div class="part"><span class="eyebrow">The working relationship</span></div>
+  <section>
+    <h2>How this changes the role of AI for you</h2>
+    <p class="intro">A query tool, you operate: in, out, next. A chief of staff, you work with, over time. The relationship deepens, and so does what it can take off your plate.</p>
+
+    <div class="duo">
+      <div class="face tool">
+        <p class="k">AI as a tool</p>
+        <h3>You operate it</h3>
+        <p>You ask, it answers, it does the one task, then forgets you. Everything lands back on your desk, same as before.</p>
+      </div>
+      <div class="face cos">
+        <p class="k">AI as a chief of staff</p>
+        <h3>You work with it</h3>
+        <p>It learns your business, your voice, your standards, and takes real work off your plate. You bring it up to speed, then you direct.</p>
+      </div>
+    </div>
+
+    <p class="bodyp" style="margin-top:28px;">So how would you bring a chief of staff up to speed? The same way you'd onboard any great hire, step by step:</p>
+
+    <ul class="steps">
+      <li><b>Bring it up to speed.</b><span>Load your context, your priorities, your goals. Show it your voice and what you care about.</span></li>
+      <li><b>Start small.</b><span>Hand it low-risk work and check it, the way you would a new hire in week one.</span></li>
+      <li><b>Give it feedback.</b><span>Tell it exactly what was off. It learns your bar and gets closer every time.</span></li>
+      <li><b>Write the standard down.</b><span>Encode what "good" looks like once, so it sticks and you stop repeating yourself.</span></li>
+      <li><b>Hand off the real work.</b><span>Brief it, let it produce, you review and approve. Now it's earning its keep.</span></li>
+      <li><b>Let it capture everything.</b><span>It documents and organizes your decisions, notes, and context as you go, so nothing slips and every new conversation starts smarter.</span></li>
+    </ul>
+
+    <p class="turn">The only difference from a human hire: you write it all down. <b>You encode it in text.</b></p>
+  </section>
+
+  <div class="part"><span class="eyebrow">What it frees you for</span></div>
+  <section>
+    <h2>Your time goes back to the work only you can do.</h2>
+    <p class="intro">Your chief of staff carries the doing, the spreadsheet, the deck, the first draft, the digging, and your time goes back to those three.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <p class="k">01 · Decide</p>
+        <h3>Decide</h3>
+        <p>See the options you're not seeing. Pressure-test a call against its counterarguments in ten minutes, not ten meetings. Chase the hunch you'd normally let sit, because now looking is cheap.</p>
+      </div>
+      <div class="pillar">
+        <p class="k">02 · Communicate</p>
+        <h3>Communicate</h3>
+        <p>Say it once and send it everywhere: the board memo, the team note, the investor update, in your voice, not rewritten from scratch four times. The deck that used to eat your weekend, done in an afternoon.</p>
+      </div>
+      <div class="pillar">
+        <p class="k">03 · Influence</p>
+        <h3>Influence</h3>
+        <p>Get sharp at briefing AI and you get sharp at briefing people. Scope the work, hand it off clean, and raise the level of everyone who reports to you. A better delegator of humans, not just AI.</p>
+      </div>
+    </div>
+
+    <div class="callout">These three are the human core of the job. AI can't copy them, only make them sharper. You go all in on the judgment, and your chief of staff carries the rest.</div>
+
+    <p class="bodyp">And here's the part no one expects. Writing down how you think, to teach the machine, makes <b>you</b> a sharper thinker. Clearer. More systematic. The act of encoding your judgment is what sharpens it.</p>
+
+    <p class="turn">You don't get a chief of staff on day one. You build the relationship in <b>three stages.</b></p>
+  </section>
+
+  <div class="part"><span class="eyebrow">The progression</span></div>
+  <section>
+    <h2>How your Chief grows with you.</h2>
+    <p class="intro">Three stages. Your skill and your Chief's grow together, and the work you can hand off gets bigger at each one.</p>
+
+    <div class="ringblock">
+      <div class="ringart">
+        <svg width="320" height="320" viewBox="0 0 320 320" role="img" aria-label="Nested capability rings: Tool inside Collaborator inside Delegate">
+          <circle cx="165" cy="160" r="145" fill="#D7F3ED"/>
+          <circle cx="118" cy="160" r="98" fill="#3FC4B0"/>
+          <circle cx="76" cy="160" r="56" fill="#132539"/>
+          <text x="76" y="166" text-anchor="middle" font-family="-apple-system,Inter,sans-serif" font-size="16" font-weight="700" letter-spacing="2" fill="#ffffff">TOOL</text>
+          <text x="174" y="155" text-anchor="middle" font-family="-apple-system,Inter,sans-serif" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#ffffff">COLLABO</text>
+          <text x="174" y="171" text-anchor="middle" font-family="-apple-system,Inter,sans-serif" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#ffffff">RATOR</text>
+          <text x="263" y="165" text-anchor="middle" font-family="-apple-system,Inter,sans-serif" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#132539">DELEGATE</text>
+        </svg>
+      </div>
+      <div class="ringcards">
+        <div class="rcard">
+          <span class="num">01</span>
+          <div class="body">
+            <h3>Tool</h3>
+            <p>You ask sharper questions and get sharper answers back.</p>
+            <span class="skills">You hand off: <b>quick research, first drafts, one-off analysis</b></span>
+          </div>
+        </div>
+        <div class="rcard">
+          <span class="num">02</span>
+          <div class="body">
+            <h3>Collaborator</h3>
+            <p>It knows your business and thinks with you, not from zero every time.</p>
+            <span class="skills">You hand off: <b>working through decisions, writing in your voice, prep for the room</b></span>
+          </div>
+        </div>
+        <div class="rcard">
+          <span class="num">03</span>
+          <div class="body">
+            <h3>Delegate</h3>
+            <p>You brief it, it produces the work, you review and approve.</p>
+            <span class="skills">You hand off: <b>the deck, the analysis, the recurring report</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="turn">Climbing those three stages is the <b>Chief AI Accelerator.</b></p>
+  </section>
+
+  <div class="part"><span class="eyebrow">The proof</span></div>
+  <section>
+    <h2>One working session. Nearly $900,000.</h2>
+
+    <div class="stats">
+      <div class="stat"><div class="num">$900K</div><div class="cap">Found in his own books</div></div>
+      <div class="stat"><div class="num">30 min</div><div class="cap">First working session</div></div>
+      <div class="stat"><div class="num">3 wks</div><div class="cap">Idea to result</div></div>
+      <div class="stat"><div class="num">0</div><div class="cap">Staff he had to pull in</div></div>
+    </div>
+
+    <p class="bodyp">Daniel runs a real estate business and already uses AI every day. But he had hunches he couldn't quietly chase. Checking the old way meant pulling people off their work and tipping his hand, so they sat.</p>
+
+    <p class="bodyp">In one thirty-minute session he got the lever: a way to look himself, quietly. Three weeks later he'd surfaced roughly $900,000 sitting in his own accounts payable.</p>
+
+    <div class="callout">I never touched his books. Daniel found the money. I just put the lever in his hands.</div>
+
+    <p class="bodyp">That's the Collaborator ring in real life. Not automation, and not me doing his job. His own judgment, pointed at his own business, multiplied.</p>
+
+    <a class="proof" href="/case-daniel/">
+      <p class="k">Case Study</p>
+      <h3>Daniel found nearly $900,000 in his own books</h3>
+      <p>The lever, not the labor. How a founder surfaced the money that was already there.</p>
+      <span class="go">Read the case study →</span>
+    </a>
+  </section>
+
+  <div class="part"><span class="eyebrow">Who it's for</span></div>
+  <section>
+    <h2>For executives who run the business with an eye on what's next.</h2>
+    <p class="intro">Narrow on purpose. This is about your judgment, not your tech skills.</p>
+    <div class="face cos" style="margin-bottom:12px;">
+      <p class="k">This is you</p>
+      <ul style="list-style:none; margin:4px 0 0; padding:0;">
+        <li style="position:relative; padding-left:26px; margin-bottom:11px; font-size:15.5px; line-height:1.45;"><span style="position:absolute; left:0; top:0; color:var(--teal-dark); font-weight:700;">✓</span>You know AI is a big deal, but you're not sure how to actually put it to use</li>
+        <li style="position:relative; padding-left:26px; margin-bottom:11px; font-size:15.5px; line-height:1.45;"><span style="position:absolute; left:0; top:0; color:var(--teal-dark); font-weight:700;">✓</span>You think in quarters and years, not down in the weeds</li>
+        <li style="position:relative; padding-left:26px; margin-bottom:11px; font-size:15.5px; line-height:1.45;"><span style="position:absolute; left:0; top:0; color:var(--teal-dark); font-weight:700;">✓</span>You want to get AI working in your day without getting overwhelmed</li>
+        <li style="position:relative; padding-left:26px; margin-bottom:11px; font-size:15.5px; line-height:1.45;"><span style="position:absolute; left:0; top:0; color:var(--teal-dark); font-weight:700;">✓</span>You know you need to understand this space, but won't get sucked into the vortex to do it</li>
+        <li style="position:relative; padding-left:26px; margin-bottom:0; font-size:15.5px; line-height:1.45;"><span style="position:absolute; left:0; top:0; color:var(--teal-dark); font-weight:700;">✓</span>You want a firm point of view on AI, and to push your team to use it well</li>
+      </ul>
+    </div>
+    <div class="face tool">
+      <p class="k">This isn't you</p>
+      <ul style="list-style:none; margin:4px 0 0; padding:0;">
+        <li style="position:relative; padding-left:26px; margin-bottom:11px; font-size:15.5px; line-height:1.45; color:var(--navy-light);"><span style="position:absolute; left:0; top:0; color:var(--navy-mute); font-weight:700;">✕</span>You want AI to do your thinking for you</li>
+        <li style="position:relative; padding-left:26px; margin-bottom:11px; font-size:15.5px; line-height:1.45; color:var(--navy-light);"><span style="position:absolute; left:0; top:0; color:var(--navy-mute); font-weight:700;">✕</span>You're trying to automate a department or get technical</li>
+        <li style="position:relative; padding-left:26px; margin-bottom:0; font-size:15.5px; line-height:1.45; color:var(--navy-light);"><span style="position:absolute; left:0; top:0; color:var(--navy-mute); font-weight:700;">✕</span>You're waiting on a top-down company plan before you start</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="part"><span class="eyebrow">The outcomes</span></div>
+  <section>
+    <div style="background:var(--navy); border-radius:16px; padding:34px 32px; box-shadow:0 16px 44px rgba(19,37,57,.18);">
+      <h2 style="color:#fff; margin:0 0 20px;">Five things you'll be able to do that you can't today.</h2>
+
+      <div style="display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-top:1px solid rgba(255,255,255,.13);">
+        <span style="font-family:var(--serif); font-weight:700; color:var(--teal); font-size:23px; line-height:1; flex:none; width:28px;">01</span>
+        <div>
+          <h3 style="font-family:var(--serif); font-weight:700; color:#fff; font-size:20px; line-height:1.2; margin:0 0 5px;">You'll be genuinely AI-fluent.</h3>
+          <p style="margin:0; font-size:15.5px; color:rgba(255,255,255,.74); line-height:1.5;">You go from "I know I should be using this" to using it well every day, and you can feel the jump in what you can do.</p>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-top:1px solid rgba(255,255,255,.13);">
+        <span style="font-family:var(--serif); font-weight:700; color:var(--teal); font-size:23px; line-height:1; flex:none; width:28px;">02</span>
+        <div>
+          <h3 style="font-family:var(--serif); font-weight:700; color:#fff; font-size:20px; line-height:1.2; margin:0 0 5px;">You'll know exactly where to point it.</h3>
+          <p style="margin:0; font-size:15.5px; color:rgba(255,255,255,.74); line-height:1.5;">Where AI earns its keep in your business, and where to avoid it or wait. No guessing, no chasing hype.</p>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-top:1px solid rgba(255,255,255,.13);">
+        <span style="font-family:var(--serif); font-weight:700; color:var(--teal); font-size:23px; line-height:1; flex:none; width:28px;">03</span>
+        <div>
+          <h3 style="font-family:var(--serif); font-weight:700; color:#fff; font-size:20px; line-height:1.2; margin:0 0 5px;">You'll have built real things.</h3>
+          <p style="margin:0; font-size:15.5px; color:rgba(255,255,255,.74); line-height:1.5;">Not theory. You leave with a portfolio of working tools you built for actual problems in your business.</p>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-top:1px solid rgba(255,255,255,.13);">
+        <span style="font-family:var(--serif); font-weight:700; color:var(--teal); font-size:23px; line-height:1; flex:none; width:28px;">04</span>
+        <div>
+          <h3 style="font-family:var(--serif); font-weight:700; color:#fff; font-size:20px; line-height:1.2; margin:0 0 5px;">You'll have a system you actually run.</h3>
+          <p style="margin:0; font-size:15.5px; color:rgba(255,255,255,.74); line-height:1.5;">A simple, repeatable setup that makes AI part of your day, not a thing you keep meaning to get to.</p>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:16px; align-items:flex-start; padding:16px 0 4px; border-top:1px solid rgba(255,255,255,.13);">
+        <span style="font-family:var(--serif); font-weight:700; color:var(--gold); font-size:23px; line-height:1; flex:none; width:28px;">05</span>
+        <div>
+          <h3 style="font-family:var(--serif); font-weight:700; color:#fff; font-size:20px; line-height:1.2; margin:0 0 5px;">You'll chase what you used to let sit.</h3>
+          <p style="margin:0; font-size:15.5px; color:rgba(255,255,255,.74); line-height:1.5;">The hunches you'd normally abandon become cheap to check, so you finally pursue them. That's how Daniel found $900K.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="part"><span class="eyebrow">How it works</span></div>
+  <section>
+    <h2>Nine weeks from AI-aware to AI-fluent.</h2>
+    <p class="intro">A clear path, not a pile of tactics. You start on solid foundations, then climb the three rings, each one putting more of your judgment to work.</p>
+
+    <div class="stage">
+      <p class="k">Foundations · Week 1</p>
+      <h3>Set the foundation</h3>
+      <p>Get your bearings and get set up. What these tools actually are, where they're strong, where they're not, and how to start from solid ground instead of hype. No jargon, no rabbit holes.</p>
+    </div>
+    <div class="stage">
+      <p class="k">Ring 1 · Weeks 2 to 3</p>
+      <h3>Perfect the interaction</h3>
+      <p>Get real results from how you work with AI: scope the task, brief it well, judge what comes back. This is where most of the everyday leverage lives, and where fluency starts.</p>
+    </div>
+    <div class="stage">
+      <p class="k">Ring 2 · Weeks 4 to 6</p>
+      <h3>Put it to work on your business</h3>
+      <p>Give it the context that makes it yours. Now it knows your business and thinks with you, so you can point it at real decisions and real work instead of generic answers.</p>
+    </div>
+    <div class="stage">
+      <p class="k">Ring 3 · Weeks 7 to 9</p>
+      <h3>Hand off the real work</h3>
+      <p>You brief it, it produces, you review and approve. The high-judgment work gets done with you at executive altitude. You direct, and you stay in control.</p>
+    </div>
+
+    <div class="stage" style="border-left-color:var(--gold);">
+      <p class="k" style="color:var(--gold);">The format</p>
+      <h3>What's included</h3>
+      <ul style="list-style:none; margin:6px 0 0; padding:0;">
+        <li style="position:relative; padding-left:22px; margin-bottom:9px; font-size:15px;"><span style="position:absolute; left:0; color:var(--teal-dark); font-weight:700;">·</span>Nine weekly 90-minute live cohort sessions, remote</li>
+        <li style="position:relative; padding-left:22px; margin-bottom:9px; font-size:15px;"><span style="position:absolute; left:0; color:var(--teal-dark); font-weight:700;">·</span>Real assignments with your Chief between sessions</li>
+        <li style="position:relative; padding-left:22px; margin-bottom:9px; font-size:15px;"><span style="position:absolute; left:0; color:var(--teal-dark); font-weight:700;">·</span>1:1 coaching touchpoints</li>
+        <li style="position:relative; padding-left:22px; margin-bottom:9px; font-size:15px;"><span style="position:absolute; left:0; color:var(--teal-dark); font-weight:700;">·</span>A peer community for support and library-sharing</li>
+        <li style="position:relative; padding-left:22px; margin-bottom:0; font-size:15px;"><span style="position:absolute; left:0; color:var(--teal-dark); font-weight:700;">·</span>A post-program maintenance cadence and alumni access</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="part"><span class="eyebrow">Why now</span></div>
+  <section>
+    <h2>In twelve months, this is how top execs work. Will you be one of them?</h2>
+    <p class="bodyp">The gap between AI-aware and AI-fluent widens every quarter, and it doesn't close from the top down. It closes by using AI on your own work, every day, and letting what you learn show you where it goes next.</p>
+    <p class="bodyp">You can't lead your organization's AI strategy when you haven't figured out how to use it yourself. The founders who start now compound a year of context before everyone else begins.</p>
+  </section>
+
+  <div class="part"><span class="eyebrow">The next cohort</span></div>
+  <section>
+    <h2>Apply for the Chief AI Accelerator.</h2>
+    <p class="bodyp">A small group, and we talk before anyone joins. If the fit is right, you start building your Chief in week one.</p>
+    <div class="cta-row">
+      <a class="btn" href="/chief/apply/" style="background:var(--gold); color:var(--navy);">Apply for the Chief AI Accelerator →</a>
+      <span class="btn-note">Application, not checkout. We talk before anyone joins.</span>
+    </div>
+  </section>
+
+  <footer style="margin-top:64px; border-top:1px solid var(--line); padding-top:20px; font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:10px; color:var(--navy-mute);">Michael Gardon · CHIEF AI Accelerator · rejoincoaching.com</footer>
+
+</div>
+
+<script>
+(function(){
+  var verbs = ["Ask better questions.","Think deeper.","Decide quicker.","Delegate better."];
+  var el = document.getElementById('rot');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ el.textContent = verbs[0]; return; }
+  var vi=0, ci=0, deleting=false;
+  function tick(){
+    var word = verbs[vi];
+    if(!deleting){
+      ci++; el.textContent = word.slice(0,ci);
+      if(ci===word.length){ deleting=true; return setTimeout(tick,1500); }
+      return setTimeout(tick,55);
+    } else {
+      ci--; el.textContent = word.slice(0,ci);
+      if(ci===0){ deleting=false; vi=(vi+1)%verbs.length; return setTimeout(tick,220); }
+      return setTimeout(tick,30);
+    }
+  }
+  setTimeout(tick,400);
+})();
+</script>
+</body>
+</html>

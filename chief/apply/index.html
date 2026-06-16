@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>Apply — Chief AI Accelerator</title>
+<!--
+  DEPLOY: deploy/chief/apply/index.html  (target for the landing page CTA /chief/apply/)
+  Form posts (form-encoded) to a GoHighLevel inbound-webhook trigger via JS fetch (no-cors),
+  then shows the on-page thank-you. GHL workflow maps the fields -> Create Contact + notify.
+  Field keys: first_name, last_name, email, company, role, ai_usage, ai_wish, ai_blocker.
+-->
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--cream); color:#23364a; font-family:var(--sans); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+.wrap{max-width:620px; margin:0 auto; padding:40px 24px 80px;}
+.brand{display:flex; align-items:center; gap:10px; margin-bottom:22px;}
+.logo{width:26px; height:26px; border-radius:7px; background:var(--teal); display:inline-block; flex:none; position:relative;}
+.logo::after{content:""; position:absolute; inset:7px; background:var(--cream); border-radius:3px;}
+.eyebrow{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:var(--navy-mute);}
+.pill{display:inline-block; font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:#fff; background:var(--teal); padding:5px 10px; border-radius:6px; margin-bottom:18px;}
+h1{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:38px; line-height:1.1; letter-spacing:-.015em; margin:0 0 14px;}
+.lede{font-size:18px; color:var(--navy-light); line-height:1.5; margin:0 0 8px; max-width:60ch;}
+.note{font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:10px; color:var(--navy-mute); margin:0 0 30px;}
+form{margin-top:8px;}
+.field{margin-bottom:20px;}
+label{display:block; font-family:var(--sans); font-weight:600; font-size:14px; color:var(--navy); margin-bottom:7px;}
+label .opt{font-weight:400; color:var(--navy-mute); font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:9.5px; margin-left:6px;}
+input, select, textarea{width:100%; font-family:var(--sans); font-size:15px; color:#23364a; background:#fff; border:1px solid var(--line); border-radius:8px; padding:12px 14px; line-height:1.5;}
+input:focus, select:focus, textarea:focus{outline:none; border-color:var(--teal); box-shadow:0 0 0 3px var(--teal-light);}
+textarea{resize:vertical; min-height:96px;}
+.hint{font-size:13px; color:var(--navy-mute); margin:6px 0 0;}
+.btn{display:inline-block; font-family:var(--sans); font-weight:600; font-size:15px; text-decoration:none; cursor:pointer; color:var(--navy); background:var(--gold); border:none; padding:14px 26px; border-radius:8px; margin-top:8px;}
+.fineprint{font-size:13px; color:var(--navy-mute); margin:16px 0 0; line-height:1.5;}
+.back{display:inline-block; font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:10px; color:var(--teal-dark); text-decoration:none; margin-bottom:24px;}
+footer{margin-top:56px; border-top:1px solid var(--line); padding-top:20px; font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:10px; color:var(--navy-mute);}
+@media (max-width:620px){ h1{font-size:30px;} .wrap{padding:28px 18px 64px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="/chief/">← Back to the program</a>
+  <div class="brand"><span class="logo"></span><span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span></div>
+  <span class="pill">The next step</span>
+
+  <h1>Apply for the Chief AI Accelerator.</h1>
+  <p class="lede">This is an application, not a checkout. The cohort is small and the fit is narrow on purpose, so we talk before anyone joins. Tell me about you and I'll give you the next step if it's a fit.</p>
+  <p class="note">Takes about three minutes. No payment now.</p>
+
+  <div id="applyDone" style="display:none; background:var(--teal-light); border:1px solid var(--teal); border-radius:12px; padding:28px 26px; margin-top:8px;">
+    <h2 style="font-family:var(--serif); font-weight:700; color:var(--navy); font-size:24px; margin:0 0 10px;">Application received.</h2>
+    <p style="margin:0; font-size:16px; color:#23364a; line-height:1.55;">I read every one myself. If it's a fit, you'll hear from me to set up a short conversation. We cover price and timing there.</p>
+  </div>
+
+  <form id="applyForm" action="https://services.leadconnectorhq.com/hooks/jEoxCTUzibnBwSh4vDhs/webhook-trigger/5204d1e1-5c27-40a1-bcca-c93c910d4d92" method="POST">
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+      <div class="field">
+        <label for="first_name">First name</label>
+        <input id="first_name" name="first_name" type="text" required autocomplete="given-name">
+      </div>
+      <div class="field">
+        <label for="last_name">Last name</label>
+        <input id="last_name" name="last_name" type="text" required autocomplete="family-name">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required autocomplete="email">
+    </div>
+
+    <div class="field">
+      <label for="company">Business name</label>
+      <input id="company" name="company" type="text" required>
+    </div>
+
+    <div class="field">
+      <label for="role">Your role</label>
+      <select id="role" name="role" required>
+        <option value="" selected disabled>Select one</option>
+        <option>Founder / owner</option>
+        <option>CEO</option>
+        <option>C-suite / executive</option>
+        <option>Operator / GM</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="usage">How are you using AI today?</label>
+      <select id="usage" name="ai_usage" required>
+        <option value="" selected disabled>Select one</option>
+        <option>Daily, it's part of how I work</option>
+        <option>Weekly, here and there</option>
+        <option>Rarely, I've poked at it</option>
+        <option>Not yet, but I know I need to</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="ai_wish">What do you wish you could do with AI but haven't figured out yet?</label>
+      <textarea id="ai_wish" name="ai_wish" required></textarea>
+    </div>
+
+    <div class="field">
+      <label for="ai_blocker">What's holding you back with AI right now?</label>
+      <textarea id="ai_blocker" name="ai_blocker" required></textarea>
+      <p class="hint">There's no wrong answer. These tell me whether the program is a fit for what you actually need.</p>
+    </div>
+
+    <button class="btn" type="submit">Submit application →</button>
+    <p class="fineprint">I read every application myself. If it looks like a fit, you'll hear from me to set up a short conversation. We cover price and timing there.</p>
+
+  </form>
+
+  <footer>Michael Gardon · CHIEF AI Accelerator · rejoincoaching.com</footer>
+
+</div>
+
+<script>
+(function(){
+  var form = document.getElementById('applyForm');
+  var done = document.getElementById('applyDone');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    if(btn){ btn.disabled = true; btn.textContent = 'Sending…'; }
+    var body = new URLSearchParams(new FormData(form));
+    fetch(form.action, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: body })
+      .then(show).catch(show);
+    function show(){
+      form.style.display = 'none';
+      done.style.display = 'block';
+      window.scrollTo({ top:0, behavior:'smooth' });
+    }
+  });
+})();
+</script>
+</body>
+</html>
