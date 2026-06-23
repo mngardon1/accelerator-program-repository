@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>SACO Proposal | CHIEF</title>
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--navy);font-family:var(--sans);line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:32px 24px 80px}
+a{color:var(--teal-dark)}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-mute)}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.logo{width:22px;height:22px;background:var(--teal);border-radius:5px;position:relative;flex:0 0 22px}
+.logo::after{content:"";position:absolute;inset:6px;background:var(--cream);border-radius:2px}
+.brand .eyebrow{font-weight:600;letter-spacing:.16em}
+.crumb{margin-bottom:18px}
+.pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--teal);padding:5px 11px;border-radius:999px}
+h1{font-family:var(--serif);font-size:44px;line-height:1.06;font-weight:700;margin:16px 0 12px;letter-spacing:-.01em}
+.lede{font-size:18px;color:var(--navy-light);max-width:64ch}
+.meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px 22px}
+h2{font-family:var(--serif);font-size:25px;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+p{margin-bottom:13px;color:#23364a}
+ul{margin:0 0 4px 20px}
+li{margin-bottom:7px;color:#23364a}
+.take{font-weight:700;color:var(--navy)}
+.quote{font-family:var(--serif);font-size:19px;line-height:1.4;color:var(--navy);border-left:3px solid var(--gold);padding:4px 0 4px 18px;margin:6px 0 16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px}
+.card.accent{border-left:3px solid var(--teal)}
+.dlabel{color:var(--teal-dark);margin-bottom:3px}
+.dname{font-family:var(--serif);font-weight:700;font-size:18px;color:var(--navy);margin-bottom:6px}
+.sub{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-mute);margin:2px 0 8px}
+.attrib{font-size:13px;color:var(--navy-mute);font-style:italic;margin-top:8px}
+.note{font-size:13.5px;color:var(--navy-mute);margin-top:6px}
+table{width:100%;border-collapse:collapse;margin:6px 0 14px;font-size:13.5px;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy-mute);background:var(--cream-deep)}
+td:first-child{font-weight:600}
+tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;white-space:nowrap}
+tr.total td{background:var(--teal-light);font-weight:700;color:var(--navy);border-top:1px solid var(--line)}
+/* checklist */
+.checklist{list-style:none;margin:2px 0 0;padding:0}
+.checklist li{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;padding:13px 15px;background:var(--cream);border:1px solid var(--line);border-radius:10px}
+.checklist input[type=checkbox]{appearance:none;-webkit-appearance:none;flex:0 0 auto;width:20px;height:20px;margin-top:1px;border:2px solid var(--teal);border-radius:5px;cursor:pointer;position:relative;background:#fff;transition:background .15s}
+.checklist input[type=checkbox]:checked{background:var(--teal)}
+.checklist input[type=checkbox]:checked::after{content:"";position:absolute;left:5px;top:1px;width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.checklist label{cursor:pointer;color:#23364a}
+.checklist input[type=checkbox]:checked + label > span{text-decoration:line-through;color:var(--navy-mute)}
+.checklist input[type=checkbox]:checked + label b{color:var(--navy-mute)}
+/* accordion */
+.controls{display:flex;gap:16px;margin:26px 0 14px}
+.controls a{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy-mute);cursor:pointer;text-decoration:none}
+.controls a:hover{color:var(--teal-dark)}
+details.acc{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:12px}
+details.acc[open]{border-color:rgba(19,37,57,0.14)}
+summary{list-style:none;cursor:pointer;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary:hover .s-title{color:var(--teal-dark)}
+.s-head .s-label{margin-bottom:5px}
+.s-title{font-family:var(--serif);font-size:23px;font-weight:700;line-height:1.15;letter-spacing:-.01em;color:var(--navy)}
+.chev{flex:0 0 auto;width:11px;height:11px;border-right:2px solid var(--teal);border-bottom:2px solid var(--teal);transform:rotate(-45deg);transition:transform .2s ease;margin:4px 4px 0 0}
+details.acc[open] .chev{transform:rotate(45deg)}
+.acc-body{padding:2px 20px 20px}
+.acc-body > h3{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--navy);margin:16px 0 6px}
+.sign{display:flex;gap:40px;flex-wrap:wrap;margin-top:18px}
+.sigblock{flex:1 1 240px}
+.sigline{border-top:1px solid var(--navy);margin-top:34px;padding-top:6px}
+.sigcap{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-mute)}
+footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-mute)}
+@media(max-width:560px){h1{font-size:34px}.s-title{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><span class="logo"></span><span class="eyebrow">Michael Gardon · CHIEF</span></div>
+  <div class="crumb eyebrow">Proposal / SACO</div>
+  <span class="pill">Engagement Proposal</span>
+
+  <h1>Chief of Staff Install &amp; Executive AI Enablement</h1>
+  <p class="lede">This proposal represents my view of the best path forward for SACO to begin performing with AI excellence now, while learning how and when this technology can be scaled across the company.</p>
+  <div class="meta eyebrow">
+    <span>Prepared for · SACO</span>
+    <span>By · Michael Gardon, Chief</span>
+    <span>June 22, 2026</span>
+    <span>Term · 6 months, then month-to-month</span>
+  </div>
+
+  <div class="controls">
+    <a id="expandAll">Expand all</a>
+    <a id="collapseAll">Collapse all</a>
+  </div>
+
+  <details class="acc">
+    <summary><div class="s-head"><div class="s-label eyebrow">The plan</div><div class="s-title">Top line</div></div><span class="chev"></span></summary>
+    <div class="acc-body">
+      <h3>Charge</h3>
+      <ul>
+        <li>Supply Logan with the tools, system, ability and guidance to become SACO's AI center of excellence with a new CoS partner and a new lens on the business and operations.</li>
+        <li>In parallel, support the capacity of the CEO and CFO to leverage AI in their everyday workflows, while giving them the capacity to inspire and permeate an AI forward culture through the organization.</li>
+      </ul>
+      <h3>Predicted outcomes</h3>
+      <ul>
+        <li>Executives become proficient and effective with AI through fluency applied to every day problems.</li>
+        <li>Logan becomes the AI center of excellence for SACO and is able to (1) surface opportunities for cost savings or new value creation, (2) scope and drive those projects with confidence, (3) develop a strong point of view on how and where AI can be used most effectively at SACO.</li>
+        <li>We uncover at least $100,000 in annual value opportunity that is currently unrecognized.</li>
+        <li>Land on a specific framework to deliver and scale AI adoption throughout SACO.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><div class="s-head"><div class="s-label eyebrow">Context</div><div class="s-title">The opportunity</div></div><span class="chev"></span></summary>
+    <div class="acc-body">
+      <p>SACO is AI curious: you've seen examples of savant mode, and you're wondering how else you can drive value with this technology.</p>
+      <p>At the same time, your organization is trending older, and the expertise that runs it lives in the heads of a handful of senior leaders. When they retire, that knowledge walks out the door. That is not a productivity problem. It is a continuity problem with a clock on it.</p>
+      <p>Two things landed in our conversation. First, the Chief of Staff frame: AI that runs the system for an executive, not a chatbot the executive operates. Second, a knowledge system that starts small, grows, and maintains itself over time, building a foundation for humans and machines to build value in tandem.</p>
+      <p class="take">The strategic point: AI growth is bottom up. The personal win produces the institutional asset as a byproduct. Every file the executive's Chief of Staff writes is also the start of a knowledge base your next generation can read and your AI can use.</p>
+      <h3>Constraints</h3>
+      <p>You don't want a huge install. No BDO decks, or consulting deep dives that don't compound. You're not looking to completely overhaul old systems, or streamline people.</p>
+      <p>You don't want to be taken way outside your capability set or be sucked down endless "AI automation" rabbit holes.</p>
+      <p class="take">You want to be brought up to speed, empowered and turned loose.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><div class="s-head"><div class="s-label eyebrow">The architecture</div><div class="s-title">The learning systems we install</div></div><span class="chev"></span></summary>
+    <div class="acc-body">
+      <div class="card accent">
+        <div class="dlabel eyebrow">System 1</div>
+        <div class="dname">The human learning system</div>
+        <div class="sub">Executive AI Learning Model</div>
+        <ul>
+          <li>Setup</li>
+          <li>Recalled context</li>
+          <li>Deciding when to use AI</li>
+          <li>Scoping and the 4 C's (Context, charge, cut, constraints)</li>
+          <li>Building with Claude</li>
+          <li>Evaluating output and calling BS</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <div class="dlabel eyebrow">System 2</div>
+        <div class="dname">The machine learning system</div>
+        <div class="sub">The Chief of Staff</div>
+        <ul>
+          <li>Knowledge system</li>
+          <li>Connections</li>
+          <li>Skills</li>
+          <li>Rules</li>
+          <li>Routing</li>
+        </ul>
+        <p class="note">That AI uses to learn and work for the Executive.</p>
+      </div>
+      <p class="quote">Models will change. Your skills and AI's ability to learn will not. Both are portable to any AI system.</p>
+      <p>Sensitive systems of record (HR, finance, anything restricted) are referenced, not copied, and data handling is agreed before anything is connected.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><div class="s-head"><div class="s-label eyebrow">What you get</div><div class="s-title">Scope of work</div></div><span class="chev"></span></summary>
+    <div class="acc-body">
+      <div class="card accent">
+        <div class="dlabel eyebrow">Component 1</div>
+        <div class="dname">Onboard the Chief of Staff</div>
+        <p>A complete working Chief of Staff system for Logan, enabling him to access, analyze, scope opportunity across the organization.</p>
+        <p style="margin-bottom:6px"><b>What this takes:</b></p>
+        <ul>
+          <li>Pre-flight discovery and an apps-and-connections intake that maps where the work actually lives.</li>
+          <li>Setup of Claude Cowork</li>
+          <li>Set up knowledge vault: AI's read into how the executive thinks, what good looks like, the hard lines, plus company context and current priorities.</li>
+          <li>Connected workspace: cloud storage, and the mail, calendar, and task systems the executive actually uses.</li>
+          <li>The operating rules, skills and learning loop: the pre-built workflows that allow AI to learn and be useful.</li>
+          <li>Seeded with existing documents so it produces real work on day one.</li>
+          <li>Operating cheat sheet and handoff.</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <div class="dlabel eyebrow">Component 2</div>
+        <div class="dname">Operational and scaffold support</div>
+        <p>This is a new way of working. The install is the start, not the finish. Over the engagement we drive the system against surfacing growth opportunities and driving AI assisted value across the org.</p>
+        <ul>
+          <li>Weekly working sessions focused on the executive's chosen objective.</li>
+          <li>Async support hotline built into Teams: you ask a question, I triage and respond. For system tuning between sessions, anytime, anywhere, M-F 8am&ndash;5pm.</li>
+          <li>Ad hoc impromptu in-person working sessions.</li>
+          <li>Live learning dashboard (logs learnings, issues, opportunities and insights). Used to update the CoS system, and visible to keep execs or the entire company updated and to drive curiosity.</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <div class="dlabel eyebrow">Component 3</div>
+        <div class="dname">1:1 executive AI fluency coaching &mdash; two executives</div>
+        <p>Deep focus on infusing AI into the CEO and CFO's workflows. AI-aware to every day AI-user for executive level problems. Be able to drive use and inspiration down through the company through your own actions.</p>
+        <ul>
+          <li>Personalized coaching meeting you where you're at, within your AI circle of competence.*</li>
+          <li>Kickoff and set up basics session (2 hours).*</li>
+          <li>One session per week per executive focused on real work.</li>
+          <li>Bi-weekly group session: focused on system and bringing the work together.</li>
+          <li>Async support "hotline" built into Teams. You ask a question, I triage and respond.</li>
+          <li>Additional learning modules and resources as needed.</li>
+          <li>Live learning dashboard: record and surface what lessons are extensible to the organization, and how we can drive learning and use down the chain.</li>
+        </ul>
+        <p class="attrib">*Built on the Rejoin Executive AI Learning Model.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><div class="s-head"><div class="s-label eyebrow">The arc</div><div class="s-title">Engagement timeline</div></div><span class="chev"></span></summary>
+    <div class="acc-body">
+      <table>
+        <tr><th>Phase</th><th>When</th><th>What happens</th><th>Outcomes</th></tr>
+        <tr><td>Pre-flight</td><td>Month 0</td><td>Pre-flight intake (all 3 execs).</td><td>Starter docs created, connections + data understood.</td></tr>
+        <tr><td>Install</td><td>Month 1</td><td>Core Chief of Staff install for Logan, coaching kickoff for the two executives.</td><td>CoS running, fluency foundation set.</td></tr>
+        <tr><td>Operationalize</td><td>Months 2 to 5</td><td>Working sessions running. Opportunities defined, knowledge compounding. Monthly check-in on learning dashboards + adjustments.</td><td>Logan + CoS finding opps + building solutions. Execs using AI daily, seeing expansion opps.</td></tr>
+        <tr><td>Durability and review</td><td>Month 6</td><td>Teardown of engagement. Future opportunity planning. Where does SACO + AI go next?</td><td>With me or without me, SACO is prepared to harness AI in the future.</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><div class="s-head"><div class="s-label eyebrow">The numbers</div><div class="s-title">Investment</div></div><span class="chev"></span></summary>
+    <div class="acc-body">
+      <p>This is a services engagement with a software-enabled asset. As a founding client, SACO receives the Chief of Staff install at no charge, with a single monthly retainer covering all ongoing support and coaching.</p>
+      <table>
+        <tr><th>Component</th><th class="num">Rate card</th><th class="num">SACO</th></tr>
+        <tr><td>Chief of Staff install (Logan, one-time)</td><td class="num">$12,000</td><td class="num">$0</td></tr>
+        <tr><td>Monthly support retainer (6 months)</td><td class="num">$8,500/mo</td><td class="num">$8,500/mo</td></tr>
+        <tr class="total"><td>Total engagement value</td><td class="num">$63,000</td><td class="num">$51,000</td></tr>
+      </table>
+      <h3>What the retainer covers</h3>
+      <p>The $8,500 monthly retainer is allocated across the two support buckets by time.</p>
+      <table>
+        <tr><th>Support bucket</th><th class="num">Hours/mo</th><th class="num">Monthly</th></tr>
+        <tr><td>Operational and scaffold support (Logan)</td><td class="num">20</td><td class="num">$5,000</td></tr>
+        <tr><td>Executive AI coaching (CEO and CFO)</td><td class="num">14</td><td class="num">$3,500</td></tr>
+        <tr class="total"><td>Total</td><td class="num">34</td><td class="num">$8,500</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><div class="s-head"><div class="s-label eyebrow">Principles</div><div class="s-title">How we work</div></div><span class="chev"></span></summary>
+    <div class="acc-body">
+      <ul>
+        <li><b>Progress tracking:</b> Live dashboards updated weekly. These are meant to surface real discussion and feedback on value outcomes and guide the next phase of work. Adjusting on the fly.</li>
+        <li><b>Communication:</b> Phone, email, zoom, chat, in person all work. I build a dedicated hotline through Teams where you can dump questions for async triage by me.</li>
+        <li><b>Agreement cancelable at any time.</b> If you're not happy, we stop.</li>
+        <li><b>You keep everything.</b> All processes, artifacts, deliverables, code, scripts and install.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><div class="s-head"><div class="s-label eyebrow">The proof</div><div class="s-title">Why this works</div></div><span class="chev"></span></summary>
+    <div class="acc-body">
+      <p>How much value is laying around because you haven't seen it, had an idea but forgot about it, or couldn't find a quick path to investigate it? In one working session with a single operator, this approach surfaced the insight, structured the judgment and wrangled the data that pointed to nearly $900,000 in value the operator had been carrying around uncaptured. The method is the same one we install here: the AI captures, learns, creates the procedures and decision criteria, and turns them into an asset before you leave the building. You stay in your genius zone: coming up with ideas, thinking critically and driving toward an outcome.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><div class="s-head"><div class="s-label eyebrow">From here</div><div class="s-title">Next steps</div></div><span class="chev"></span></summary>
+    <div class="acc-body">
+      <ul class="checklist">
+        <li><input type="checkbox" id="ns1"><label for="ns1"><span><b>Confirm scope and pricing.</b> Approve this proposal or tell us what to adjust.</span></label></li>
+        <li><input type="checkbox" id="ns2"><label for="ns2"><span><b>Draft + sign agreement and NDA.</b></span></label></li>
+        <li><input type="checkbox" id="ns3"><label for="ns3"><span><b>Begin preflight intake.</b> A short conversation that locks the connector list and any pre-work, so the install session is clean.</span></label></li>
+        <li><input type="checkbox" id="ns4"><label for="ns4"><span><b>Schedule the install + meeting cadence.</b> Book Month 1. Engagement begins on signature and first payment.</span></label></li>
+      </ul>
+    </div>
+  </details>
+
+  <footer>Michael Gardon · CHIEF — SACO Engagement Proposal · June 2026</footer>
+
+</div>
+<script>
+  document.getElementById('expandAll').addEventListener('click',function(){
+    document.querySelectorAll('details.acc').forEach(function(d){d.open=true;});
+  });
+  document.getElementById('collapseAll').addEventListener('click',function(){
+    document.querySelectorAll('details.acc').forEach(function(d){d.open=false;});
+  });
+</script>
+</body>
+</html>
