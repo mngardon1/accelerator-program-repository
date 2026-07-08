@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Build Your Chief in ChatGPT | CHIEF AI Accelerator</title>
+<style>
+  :root{
+    --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+    --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,.55);
+    --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338; --line:rgba(19,37,57,.10);
+    --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Inter",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--cream);color:var(--navy);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:0 24px}
+  header{padding:20px 0;border-bottom:1px solid var(--line)}
+  .brand{font-family:var(--serif);font-weight:700;font-size:17px}
+  .brand span{color:var(--teal)}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-dark);font-weight:700}
+  h1{font-family:var(--serif);font-size:clamp(34px,6vw,52px);line-height:1.05;font-weight:700;letter-spacing:-.01em;margin:14px 0 14px}
+  h2{font-family:var(--serif);font-size:clamp(24px,4vw,32px);line-height:1.15;font-weight:700;letter-spacing:-.01em;margin:8px 0 12px}
+  h3{font-family:var(--serif);font-size:18px;font-weight:700;margin:18px 0 6px}
+  p{margin:10px 0;font-size:16.5px;color:var(--navy-light)}
+  .hero{padding:40px 0 12px}
+  #stepsHead{margin:10px 0 2px;font-size:22px}
+  .hero .sub{font-size:19px;color:var(--navy-mute);max-width:620px}
+  .meta{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--navy-mute);margin-top:18px;text-transform:uppercase}
+  .callout{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:18px 0}
+  .callout.live{background:var(--teal-light);border-color:var(--teal)}
+  .callout .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark);font-weight:700;margin-bottom:6px}
+
+  .step{padding:34px 0 8px;border-top:1px solid var(--line)}
+  .step:first-of-type{border-top:none}
+  .num{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-dark);font-weight:700}
+  .why{background:var(--cream-deep);border-left:3px solid var(--gold);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:15.5px}
+  .why b{color:var(--navy)}
+  ol.clicks{list-style:none;counter-reset:c;margin:14px 0}
+  ol.clicks li{counter-increment:c;position:relative;padding:10px 0 10px 40px;border-top:1px solid var(--line);font-size:16px;color:var(--navy-light)}
+  ol.clicks li:first-child{border-top:none}
+  ol.clicks li::before{content:counter(c);position:absolute;left:0;top:9px;width:26px;height:26px;border-radius:999px;background:var(--teal);color:#fff;font-family:var(--mono);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-dark);border:1px solid var(--teal);border-radius:4px;padding:2px 7px;margin-right:8px;vertical-align:1px}
+  .tag.pc{color:var(--navy-mute);border-color:var(--line)}
+  .promptbox{background:var(--navy);color:#dfe7ee;border-radius:12px;margin:16px 0}
+  .promptbox .top{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .promptbox .top span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+  .promptbox pre{padding:16px;max-height:340px;overflow:auto;font-family:var(--mono);font-size:12.5px;line-height:1.6;white-space:pre-wrap}
+  .btn{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;border:1px solid var(--teal);color:var(--teal);background:transparent;border-radius:6px;padding:7px 12px;cursor:pointer}
+  .btn:hover{background:var(--teal);color:var(--navy)}
+  ul.tips{list-style:none;margin:12px 0}
+  ul.tips li{padding:9px 0 9px 24px;position:relative;font-size:16px;color:var(--navy-light);border-top:1px solid var(--line)}
+  ul.tips li:first-child{border-top:none}
+  ul.tips li::before{content:"\2192";position:absolute;left:0;color:var(--teal);font-weight:700}
+  footer{border-top:1px solid var(--line);padding:30px 0;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-mute);margin-top:30px}
+</style>
+</head>
+<body>
+
+<header><div class="wrap"><div class="brand">Michael Gardon <span>· CHIEF</span></div></div></header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="eyebrow">The Chief Method · ChatGPT</span>
+    <h1>Build your Chief in ChatGPT</h1>
+    <p class="sub">Same idea as the full Chief: one place that holds who you are, your business, what's on your plate, how you work, and your voice, loaded into every chat. In ChatGPT, that place is a Project. Here is how to set it up.</p>
+    <div class="meta">4 steps · ~15 min · mostly pasting and talking</div>
+  </section>
+
+  <p>A Project is a workspace inside ChatGPT. You give it standing instructions, you feed it files about you, and you keep all your related chats in one spot. Do this once and every chat you start inside that Project already knows your world. Labels can move around as ChatGPT updates, so match the meaning, not the exact word.</p>
+
+  <!-- STEP 1 -->
+  <section class="step">
+    <div class="num">Step 1 · Make the Project</div>
+    <h2>Create a new Project and name it Chief</h2>
+    <p>The Project is your vault. It keeps your instructions, your files, and your chats together so ChatGPT stays on topic and on you.</p>
+    <ol class="clicks">
+      <li><span class="tag">App</span>Open ChatGPT (the app or <b>chatgpt.com</b>) and sign in.</li>
+      <li><span class="tag">App</span>In the left sidebar, find <b>Projects</b> and click the <b>+</b> next to it (or click <b>New project</b>).</li>
+      <li><span class="tag">App</span>Name it <b>Chief</b> and click <b>Create project</b>.</li>
+    </ol>
+    <div class="why">Projects are available on <b>free and paid</b> plans. You do not need the top tier to start.</div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="step">
+    <div class="num">Step 2 · Give it instructions</div>
+    <h2>Tell it to act as your chief of staff</h2>
+    <p>Project instructions load into every chat inside this Project. This is where you set the standing job and the ground rules, so you never re-explain how you want it to behave.</p>
+    <ol class="clicks">
+      <li><span class="tag">App</span>Open your <b>Chief</b> project. Click the three dots <b>(...)</b> in the top-right and choose <b>Project settings</b> (some versions show <b>Instructions</b> or <b>Add instructions</b> right on the project page).</li>
+      <li><span class="tag">App</span>Paste the block below into the instructions field, edit the bracketed parts, and <b>Save</b>.</li>
+    </ol>
+    <div class="promptbox">
+      <div class="top"><span>Paste this into project instructions</span>
+        <button class="btn" onclick="copyBox(this)">Copy</button>
+      </div>
+      <pre id="instrBox">Act as my chief of staff. I am [name], [role] at [company]. I own [the 3-5 outcomes you are responsible for].
+
+How to work with me:
+- Lead with the answer. No preamble, no "great question," no motivational filler.
+- Direct, plain, short sentences. Write at an 8th-grade level.
+- One thing at a time. Do not stack questions.
+- Draft, never send. Get my okay before anything leaves this chat.
+- Push back when I am vague or wrong. Ask before you assume.
+- End with the single next step I should take.
+
+My voice: [two or three words, e.g. plain, direct, warm]. Words I never use: [list].
+Use the files in this project as the source of truth about me and my business.</pre>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="step">
+    <div class="num">Step 3 · Add your context</div>
+    <h2>Feed it files about you</h2>
+    <p>This is the knowledge your Chief reads from. Give it five short files, one for each part of your world. Plain text or a Word or PDF doc is fine. Keep each one tight, a page or less.</p>
+    <ol class="clicks">
+      <li><span class="tag pc">Your computer</span>Write five short files (or ask ChatGPT to draft them with you first): <b>about-me</b> (who you are, how you think, what is yours to decide, your voice), <b>business</b> (what you do, how you make money, best customer, main threat), <b>current-state</b> (top 3 priorities, live decisions, what is scarce), <b>how-i-work</b> (your rules and preferences), and <b>voice</b> (samples of how you sound).</li>
+      <li><span class="tag">App</span>In your <b>Chief</b> project, find the <b>Files</b> area (or drag a file straight into any project chat). Upload all five. Uploaded files stay attached to the whole Project, so every chat in it can use them.</li>
+    </ol>
+    <div class="why"><b>No files yet?</b> Start a chat in the project and say: <em>"Interview me for 15 minutes and draft these five files."</em> Then save what it writes and upload them here.</div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="step">
+    <div class="num">Step 4 · Turn on memory, then work</div>
+    <h2>Let it learn you, then use it</h2>
+    <p>Project Memory lets ChatGPT remember what matters across the chats inside this Project, so it gets sharper the more you use it. Turn it on, then just start working.</p>
+    <ol class="clicks">
+      <li><span class="tag">App</span>Open <b>Settings → Personalization</b> and make sure <b>Reference saved memories</b> and <b>Reference chat history</b> are turned <b>on</b>. This is what powers memory inside Projects.</li>
+      <li><span class="tag">App</span>Go back to your <b>Chief</b> project and start a new chat <b>inside it</b> (not a normal chat). Everything you do here now uses your instructions, your files, and your growing memory.</li>
+      <li><span class="tag">App</span>Work normally. Ask it what is next, have it draft in your voice, talk through decisions. It remembers across chats in the Project.</li>
+    </ol>
+    <div class="why"><b>One privacy note:</b> memory made in this Project stays in this Project. It does not leak into your normal chats or other projects, and vice versa.</div>
+  </section>
+
+  <!-- LIMITATION -->
+  <section class="step">
+    <div class="num">Read this before you rely on it</div>
+    <h2>The honest limitation</h2>
+    <div class="callout">
+      <div class="lbl">What ChatGPT will and will not do</div>
+      <p style="margin:0 0 10px">ChatGPT can <b>read</b> the files you upload, and it <b>learns you</b> through Project Memory. That covers a lot. But it will <b>not write back and maintain those files for you.</b> When your priorities change or a rule needs updating, you edit the file by hand and re-upload it. There is no folder it keeps current on its own.</p>
+      <p style="margin:0">The true "AI writes to a folder you own" version does exist in the OpenAI world: it is <b>Codex</b>, OpenAI's agentic coding tool. But Codex is a developer tool, it lives in a terminal and code repositories, and it is overkill for a personal system. For most people, the Project setup above is the right call, just know the upkeep is manual.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer><div class="wrap">CHIEF AI Accelerator — Build Your Chief in ChatGPT</div></footer>
+
+<script>
+  function copyBox(btn){
+    var t = document.getElementById('instrBox').textContent;
+    navigator.clipboard.writeText(t).then(function(){
+      var o = btn.textContent; btn.textContent = 'Copied ✓';
+      setTimeout(function(){ btn.textContent = o; }, 1400);
+    });
+  }
+</script>
+</body>
+</html>
