@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>Case Study: How I gave Claude my inbox | CHIEF AI Accelerator</title>
+<meta name="description" content="One founder turned three cluttered inboxes into a sorted queue, cleared 1,435 unread down to a handful, and built the whole thing by talking. No code. Drafts only, never sends.">
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; background:var(--cream); color:#23364a;
+  font-family:var(--sans); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px; margin:0 auto; padding:32px 24px 80px;}
+
+/* Brand header */
+.brand{display:flex; align-items:center; gap:10px; margin-bottom:18px;}
+.logo{width:26px; height:26px; border-radius:7px; background:var(--teal); display:inline-block; flex:none;}
+.eyebrow{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:var(--navy-mute);}
+.crumb{margin-bottom:22px;}
+
+/* Pill */
+.pill{
+  display:inline-block; font-family:var(--mono); text-transform:uppercase;
+  letter-spacing:.14em; font-size:10.5px; color:#fff; background:var(--teal);
+  padding:5px 10px; border-radius:6px; margin-bottom:16px;
+}
+
+/* Title block */
+h1{
+  font-family:var(--serif); font-weight:700; color:var(--navy);
+  font-size:44px; line-height:1.08; letter-spacing:-.01em; margin:0 0 16px;
+}
+.lede{font-size:18px; color:var(--navy-light); line-height:1.5; margin:0 0 16px;}
+.meta{margin:0 0 8px;}
+
+/* Stat band */
+.stats{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
+  margin:32px 0 8px;
+}
+.stat{
+  background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 16px;
+}
+.stat .num{font-family:var(--serif); font-weight:700; color:var(--teal-dark); font-size:30px; line-height:1; letter-spacing:-.02em;}
+.stat .cap{font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:9.5px; color:var(--navy-mute); margin-top:9px; line-height:1.4;}
+
+/* Sections */
+section{margin-top:42px;}
+.s-label{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:var(--navy-mute); margin:0 0 8px;}
+h2{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:26px; line-height:1.15; letter-spacing:-.01em; margin:0 0 14px;}
+p{margin:0 0 16px;}
+code{font-family:var(--mono); font-size:.88em; background:var(--cream-deep); padding:1px 6px; border-radius:5px; color:var(--navy);}
+
+/* Teal callout */
+.callout{
+  background:var(--teal-light); border-left:4px solid var(--teal);
+  border-radius:0 12px 12px 0; padding:20px 22px; margin:26px 0;
+  font-family:var(--serif); font-size:23px; line-height:1.32; color:var(--navy); font-weight:700;
+}
+
+/* Two-up grid */
+.grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:24px 0;}
+.card{background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px;}
+.card.accent{border-left:4px solid var(--teal);}
+.card.muted{background:var(--cream-deep);}
+.card h3{font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10.5px; margin:0 0 12px; color:var(--navy-mute);}
+.card ul{margin:0; padding-left:18px;}
+.card li{margin-bottom:7px;}
+.card.muted li{color:var(--navy-mute);}
+
+/* Queue list */
+.queues{background:#fff; border:1px solid var(--line); border-radius:12px; padding:8px 22px; margin:24px 0; list-style:none;}
+.queues li{padding:13px 0; border-bottom:1px solid var(--line);}
+.queues li:last-child{border-bottom:none;}
+.queues .q{font-family:var(--mono); text-transform:uppercase; letter-spacing:.08em; font-size:11px; color:var(--teal-dark); display:block; margin-bottom:3px;}
+
+/* Timeline steps */
+.steps{counter-reset:step; margin:24px 0;}
+.step{background:#fff; border:1px solid var(--line); border-left:4px solid var(--teal); border-radius:12px; padding:18px 20px; margin-bottom:12px;}
+.step h3{font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:11px; color:var(--navy-mute); margin:0 0 8px;}
+.step h3 b{color:var(--teal-dark);}
+.step p{margin:0;}
+.step ul{margin:8px 0 0; padding-left:18px;}
+.step li{margin-bottom:6px;}
+
+.take{font-weight:700; color:var(--navy);}
+
+/* Bridge / CTA */
+.bridge{
+  background:#fff; border:1px solid var(--line); border-left:4px solid var(--gold);
+  border-radius:12px; padding:26px; margin-top:48px;
+}
+.bridge .s-label{color:var(--gold);}
+.bridge h2{font-size:24px; margin-bottom:10px;}
+.bridge p{margin-bottom:20px;}
+.btn{
+  display:inline-block; font-family:var(--sans); font-weight:600; font-size:15px;
+  text-decoration:none; color:#fff; background:var(--navy);
+  padding:13px 24px; border-radius:8px;
+}
+.btn:hover{background:var(--navy-light);}
+
+footer{
+  margin-top:56px; padding-top:22px; border-top:1px solid var(--line);
+  font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em;
+  font-size:10px; color:var(--navy-mute);
+}
+
+@media (max-width:620px){
+  .wrap{padding:24px 18px 64px;}
+  h1{font-size:33px;}
+  h2{font-size:22px;}
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .grid{grid-template-columns:1fr;}
+  .callout{font-size:20px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><span class="logo"></span><span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span></div>
+  <div class="crumb eyebrow">Accelerator / Case Studies / Inbox</div>
+
+  <span class="pill">Case Study</span>
+  <h1>How I gave Claude my inbox.</h1>
+  <p class="lede">One founder turned three cluttered inboxes into a sorted queue, without writing a line of code or hiring an assistant. Drafts only, never sends.</p>
+  <div class="meta eyebrow">One founder · Three inboxes · Built entirely by talking</div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">1,435</div><div class="cap">Unread cleared in the first run</div></div>
+    <div class="stat"><div class="num">~8</div><div class="cap">Left that actually needed me</div></div>
+    <div class="stat"><div class="num">10</div><div class="cap">Labeled queues</div></div>
+    <div class="stat"><div class="num">0</div><div class="cap">Emails sent · drafts only</div></div>
+  </div>
+
+  <section>
+    <p class="s-label">The Problem</p>
+    <h2>Three inboxes, three places to hate</h2>
+    <p>I hate email. And I have three inboxes, which means three places to hate it.</p>
+    <p class="take">Most of it is noise. The two or three things that actually need me are buried in the middle.</p>
+  </section>
+
+  <section>
+    <p class="s-label">The Solution</p>
+    <h2>I handed the sorting to Claude</h2>
+    <p>Claude reads my inboxes, sorts every email into a labeled queue, and drafts replies to the easy ones in my voice. By the time I open my inbox, the noise is filed and what's left is the short list that actually needs me.</p>
+    <div class="callout">It drafts. It never sends. Nothing leaves my name without my approval.</div>
+  </section>
+
+  <section>
+    <p class="s-label">How It Works</p>
+    <h2>I told it how I think about email</h2>
+    <p>The magic isn't the AI. It's that I told Claude, in plain English, how I think about my own email. Once that's written down, it applies my judgment to every message.</p>
+    <div class="card accent">
+      <h3>What I wanted</h3>
+      <ul>
+        <li>Every email sorted before I open the inbox</li>
+        <li>Only the few things that truly need me, in one place</li>
+        <li>Easy replies drafted in my voice, never sent without my yes</li>
+        <li>The whole thing running on its own, no button to push</li>
+      </ul>
+    </div>
+    <p>Then what I set up. The core is a set of labeled queues, borrowed from Dan Martell, who hasn't read his own inbox since 2022 because an assistant files everything into queues first. I handed that job to Claude instead of a person. The moment an email gets a label, it leaves the inbox, so my inbox only holds what I haven't decided on yet.</p>
+    <ul class="queues">
+      <li><span class="q">Escalate to me</span>Time-sensitive, a decision only I can make, money, legal, or a real problem. The folder I open first.</li>
+      <li><span class="q">To respond</span>Easy replies, drafted for me.</li>
+      <li><span class="q">Review</span>I need to see it, no reply.</li>
+      <li><span class="q">Waiting on someone</span>The ball is in their court.</li>
+      <li><span class="q">Receipts and financial</span>Passive money, auto-renewals, confirmations.</li>
+      <li><span class="q">Reading</span>Newsletters and long-form.</li>
+      <li><span class="q">Requests</span>Inbound asks like intros and podcast invites.</li>
+      <li><span class="q">Unsure</span>Genuine judgment calls, flagged instead of guessed.</li>
+      <li><span class="q">Notifications</span>Social and platform noise, batched and cleared.</li>
+    </ul>
+    <p>I built those rules by talking. "Unpaid invoices come to me." "This newsletter is just noise." Each correction became a permanent rule Claude reads every time it runs. I never touched code. I described how I decide, and the system started deciding that way.</p>
+  </section>
+
+  <section>
+    <p class="s-label">The Feedback Loop</p>
+    <h2>It learns every time it's wrong</h2>
+    <p>Correcting it is a single sentence. When it miscategorizes something, I tell it in a normal chat: "Anything from Stripe goes to Receipts." "Emails from Sarah are always Escalate." "Stop drafting replies to newsletters." Claude updates the rulebook it reads on every run, so the fix is permanent, not a one-off. The next pass already knows.</p>
+    <div class="callout">No settings screen. No retraining. I talk, the rules change, and the system gets more like me over time.</div>
+  </section>
+
+  <section>
+    <p class="s-label">The Result</p>
+    <h2>Five, then thirty, then 1,435</h2>
+    <p>I didn't hand it everything on day one. I gave it five emails, just to see if I trusted it. It labeled them, filed them, and drafted nothing, because nothing needed a reply. Right call.</p>
+    <p>Then a bigger test: thirty emails. It sorted them, drafted the easy replies, and flagged the two that needed me. Still right.</p>
+    <p>So I let it loose on the backlog: 1,435 unread. One pass took it down to a handful that actually needed a decision. In a single batch it cleared 183 messages down to 10.</p>
+    <div class="grid">
+      <div class="card muted">
+        <h3>The old way</h3>
+        <ul>
+          <li>Open three inboxes every morning</li>
+          <li>Scan hundreds of unread by hand</li>
+          <li>Decide every single one myself</li>
+          <li>The important stuff stays buried</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>What I do now</h3>
+        <ul>
+          <li>Inbox sorted before I look</li>
+          <li>A short list that actually needs me</li>
+          <li>Easy replies already drafted</li>
+          <li>The noise is gone before I see it</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">I got back the worst part of my morning. And I built the whole thing by talking.</div>
+  </section>
+
+  <section>
+    <p class="s-label">Under The Hood</p>
+    <h2>What Claude built in the background</h2>
+    <p>I don't code. I described what I wanted, and Claude built it. The whole timeline:</p>
+    <div class="steps">
+      <div class="step">
+        <h3><b>01</b> · Connect the inboxes</h3>
+        <p>A login script (<code>auth.py</code>) signs into each account once and saves the permission, so it never has to ask again. My part: sign in, click approve.</p>
+      </div>
+      <div class="step">
+        <h3><b>02</b> · Write the rules</h3>
+        <p>Everything about how I think about email went into one plain-English rulebook (<code>SYSTEM_PROMPT.md</code>): the 10 labels, what escalates to me, and my reply voice. My part: talk it through.</p>
+      </div>
+      <div class="step">
+        <h3><b>03</b> · Build the two-pass engine</h3>
+        <p>Claude wrote two Python scripts that do the work:</p>
+        <ul>
+          <li><code>classifier.py</code> — the fast pass. Rules-based, clears the obvious bulk (newsletters, receipts, notifications) in seconds.</li>
+          <li><code>gmail_helper.py</code> — the smart pass. Reads the judgment calls, applies the right label, and drafts replies in my voice for the easy ones.</li>
+        </ul>
+      </div>
+      <div class="step">
+        <h3><b>04</b> · Put it on a schedule</h3>
+        <p>Claude set it to run automatically twice a day, plus a one-word command to run it on demand. My part: nothing. It just runs.</p>
+      </div>
+    </div>
+    <p class="take">My total hands-on work: signing into my inboxes, creating the labels once, and giving corrections in plain sentences. Describing the system was my job. Building it was Claude's.</p>
+  </section>
+
+  <div class="bridge">
+    <p class="s-label">What's Next</p>
+    <h2>The Chief AI Accelerator</h2>
+    <p>I didn't get more disciplined about email. I built a system and handed it the job. The Chief AI Accelerator is where founders and executives stop poking at AI like a tool and start running on it like an operating system. Same judgment you already have, finally pointed at the work that actually moves the business.</p>
+    <a class="btn" href="/chief/">See how the Accelerator works →</a>
+  </div>
+
+  <footer>Michael Gardon · CHIEF AI Accelerator · rejoincoaching.com</footer>
+
+</div>
+</body>
+</html>
