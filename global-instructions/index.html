@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<meta name="robots" content="noindex, nofollow">
+<title>Make Claude Know You, in Every Chat | CHIEF AI Accelerator</title>
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--navy);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:32px 24px 80px}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-mute)}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.logo{width:22px;height:22px;background:var(--teal);border-radius:5px;position:relative;flex:0 0 22px}
+.logo::after{content:"";position:absolute;inset:6px;background:var(--cream);border-radius:2px}
+.brand .eyebrow{font-weight:600;letter-spacing:.16em}
+.crumb{margin-bottom:18px}
+.pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--teal);padding:5px 11px;border-radius:999px}
+h1{font-family:var(--serif);font-size:44px;line-height:1.06;font-weight:700;margin:16px 0 12px;letter-spacing:-.01em}
+.lede{font-size:18px;color:var(--navy-light);max-width:60ch}
+.meta{margin-top:14px}
+section{margin-top:48px}
+.s-label{margin-bottom:6px}
+h2{font-family:var(--serif);font-size:27px;font-weight:700;line-height:1.18;margin-bottom:16px;letter-spacing:-.01em}
+h3{font-family:var(--serif);font-size:16px;font-weight:700;margin-bottom:6px}
+p{margin-bottom:14px;color:#23364a}
+.big{font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--navy);margin:18px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:12px}
+.card.frame{border-left:3px solid var(--teal)}
+.callout{font-family:var(--serif);font-size:21px;line-height:1.4;color:var(--navy);background:var(--teal-light);border:1px solid rgba(19,181,162,.22);border-radius:12px;padding:20px 22px;margin:16px 0}
+.step{background:#fff;border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:16px 20px;margin-bottom:10px}
+.step .n{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark);font-weight:600}
+.step .st{font-family:var(--serif);font-size:17px;font-weight:700;margin:3px 0 4px}
+.step p{margin:0;font-size:15px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.shift{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.shift h3{font-family:var(--serif);font-size:16px;font-weight:700;margin-bottom:6px}
+.shift p{font-size:14.5px;margin:0;color:#23364a}
+.caption{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy-mute);margin:18px 0 8px}
+.tmpl{font-family:var(--mono);font-size:12.5px;line-height:1.6;color:var(--navy);background:var(--teal-light);border:1px solid rgba(19,181,162,.22);border-radius:10px;padding:16px 18px;margin:0 0 10px;white-space:pre-wrap;overflow-x:auto}
+.note{font-size:14px;color:var(--navy-mute)}
+.bridge{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:22px 24px;margin-top:14px}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-mute)}
+@media(max-width:620px){.grid2{grid-template-columns:1fr}.wrap{padding:24px 18px 64px}h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">
+    <span class="logo"></span>
+    <span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span>
+  </div>
+
+  <div class="crumb eyebrow">Accelerator / Curriculum / Global Instructions</div>
+  <span class="pill">Setup · Foundations</span>
+
+  <h1>Make Claude know you, in every chat</h1>
+  <p class="lede">Set one instruction once, and Claude reads your canonical docs — about you, your voice, your priorities — at the start of every conversation, on every device.</p>
+  <div class="meta eyebrow">Works with Google Drive · OneDrive · Notion</div>
+
+  <section>
+    <div class="s-label eyebrow">The Idea</div>
+    <h2>One setting, loaded into every conversation</h2>
+    <p>Connecting a document store lets Claude <em>read</em> your files — but it won't do it on its own. You have to tell it to, once, in a place that applies everywhere.</p>
+    <p>Your <strong>personal preferences</strong> are an account-wide instruction that loads into every chat automatically — web, mobile, Cowork, and inside every Project. Point Claude at your canonical folder there, and it reads it every time.</p>
+    <div class="callout">A connector gives Claude the ability to read your files. This one instruction guarantees it does — in every chat, on every device.</div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">The Setup</div>
+    <h2>Four steps, about five minutes</h2>
+    <p>Do this once in your account settings. You never touch it again — even as your documents change.</p>
+
+    <div class="step">
+      <span class="n">Step 01 · Connect</span>
+      <div class="st">Connect your document store</div>
+      <p>In claude.ai, click your profile icon (bottom-left) → Settings → Connectors. Connect Google Drive, Microsoft 365 (OneDrive/SharePoint), or Notion — whichever holds your docs. Microsoft 365 needs a work/business account.</p>
+    </div>
+    <div class="step">
+      <span class="n">Step 02 · Organize</span>
+      <div class="st">Put your canonical docs in one folder</div>
+      <p>Keep the documents Claude should always know — About Me, Voice, Priorities, Company — together in one folder, and give it a distinctive name (e.g. "Jane-Doe-Canonical"). You point Claude at the folder, so anything you add later is picked up automatically.</p>
+    </div>
+    <div class="step">
+      <span class="n">Step 03 · Open Settings</span>
+      <div class="st">Open your personal preferences</div>
+      <p>Click your profile icon (bottom-left) → Settings → Profile, and find the field "What personal preferences should Claude consider in responses?"</p>
+    </div>
+    <div class="step">
+      <span class="n">Step 04 · Paste</span>
+      <div class="st">Paste the template and fill the brackets</div>
+      <p>Use the block below. Replace [your connector] with the store you connected and [your canonical folder name] with your folder, write a short baseline, and click Save.</p>
+    </div>
+
+    <div class="caption">Paste into personal preferences · fill every [bracket]</div>
+    <pre class="tmpl">At the start of every conversation, before you respond, use the [your connector]
+connector to open the folder named "[your canonical folder name]" and read all
+the documents in it. Treat them as the source of truth for who I am, my company,
+my priorities, and how I write.
+
+Do this on desktop and on mobile. If you cannot reach the folder, use the
+baseline below and tell me you're working from the fallback.
+
+BASELINE (use only if the folder can't be reached):
+[3-6 sentences: my name and role, my company, who I serve, my top current
+priorities, and 3-4 rules for how I want you to write for me - for example:
+lead with the answer, plain language, no filler, ask before drafting.]</pre>
+    <p class="note">Keep it under ~500 words — personal preferences load at the start of every chat, so the depth belongs in the folder, not in this box.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">What Makes It Work</div>
+    <h2>A few things that make it stick</h2>
+    <div class="grid2">
+      <div class="shift">
+        <h3>Name the connector exactly</h3>
+        <p>Whatever you connected, name it in the template ("Google Drive," "Microsoft 365," "Notion"). Naming the tool makes Claude far more likely to reach for it.</p>
+      </div>
+      <div class="shift">
+        <h3>Give the folder a distinctive name</h3>
+        <p>Claude locates the folder by name, so "Jane-Doe-Canonical" resolves better than "Docs." Anything you add to the folder later is picked up automatically.</p>
+      </div>
+      <div class="shift">
+        <h3>Keep the folder clean</h3>
+        <p>Only canonical material — About Me, Voice, Priorities, Company. Project-specific documents go elsewhere, so they aren't loaded into every chat.</p>
+      </div>
+      <div class="shift">
+        <h3>The baseline is your mobile safety net</h3>
+        <p>On quick mobile prompts Claude sometimes skips the folder lookup. The short baseline keeps it grounded when that happens.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Global vs. Project</div>
+    <h2>Why this lives in your profile, not a project</h2>
+    <p>Personal preferences follow <em>you</em> across every surface and every Project automatically — a Project adds its own context on top, it doesn't switch this off. And because it's tied to your account, it applies only to <strong>your</strong> chats: teammates in a shared project keep their own voice. Your canon, everywhere you work; never imposed on anyone else.</p>
+    <div class="card frame">
+      <h3>Updating later</h3>
+      <p style="margin:0">Edit the documents in the folder, or add new canonical docs to it — Claude reads whatever's in the folder, so you never touch this instruction again. If you use Microsoft 365, allow about 15 minutes after a change for search to re-index.</p>
+    </div>
+  </section>
+
+  <footer>Michael Gardon · CHIEF AI Accelerator — Global Instructions</footer>
+
+</div>
+</body>
+</html>
