@@ -1,0 +1,356 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>Fitness OS | CHIEF AI Accelerator</title>
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:#23364a;font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:32px 24px 80px}
+@media(max-width:640px){.wrap{padding:24px 18px 64px}}
+
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.logo{width:22px;height:22px;border-radius:6px;background:var(--teal);flex:0 0 22px}
+.eyebrow{font:600 10px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--navy-mute)}
+.crumb{margin-bottom:18px}
+
+.pill{display:inline-block;font:600 10px/1 var(--mono);text-transform:uppercase;letter-spacing:.14em;
+  color:var(--teal-dark);background:var(--teal-light);border:1px solid rgba(19,181,162,.25);
+  padding:6px 10px;border-radius:999px;margin-bottom:14px}
+h1{font:700 44px/1.1 var(--serif);letter-spacing:-.01em;color:var(--navy);margin:0 0 14px}
+@media(max-width:640px){h1{font-size:32px}}
+.lede{font-size:18px;line-height:1.55;color:var(--navy-light);margin:0 0 16px}
+.meta{margin-bottom:14px}
+
+/* live link */
+.live{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);
+  border-left:3px solid var(--teal);border-radius:12px;padding:14px 18px;margin-bottom:20px}
+.live .lbl{font:600 10px/1 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--navy-mute)}
+.live a{font:600 15px/1.4 var(--sans);color:var(--teal-dark);text-decoration:none;word-break:break-all}
+.live a:hover{text-decoration:underline}
+.live .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex:0 0 8px;
+  box-shadow:0 0 0 3px rgba(19,181,162,.18)}
+
+/* screenshot (portrait phone capture, links to the live app) */
+figure{margin:0 0 14px;text-align:center}
+figure .shotlink{display:inline-block;max-width:340px;width:100%;text-decoration:none;
+  border-radius:18px;padding:8px;background:var(--cream-deep);border:1px solid var(--line);
+  transition:transform .15s ease, box-shadow .15s ease}
+figure .shotlink:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(19,37,57,.13)}
+figure img{width:100%;display:block;border-radius:12px;background:#0d0f12}
+figure figcaption{font:600 10px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.12em;
+  color:var(--navy-mute);margin-top:11px}
+figure.missing{display:none}
+
+section{margin-top:44px}
+.s-label{display:block;margin-bottom:8px}
+h2{font:700 27px/1.2 var(--serif);letter-spacing:-.01em;color:var(--navy);margin:0 0 6px}
+@media(max-width:640px){h2{font-size:23px}}
+.sub{color:var(--navy-mute);font-size:15px;margin:0 0 18px}
+p{margin:0 0 14px}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:12px}
+.card.accent{border-left:3px solid var(--teal)}
+.card h3{font:700 19px/1.3 var(--serif);color:var(--navy);margin:0 0 8px}
+.card p:last-child{margin-bottom:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.grid2 .card{margin-bottom:0}
+
+.take{font-weight:700;color:var(--navy)}
+.callout{background:var(--teal-light);border:1px solid rgba(19,181,162,.3);border-left:3px solid var(--teal);
+  border-radius:12px;padding:18px 22px;margin:18px 0;font:700 20px/1.4 var(--serif);color:var(--navy)}
+@media(max-width:640px){.callout{font-size:17px}}
+
+.tl{position:relative;margin-top:6px;padding-left:30px}
+.tl:before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--teal),rgba(19,181,162,.18))}
+.step{position:relative;background:#fff;border:1px solid var(--line);border-left:3px solid var(--teal);
+  border-radius:12px;padding:18px 20px;margin-bottom:12px}
+.step:before{content:"";position:absolute;left:-30px;top:24px;width:10px;height:10px;border-radius:50%;
+  background:var(--teal);border:2px solid var(--cream);box-shadow:0 0 0 2px var(--teal)}
+.step .n{display:block;font:600 10px/1 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--teal-dark);margin-bottom:7px}
+.step h3{font:700 19px/1.3 var(--serif);color:var(--navy);margin:0 0 7px}
+.step p{margin:0 0 10px;font-size:15px}
+.step p:last-child{margin-bottom:0}
+.step .aside{font-size:14px;color:var(--navy-mute);border-top:1px solid var(--line);padding-top:10px;margin-top:12px}
+@media(max-width:640px){.tl{padding-left:24px}.tl:before{left:5px}.step:before{left:-24px}}
+
+.said{background:var(--cream-deep);border-radius:12px 12px 12px 3px;padding:12px 15px;margin:0 0 10px}
+.said .who{display:block;font:600 9px/1 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--navy-mute);margin-bottom:6px}
+.said q{font:italic 400 15px/1.5 var(--serif);color:var(--navy);quotes:"\201C" "\201D"}
+
+.result{background:var(--navy);border-radius:12px;padding:26px;text-align:center;color:#fff;margin-bottom:14px}
+.result .big{font:700 40px/1 var(--serif);letter-spacing:-.02em;margin-bottom:8px}
+.result .cap{font:600 10px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.6)}
+@media(max-width:640px){.result .big{font-size:30px}}
+
+.step.future{border-left-color:var(--gold)}
+.step.future:before{background:var(--gold);box-shadow:0 0 0 2px var(--gold)}
+.step.future .n{color:#9a761f}
+.tl.future:before{background:linear-gradient(var(--gold),rgba(212,163,56,.18))}
+
+.bridge{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:12px;padding:24px;margin-top:14px}
+.bridge h3{font:700 22px/1.25 var(--serif);color:var(--navy);margin:0 0 10px}
+.btn{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;border-radius:9px;
+  padding:12px 20px;font:600 14px/1 var(--sans);margin-top:6px}
+.btn:hover{background:var(--navy-light)}
+
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:16px}
+</style>
+</head><body><div class="wrap">
+
+  <div class="brand"><span class="logo"></span><span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span></div>
+  <div class="crumb eyebrow">Accelerator / Case Studies / Fitness OS</div>
+
+  <span class="pill">Case Study</span>
+  <h1>Built my own food logging app that works with my brain.</h1>
+  <p class="lede">I don't have a fitness problem. I have a logging problem. Every app I've tried, I've quit. So I stopped shopping for one and wrote the spec instead.</p>
+  <div class="meta eyebrow">Built in a few chat sessions · No code · 8 days in</div>
+
+  <div class="live">
+    <span class="dot"></span>
+    <span class="lbl">See it live</span>
+    <a href="https://shape-dashboard.gardon-ba4.workers.dev/" target="_blank" rel="noopener">shape-dashboard.gardon-ba4.workers.dev</a>
+  </div>
+
+  <figure id="shot">
+    <a class="shotlink" href="https://shape-dashboard.gardon-ba4.workers.dev/" target="_blank" rel="noopener">
+      <img src="fitness-os-screenshot.png" alt="The Fitness OS dashboard on a phone: emotional grabs and whole-food rate, and a trigger timeline plotting every eat by day and time of day."
+           onerror="document.getElementById('shot').classList.add('missing')">
+    </a>
+    <figcaption>Green is on plan · Yellow is off plan · Red is an emotional grab — tap to open it live</figcaption>
+  </figure>
+
+  <!-- PROBLEM -->
+  <section>
+    <span class="s-label eyebrow">01 · The Problem</span>
+    <h2>Two problems, in plain language.</h2>
+    <p class="sub">Neither one is diet. Neither one is discipline.</p>
+
+    <div class="grid2">
+      <div class="card accent">
+        <h3>I eat a lot, and I've always been able to get away with it.</h3>
+        <p>I can train. I look fine. So I've never had to look closely at how I actually eat.</p>
+        <p>But my nutrition and quality is crap. With ADHD my food intake fuels my sluggishness. I also stress eat. That's the trap.</p>
+      </div>
+      <div class="card accent">
+        <h3>I can't stand food logging apps.</h3>
+        <p>Open the app, search a database, pick the closest match, set a portion from a dropdown. Repeat for every item. Four times a day.</p>
+        <p>Ninety seconds of friction a meal. I last about a week. Then I miss one, then a day, and the log has a hole in it. Everything was built on the log, so the whole system dies with it.</p>
+      </div>
+    </div>
+
+    <div class="callout">The failure was never the diet. It was the interface.</div>
+  </section>
+
+  <!-- GOAL -->
+  <section>
+    <span class="s-label eyebrow">02 · Goal</span>
+    <h2>I want three things.</h2>
+    <div class="card accent">
+      <p>Create more awareness of what and when I'm eating, so I make better choices. Learn about my patterns when things go off the rails. And create <span class="take">near zero friction</span> to accomplish this.</p>
+    </div>
+  </section>
+
+  <!-- HYPOTHESIS -->
+  <section>
+    <span class="s-label eyebrow">03 · Hypothesis</span>
+    <h2>If logging costs me nothing, I'll actually do it.</h2>
+    <p class="sub">The bet: remove the interface, and the data survives long enough to be worth something.</p>
+
+    <div class="card accent">
+      <p>No app. No clicking. I talk. I say what I ate, or I send a photo. Claude estimates the macros and the variables I want tracked, and writes it to a log.</p>
+      <p>The log feeds one dashboard that shows me my patterns. <span class="take">That's the whole bet.</span></p>
+    </div>
+  </section>
+
+  <!-- V1 -->
+  <section>
+    <span class="s-label eyebrow">04 · Version One</span>
+    <h2>The decisions to get something live.</h2>
+    <p class="sub">A few chat sessions. No code.</p>
+
+    <div class="tl">
+      <div class="step">
+        <span class="n">Decision 01</span>
+        <h3>How I log</h3>
+        <p>I'm not clicking anything. Food logging apps always feel like a chore to me, and my ADHD ass avoids chores at all costs.</p>
+        <p>Speak it or photograph it. Claude estimates the macros and the handful of fields I care about. That's the entire input. No search, no database, no portion dropdown. Logging a meal now costs me about what texting my wife costs me.</p>
+      </div>
+
+      <div class="step">
+        <span class="n">Decision 02</span>
+        <h3>Do I trust the numbers?</h3>
+        <p>An AI guessing macros from a photo is only useful if the guesses aren't fiction. I cross-checked against SnapCalorie, a free photo-based estimator built by ex-Google Lens researchers.</p>
+        <p>Not to adopt it. To see whether my numbers were in the right neighborhood. They were. Close enough that the gap doesn't change a single decision I make.</p>
+        <p class="aside"><strong>The part I didn't expect:</strong> SnapCalorie is good. Photo, voice, a hundred-plus nutrients, free. It solves the input problem better than most. I still didn't want it. That's when I learned the input was never the only problem.</p>
+      </div>
+
+      <div class="step">
+        <span class="n">Decision 03</span>
+        <h3>What I care about (and don't care about)</h3>
+        <p>I don't care that calories are perfectly estimated. I care about ballpark. I'm not optimizing to cut 1% bodyfat. I'm trying to infuse a healthy lifestyle habit.</p>
+        <p>I care about seeing how my eating matches my energy state. I care about consuming whole foods and understanding how often that is happening. <span class="take">I don't want to weigh out my food.</span></p>
+      </div>
+
+      <div class="step">
+        <span class="n">Decision 04</span>
+        <h3>What actually gets tracked</h3>
+        <p>Every app shows calories remaining and can show macros. Knowing those numbers can be helpful, but they've never once stopped me from blowing out the day on a bag of Oreos. My failure mode is specific: I eat when I'm down, stressed or bored. The urge isn't hunger.</p>
+        <p class="take">So the tracked variable is what I ate, but also why.</p>
+      </div>
+
+      <div class="step">
+        <span class="n">Decision 05</span>
+        <h3>What I see</h3>
+        <p>One screen. Every eat colored by reason and plotted by time of day. Whole-food rate. Protein against target. Energy as an early warning. Nothing else.</p>
+        <p class="aside">No company could ship that screen. It's built around one man's specific failure mode. Which is why it took a few chat sessions instead of a funding round.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFINEMENT -->
+  <section>
+    <span class="s-label eyebrow">05 · Refinement</span>
+    <h2>How I'm iterating with AI.</h2>
+    <p class="sub">Every quote below is verbatim from the build sessions.</p>
+
+    <div class="tl">
+      <div class="step">
+        <span class="n">Fix 01</span>
+        <h3>Renamed it</h3>
+        <p>"Best Shape Control Panel" became Fitness OS.</p>
+      </div>
+
+      <div class="step">
+        <span class="n">Fix 02</span>
+        <h3>The colors were lying to me</h3>
+        <div class="said"><span class="who">Mike</span><q>No meal has been flagged green as on plan. That doesn't make any sense because I have a 60% whole foods eating rate.</q></div>
+        <p>The logic was reading "Hungry" as a risk. Nineteen of my twenty-six eats were hungry eats, so green never appeared once.</p>
+      </div>
+
+      <div class="step">
+        <span class="n">Fix 03</span>
+        <h3>Then I got the rule wrong too</h3>
+        <p>First fix made everything green except cravings. Also wrong.</p>
+        <div class="said"><span class="who">Mike</span><q>I ate at Raisin Cane's the other day. I don't exactly call that on plan. That's more of a convenience or social.</q></div>
+        <p>The real discriminator isn't hunger, it's food quality. Green = whole food. Red = emotional grab. Yellow = off plan: the junk, the convenience, the social.</p>
+      </div>
+
+      <div class="step">
+        <span class="n">Fix 04</span>
+        <h3>Mobile was backwards</h3>
+        <p>The meal log pinned to the top and everything scrolled behind it.</p>
+        <div class="said"><span class="who">Mike</span><q>I want my metrics and the triggers at the top.</q></div>
+      </div>
+
+      <div class="step">
+        <span class="n">Fix 05</span>
+        <h3>The chart had a fake axis</h3>
+        <div class="said"><span class="who">Mike</span><q>The trigger timeline should have a y axis. What are those now, days?</q></div>
+        <p>They were nothing. The vertical position was meaningless jitter to stop the dots overlapping. Now every row is a day and every column is a time of day, so the red can't hide inside an average. It clusters, and I can see the window.</p>
+      </div>
+
+      <div class="step">
+        <span class="n">Fix 06</span>
+        <h3>Added a lens</h3>
+        <p>Week, month, all time, on the two numbers that matter. So now I can actually see trends on different timelines, and can see every meal I've ever logged.</p>
+      </div>
+
+      <div class="step">
+        <span class="n">Fix 07</span>
+        <h3>Made it durable</h3>
+        <p>It was a live URL with no source behind it, built on my phone.</p>
+        <div class="said"><span class="who">Mike</span><q>This is a problem of building something on Claude AI or on the go and the files not getting into my proper repositories.</q></div>
+        <p>Now it's a private repo wired to auto-deploy. Every edit has to pass through Git, so it can't drift again.</p>
+      </div>
+    </div>
+
+    <div class="callout">I've made more changes to this in a week than I would ever have filed as feature requests.</div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section>
+    <span class="s-label eyebrow">06 · Roadmap</span>
+    <h2>Here's how I plan to make it better.</h2>
+    <p class="sub">This list didn't exist when I started. It exists because I used the thing.</p>
+
+    <div class="tl future">
+      <div class="step future">
+        <span class="n">Next</span>
+        <h3>Weight</h3>
+        <p>Manual entry and a trend line. The one number I've been avoiding.</p>
+      </div>
+      <div class="step future">
+        <span class="n">Next</span>
+        <h3>Workouts</h3>
+        <p>Auto pull every workout from Garmin Connect.</p>
+      </div>
+      <div class="step future">
+        <span class="n">Next</span>
+        <h3>Tap to log</h3>
+        <p>Add energy and weight from inside the app, not just by talking to Claude.</p>
+      </div>
+      <div class="step future">
+        <span class="n">Next</span>
+        <h3>Insights</h3>
+        <p>Point the analysis at the whole log. Which windows, which triggers, what one thing to change this week.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:14px"><span class="take">That's the difference between a tool you bought and a tool you own.</span></p>
+  </section>
+
+  <!-- RESULT -->
+  <section>
+    <span class="s-label eyebrow">07 · The only result I'll claim</span>
+    <h2>I haven't stopped.</h2>
+
+    <div class="result">
+      <div class="big">8 days · 28 eats logged</div>
+      <div class="cap">No before-and-after. It's been a week.</div>
+    </div>
+
+    <div class="card">
+      <p>"I'm still logging" is the thing I have never once managed with software somebody else designed. Given the premise, that's the only result that matters yet.</p>
+      <p>I'm also shocked at how well I've eaten overall, even when needing a snack. It feels good to see meals in green all between the noon and 8pm window.</p>
+    </div>
+  </section>
+
+  <!-- TAKEAWAY -->
+  <section>
+    <span class="s-label eyebrow">08 · The takeaway</span>
+    <h2>This was unheard of last year.</h2>
+
+    <div class="card accent">
+      <p>Last year, doing something like this was unheard of for any non-engineer. Today, it's shockingly possible to fix a specific problem in your life, learn a ton, and have fun doing it. <span class="take">That's what AI unlocks.</span></p>
+      <p>The transferable move isn't the app. It's the sequence. I didn't shop for a tool and bend myself around it. I defined, precisely, how I wanted to interact with the problem, then had the machine build to that definition.</p>
+      <p>If you've quit system after system and quietly concluded you're the problem, you're probably not. You've been renting interfaces built for the average of everyone. <span class="take">You are not the average of everyone.</span></p>
+    </div>
+
+    <div class="callout">Every system you've quit, you quit at the interface.</div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <span class="s-label eyebrow">What's next</span>
+    <div class="bridge">
+      <h3>The Chief AI Accelerator</h3>
+      <p>I didn't get more disciplined. I got a spec, and something that could build to it. The Chief AI Accelerator is where founders and executives stop adapting themselves to software and start specifying the systems they actually run on.</p>
+      <p>Same judgment you already have, finally pointed at the work that moves.</p>
+      <a class="btn" href="/chief/">See how the Accelerator works →</a>
+    </div>
+  </section>
+
+  <footer><span class="eyebrow">Michael Gardon · CHIEF AI Accelerator — Case Study: Fitness OS</span></footer>
+
+</div></body></html>
