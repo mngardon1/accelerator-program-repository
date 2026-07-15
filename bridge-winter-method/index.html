@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>The Winter Method | CHIEF AI Accelerator</title>
+    <meta name="description" content="Treat AI like a brilliant chief of staff with no memory of you. A practical framework for using AI to surface assumptions, test arguments, and reach better decisions — without outsourcing your judgment.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #132539;
+            --paper: #F9F8F5;
+            --teal: #13B5A2;
+            --teal-deep: #12917E;
+            --teal-light: #5DCFC1;
+            --mint: #D5F0EC;
+            --slate: #6B7A8D;
+            --slate-deep: #2A3F54;
+            --white: #FFFFFF;
+            --warning: #D4A338;
+
+            --text-on-dark: rgba(255,255,255,0.92);
+            --text-muted-dark: rgba(255,255,255,0.72);
+            --text-faint-dark: rgba(255,255,255,0.55);
+
+            --font-display: 'Sora', Arial, sans-serif;
+            --font-body: 'Inter', Arial, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --max-content: 880px;
+            --max-wide: 1080px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { background: var(--paper); color: var(--navy); }
+        body {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--teal); text-decoration: none; }
+        a:hover { color: var(--teal-deep); }
+
+        /* Header */
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(19,37,57,0.08);
+        }
+        .brand {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--navy);
+        }
+        .header-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--teal);
+        }
+        .header-label a { color: var(--teal); }
+        .header-label a:hover { color: var(--teal-deep); }
+
+        /* Breadcrumb */
+        .breadcrumb-wrap {
+            max-width: var(--max-wide);
+            margin: 0 auto;
+            padding: 28px 40px 0;
+        }
+        .breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--slate);
+        }
+        .breadcrumb a { color: var(--slate); }
+        .breadcrumb a:hover { color: var(--navy); }
+        .breadcrumb span { margin: 0 8px; }
+
+        /* Hero */
+        .hero {
+            background: var(--navy);
+            color: var(--white);
+            padding: 80px 40px 96px;
+            text-align: center;
+            margin-top: 32px;
+        }
+        .hero .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(40px, 6vw, 60px);
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+        .hero .subtitle {
+            font-size: 19px;
+            color: var(--text-muted-dark);
+            max-width: 720px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .hero .meta-pill {
+            display: inline-flex;
+            gap: 24px;
+            margin-top: 32px;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 999px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-on-dark);
+        }
+        .hero .meta-pill .sep { color: rgba(255,255,255,0.4); }
+        .hero .meta-pill a { color: var(--teal-light); }
+        .hero .meta-pill a:hover { color: var(--white); }
+
+        /* Section base */
+        .section { padding: 88px 40px; }
+        .section.dark {
+            background: var(--navy);
+            color: var(--white);
+        }
+        .section.dark h2,
+        .section.dark h3 { color: var(--white); }
+        .section.dark .eyebrow { color: var(--teal); }
+        .section-inner { max-width: var(--max-content); margin: 0 auto; }
+        .section-inner.wide { max-width: var(--max-wide); }
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--slate);
+            margin-bottom: 16px;
+        }
+        h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(30px, 4vw, 40px);
+            line-height: 1.15;
+            color: var(--navy);
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+        }
+        .section-intro {
+            font-size: 18px;
+            color: var(--slate);
+            max-width: 720px;
+            margin-bottom: 36px;
+            line-height: 1.65;
+        }
+        .section.dark .section-intro { color: var(--text-muted-dark); }
+        h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 1.3;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+        p { margin-bottom: 18px; }
+        p:last-child { margin-bottom: 0; }
+        strong { font-weight: 600; color: var(--navy); }
+        .section.dark strong { color: var(--white); }
+        .section.dark p { color: var(--text-muted-dark); }
+        em { font-style: italic; }
+
+        /* Pull quote */
+        .pull-quote {
+            margin: 32px 0;
+            padding: 24px 32px;
+            background: var(--white);
+            border-left: 3px solid var(--teal);
+            font-family: var(--font-display);
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.4;
+        }
+        .pull-quote .attribution {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--teal-deep);
+            margin-top: 14px;
+        }
+        .section.dark .pull-quote {
+            background: rgba(255,255,255,0.05);
+            color: var(--white);
+        }
+        .section.dark .pull-quote .attribution { color: var(--teal-light); }
+
+        /* Bullet lists (light) */
+        .bullet-list { list-style: none; padding: 0; margin: 0 0 18px; }
+        .bullet-list li {
+            padding: 6px 0 6px 22px;
+            position: relative;
+            font-size: 16px;
+            color: var(--slate-deep);
+            line-height: 1.55;
+        }
+        .bullet-list li::before {
+            content: '·';
+            position: absolute;
+            left: 0;
+            color: var(--teal);
+            font-weight: 700;
+            font-size: 22px;
+            top: -2px;
+        }
+        .section.dark .bullet-list li {
+            color: var(--text-muted-dark);
+        }
+
+        /* STEP HEADER (big number + title) */
+        .step-header {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        .step-header .step-num {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 56px;
+            color: var(--teal);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+        .section.dark .step-header .step-num { color: var(--teal); }
+        .step-header .step-tag {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--slate);
+            margin-bottom: 6px;
+            display: block;
+        }
+        .section.dark .step-header .step-tag { color: var(--text-faint-dark); }
+        .step-header h2 { margin-bottom: 0; }
+
+        /* Pillar / purpose grid (3 cols for the framework) */
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .pillar-card {
+            background: var(--white);
+            border: 1px solid rgba(19,37,57,0.08);
+            padding: 28px 28px 24px;
+            border-top: 4px solid var(--teal);
+        }
+        .pillar-card.ai {
+            border-top-color: var(--warning);
+        }
+        .pillar-card .pc-step {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--teal);
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        .pillar-card.ai .pc-step { color: var(--warning); }
+        .pillar-card .pc-role {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--slate);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        .pillar-card h3 { font-size: 18px; margin-bottom: 10px; }
+        .pillar-card p {
+            font-size: 14.5px;
+            color: var(--slate-deep);
+            line-height: 1.6;
+            margin: 0;
+        }
+        .section.dark .pillar-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-top: 4px solid var(--teal);
+        }
+        .section.dark .pillar-card.ai { border-top-color: var(--warning); }
+        .section.dark .pillar-card h3 { color: var(--white); }
+        .section.dark .pillar-card p { color: var(--text-muted-dark); }
+        .section.dark .pillar-card .pc-role { color: var(--text-faint-dark); }
+
+        /* Compounding-skills band */
+        .compound-band {
+            margin-top: 36px;
+            padding: 22px 26px;
+            background: rgba(19,181,162,0.08);
+            border: 1px solid rgba(19,181,162,0.2);
+            border-radius: 6px;
+            text-align: center;
+        }
+        .section.dark .compound-band {
+            background: rgba(19,181,162,0.12);
+            border-color: rgba(19,181,162,0.3);
+        }
+        .compound-band p {
+            font-size: 15px;
+            color: var(--slate-deep);
+            margin: 0;
+            line-height: 1.65;
+        }
+        .section.dark .compound-band p { color: var(--text-on-dark); }
+        .compound-band strong { color: var(--navy); }
+        .section.dark .compound-band strong { color: var(--white); }
+
+        /* Warning note box */
+        .note-box {
+            background: rgba(212,163,56,0.08);
+            border-left: 3px solid var(--warning);
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .note-box .note-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--warning);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .note-box p {
+            font-size: 14.5px;
+            color: var(--slate-deep);
+            line-height: 1.6;
+            margin: 0;
+        }
+        .section.dark .note-box { background: rgba(212,163,56,0.1); }
+        .section.dark .note-box p { color: var(--text-on-dark); }
+
+        /* Prompt examples — quoted bullets */
+        .prompt-examples {
+            margin: 16px 0 8px;
+            padding: 0;
+            list-style: none;
+        }
+        .prompt-examples li {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--slate-deep);
+            background: var(--white);
+            border-left: 2px solid var(--teal);
+            padding: 12px 18px;
+            margin-bottom: 8px;
+            line-height: 1.55;
+        }
+        .section.dark .prompt-examples li {
+            background: rgba(255,255,255,0.04);
+            color: var(--text-on-dark);
+            border-left-color: var(--teal-light);
+        }
+        .prompt-examples-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--teal-deep);
+            margin: 22px 0 10px;
+            font-weight: 500;
+            display: block;
+        }
+        .section.dark .prompt-examples-label { color: var(--teal-light); }
+
+        /* Insight aside inside a step */
+        .step-aside {
+            margin-top: 22px;
+            padding: 18px 22px;
+            background: var(--mint);
+            border-left: 3px solid var(--teal);
+        }
+        .step-aside .aside-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--teal-deep);
+            font-weight: 500;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .step-aside p {
+            margin: 0;
+            font-size: 15px;
+            color: var(--navy);
+            line-height: 1.55;
+        }
+        .section.dark .step-aside {
+            background: rgba(213,240,236,0.08);
+            border-left-color: var(--teal-light);
+        }
+        .section.dark .step-aside p { color: var(--text-on-dark); }
+        .section.dark .step-aside .aside-label { color: var(--teal-light); }
+
+        /* Recap principle cards */
+        .principle-list {
+            list-style: none;
+            margin-top: 16px;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .principle-list li {
+            background: var(--white);
+            border: 1px solid rgba(19,37,57,0.08);
+            padding: 22px 24px;
+            border-left: 3px solid var(--teal);
+            font-size: 15.5px;
+            color: var(--slate-deep);
+            line-height: 1.6;
+        }
+        .section.dark .principle-list li {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-left: 3px solid var(--teal);
+            color: var(--text-muted-dark);
+        }
+
+        /* Foundational closing list */
+        .next-list { list-style: none; margin-top: 16px; }
+        .next-list li {
+            padding: 18px 0 18px 28px;
+            position: relative;
+            font-size: 16px;
+            line-height: 1.65;
+            color: rgba(255,255,255,0.85);
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .next-list li:first-child { border-top: none; }
+        .next-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            top: 18px;
+            color: var(--teal);
+            font-weight: 700;
+        }
+        .next-list li strong { color: var(--white); font-weight: 600; }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--text-muted-dark);
+            padding: 48px 40px;
+            text-align: center;
+            font-size: 14px;
+        }
+        footer .brand {
+            color: var(--white);
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        footer .footer-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--teal);
+        }
+        footer .footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 16px;
+        }
+        footer .footer-links a {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted-dark);
+        }
+        footer .footer-links a:hover { color: var(--teal); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .pillar-grid { grid-template-columns: 1fr; }
+            .principle-list { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 700px) {
+            header { padding: 16px 24px; }
+            .hero { padding: 56px 24px 64px; }
+            .section { padding: 56px 24px; }
+            .step-header { flex-direction: column; gap: 4px; }
+            .step-header .step-num { font-size: 44px; }
+            .hero .meta-pill { flex-direction: column; gap: 8px; padding: 16px 20px; }
+            .hero .meta-pill .sep { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/" class="brand">Michael Gardon</a>
+        <div class="header-label"><a href="/">CHIEF AI Accelerator · Phase 0</a></div>
+    </header>
+
+    <div class="breadcrumb-wrap">
+        <div class="breadcrumb">
+            <a href="/">Accelerator</a>
+            <span>/</span>
+            <a href="/">Phase 0</a>
+            <span>/</span>
+            <a href="/">Module 3</a>
+            <span>/</span>
+            Winter Method
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="eyebrow">Going from Tool to Collaborator</div>
+        <h1>The Winter Method</h1>
+        <p class="subtitle">Treat AI like a brilliant chief of staff with no memory of you. Capable. Fast. Has no idea what you want or how you decide. This module is foundational — everything you'll build on top compounds from this one skill.</p>
+        <div class="meta-pill">
+            <span>Three constraints</span>
+            <span class="sep">·</span>
+            <span>Six steps</span>
+            <span class="sep">·</span>
+            <span>Adapted from <a href="https://robert.winter.ink/how-to-use-ai-as-a-thinking-partner-without-letting-it-think-for-you/" target="_blank" rel="noopener">Dr. Robert N. Winter</a></span>
+        </div>
+    </section>
+
+    <!-- THE CORE PROBLEM -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="eyebrow">The Core Problem</div>
+            <h2>AI is designed to be helpful. That is also its most significant weakness.</h2>
+
+            <p>Left to its defaults, AI validates. It fills gaps in your reasoning with plausible-sounding content. It produces polished output that looks right even when the thinking underneath is soft. This is not a flaw to complain about — it is the architecture.</p>
+
+            <p>The question isn't whether AI will agree with you. By default, it will. It's the new chief of staff trying to look competent. The question is whether you've briefed it well enough — and pushed back hard enough — that the agreement is worth anything.</p>
+
+            <div class="pull-quote">
+                "If the model makes the task feel instantly simple, you should assume you are skipping a cognitive step that normally protects your judgment."
+                <span class="attribution">— Dr. Robert N. Winter</span>
+            </div>
+
+            <p>Cognitive ease is the tell. When your chief of staff makes a hard problem feel easy, they've either solved it or skipped it. Usually skipped it.</p>
+        </div>
+    </section>
+
+    <!-- THE FRAMEWORK -->
+    <section class="section dark">
+        <div class="section-inner wide">
+            <div class="eyebrow">The Framework</div>
+            <h2>Humans first. AI in the middle. Humans last.</h2>
+            <p class="section-intro">Journalist Zach Seward described effective AI workflows as "humans first and humans last, with a little bit of powerful, generative AI in the middle to make the difference." Three operational constraints.</p>
+
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pc-step">01 · Frame the question</div>
+                    <div class="pc-role">Human</div>
+                    <p>Brief your chief of staff like they're new — because they are. What's the problem? What counts as evidence? What does "good" look like? Skip this and you'll get confident work that solves the wrong problem. Framing is the executive act. Never delegate it.</p>
+                </div>
+                <div class="pillar-card ai">
+                    <div class="pc-step">02 · Create friction</div>
+                    <div class="pc-role">AI</div>
+                    <p>Now use your chief of staff against you. Surface assumptions. Force counterarguments. Make it argue the other side. A great chief of staff disagrees with you on purpose. Your AI won't — unless you tell it to. If the work feels easy, you're being agreed with. Push harder.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pc-step">03 · Verify and record</div>
+                    <div class="pc-role">Human</div>
+                    <p>You make the call. Then have AI write the decision record — the call, the options you rejected, the assumptions you're betting on, the indicators that would tell you you're wrong. You'd never write this by hand. AI will. Log it where future-you can find it. Your chief of staff keeps the paper trail. You keep the judgment.</p>
+                </div>
+            </div>
+
+            <div class="note-box" style="margin-top: 32px;">
+                <div class="note-label">Ease is a red flag</div>
+                <p>If AI makes your problem feel instantly resolved, you are likely skipping a step that protects your judgment. Slow down and ask harder questions.</p>
+            </div>
+
+            <div class="compound-band">
+                <p>Two skills compound here: <strong>scoping</strong> (getting precise about what you actually want) and <strong>learning</strong> (using AI's pushback to sharpen your own thinking). Every loop sharpens both.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE PRACTICAL WORKFLOW INTRO -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="eyebrow">The Practical Workflow</div>
+            <h2>Six steps for executive AI-assisted thinking.</h2>
+            <p class="section-intro">The routine below is built for the moments when the point is not to generate content, but to reach a defensible decision without degrading judgment. Deliberately repetitive. That's what makes it work.</p>
+        </div>
+    </section>
+
+    <!-- STEP 1 -->
+    <section class="section dark">
+        <div class="section-inner">
+            <div class="step-header">
+                <div class="step-num">01</div>
+                <div>
+                    <span class="step-tag">Brief or scope · No AI</span>
+                    <h2>Start with your own ugly first paragraph.</h2>
+                </div>
+            </div>
+
+            <p>Write 150 to 250 words answering: What's the problem? Why now? What decision is required? No AI. Sometimes you'll know the problem and this is your briefing — to yourself first, then to the chief of staff. Sometimes you won't, and the act of writing is how you scope it.</p>
+
+            <p>Either way, the ugly first paragraph is diagnostic. It reveals what you actually understand and what you're hand-waving past. Then hand it over: identify ambiguous terms, list hidden assumptions, generate three rival framings.</p>
+
+            <div class="step-aside">
+                <span class="aside-label">The discipline</span>
+                <p>This turns AI into a conceptual editor rather than a ghost writer. You own the framing. AI stress-tests it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="step-header">
+                <div class="step-num">02</div>
+                <div>
+                    <span class="step-tag">Make it argue both sides</span>
+                    <h2>Force an argument, then force a counterargument.</h2>
+                </div>
+            </div>
+
+            <p>Ask AI to make the strongest case for Option A using only your stated assumptions, then the strongest counterargument. Repeat for each option you are considering. Reject generic objections like "execution risk." Require falsifiable claims — what would you actually observe if this objection is correct?</p>
+
+            <span class="prompt-examples-label">Example prompts</span>
+            <ul class="prompt-examples">
+                <li>Now be a skeptic. What are the three strongest objections to this proposal?</li>
+                <li>What would someone who disagrees with this conclusion point to as evidence?</li>
+                <li>Identify the assumptions in my reasoning that are most likely to be wrong.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="section dark">
+        <div class="section-inner">
+            <div class="step-header">
+                <div class="step-num">03</div>
+                <div>
+                    <span class="step-tag">Don't skip orientation</span>
+                    <h2>Run an OODA loop on the decision.</h2>
+                </div>
+            </div>
+
+            <p>Observe, Orient, Decide, Act. The most common executive failure mode is jumping from data to decision while skipping orientation — the sensemaking step. Use AI to help you separate facts from conjectures, label confidence levels, and identify the assumptions driving each option.</p>
+
+            <p>If AI cannot do this clearly, you have learned something about your own evidence base.</p>
+        </div>
+    </section>
+
+    <!-- STEP 4 -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="step-header">
+                <div class="step-num">04</div>
+                <div>
+                    <span class="step-tag">Red team, don't reassure</span>
+                    <h2>Use AI to attack your decision.</h2>
+                </div>
+            </div>
+
+            <p>Before finalizing any significant decision, ask AI to take the perspective of people who'll challenge it. Convert the output into a pre-mortem paragraph in your own words: what's the most likely cause of failure, and what early indicators would warn you? A chief of staff who only nods is useless. So is an AI you haven't pushed.</p>
+
+            <span class="prompt-examples-label">Example prompts</span>
+            <ul class="prompt-examples">
+                <li>If a skeptical regulator read this, what would they challenge?</li>
+                <li>If we are wrong about this, what is the most likely reason?</li>
+                <li>What early indicators would show that this decision is failing?</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- STEP 5 -->
+    <section class="section dark">
+        <div class="section-inner">
+            <div class="step-header">
+                <div class="step-num">05</div>
+                <div>
+                    <span class="step-tag">Outsource the paperwork</span>
+                    <h2>Have AI write the decision record. Then make it attack itself.</h2>
+                </div>
+            </div>
+
+            <p>You won't write a decision record by hand. Almost nobody does. So have AI write it for you. A one-pager:</p>
+
+            <ul class="bullet-list">
+                <li>The decision in one sentence.</li>
+                <li>Options considered and why they were rejected.</li>
+                <li>Key assumptions ranked by importance.</li>
+                <li>Evidence and its quality.</li>
+                <li>Risk controls and early warning indicators.</li>
+                <li>A review date.</li>
+            </ul>
+
+            <p>Save it where the system can find it later — your project folder, your second brain, wherever your AI lives. Then turn the model on its own work: find missing assumptions, false dichotomies, unsupported claims. Fix them yourself.</p>
+
+            <p>The decision record is the artifact your chief of staff produces while you do the thinking. The point isn't a clean doc. It's that next quarter, you (or your AI) can pull it up and check the math against what actually happened.</p>
+        </div>
+    </section>
+
+    <!-- STEP 6 -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="step-header">
+                <div class="step-num">06</div>
+                <div>
+                    <span class="step-tag">Protect the muscle</span>
+                    <h2>Schedule tool-free thinking.</h2>
+                </div>
+            </div>
+
+            <p>Thinking is a perishable skill. Deliberate nonuse is as important as deliberate use. A simple maintenance cadence:</p>
+
+            <ul class="bullet-list">
+                <li>One meeting per week where the first 15 minutes are tool-free problem framing.</li>
+                <li>One document per month written without AI for the first draft.</li>
+                <li>One quarterly review where you compare your AI-assisted forecasts to actual outcomes.</li>
+            </ul>
+
+            <div class="step-aside">
+                <span class="aside-label">The point</span>
+                <p>Choose what you offload. Keep practicing what you cannot afford to lose.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RECAP -->
+    <section class="section dark">
+        <div class="section-inner wide">
+            <div class="eyebrow">To Recap</div>
+            <h2>Six principles worth internalizing.</h2>
+
+            <ul class="principle-list">
+                <li>Thinking is a perishable executive skill. If you stop practicing articulation and trade-off discipline, it decays.</li>
+                <li>Language is infrastructure. Executive judgment is tightly coupled to linguistic clarity and internal dialogue.</li>
+                <li>AI creates cognitive ease — sometimes at the expense of reasoning. Treat ease as a risk signal, not a feature.</li>
+                <li>A chief of staff who agrees with everything is dangerous. Same with AI. The default behavior is the warning.</li>
+                <li>The right workflow is humans first and humans last. Let AI work in the middle — structuring, challenging, red-teaming.</li>
+                <li>Use AI to increase productive friction. Ask for assumptions, counterarguments, and falsifiable tests before you accept a narrative.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- WINTER CLOSING QUOTE -->
+    <section class="section">
+        <div class="section-inner">
+            <div class="pull-quote">
+                "Write the first paragraph yourself, and let the model earn its keep by disagreeing with your assertions."
+                <span class="attribution">— Dr. Robert N. Winter</span>
+            </div>
+            <p>Read the full article and the companion piece, <a href="https://robert.winter.ink/the-chat-trap-when-ai-makes-your-thinking-softer/" target="_blank" rel="noopener">The Chat Trap: When AI Makes Your Thinking Softer</a>, at robert.winter.ink. Both are free with a basic account.</p>
+        </div>
+    </section>
+
+    <!-- WHY THIS MODULE IS FOUNDATIONAL -->
+    <section class="section dark">
+        <div class="section-inner">
+            <div class="eyebrow">Why this module is foundational</div>
+            <h2>Get this right and everything downstream compounds.</h2>
+            <p class="section-intro">Everything coming next runs on the muscle you build here.</p>
+
+            <ul class="next-list">
+                <li><strong>AI on real deliverables.</strong> Briefing a chief of staff that doesn't know you is the same skill as briefing one that's drafting your emails, decks, and strategy.</li>
+                <li><strong>AI handling work end-to-end.</strong> The verify-and-record loop is what makes delegation safe. Without it, you're just hoping.</li>
+                <li><strong>AI inside your systems.</strong> Agents and workflows fail in the same places conversations do — bad framing, unchallenged assumptions, no audit trail.</li>
+                <li><strong>If you can't do this here, downstream tools amplify the gaps.</strong> Better AI doesn't fix a weak brief. It executes it faster.</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <span class="brand">Michael Gardon</span>
+        <div class="footer-label">CHIEF AI Accelerator · Phase 0</div>
+        <div class="footer-links">
+            <a href="/">Back to the program map</a>
+            <a href="/">Phase 0</a>
+            <a href="/case-daniel/">Field Notes</a>
+        </div>
+    </footer>
+
+</body>
+</html>

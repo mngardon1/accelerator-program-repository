@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<meta name="robots" content="noindex, nofollow">
+<title>What to Watch For | CHIEF AI Accelerator</title>
+<meta name="description" content="AI is fast, capable, and sometimes confidently wrong. What to trust, what to double-check, and what's safe to put in — so it saves you time instead of costing you.">
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--navy);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:32px 24px 80px}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy-mute)}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.logo{width:22px;height:22px;background:var(--teal);border-radius:5px;position:relative;flex:0 0 22px}
+.logo::after{content:"";position:absolute;inset:6px;background:var(--cream);border-radius:2px}
+.brand .eyebrow{font-weight:600;letter-spacing:.16em}
+.crumb{margin-bottom:18px}
+.pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--teal);padding:5px 11px;border-radius:999px}
+h1{font-family:var(--serif);font-size:44px;line-height:1.06;font-weight:700;margin:16px 0 12px;letter-spacing:-.01em}
+.lede{font-size:18px;color:var(--navy-light);max-width:60ch}
+.meta{margin-top:14px}
+section{margin-top:48px}
+.s-label{margin-bottom:6px}
+h2{font-family:var(--serif);font-size:27px;font-weight:700;line-height:1.18;margin-bottom:14px;letter-spacing:-.01em}
+h3.sub{font-family:var(--serif);font-size:19px;font-weight:700;margin:24px 0 8px;letter-spacing:-.01em}
+p{margin-bottom:14px;color:#23364a}
+.big{font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--navy);margin:18px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:12px}
+.card.frame{border-left:3px solid var(--teal)}
+.callout{font-family:var(--serif);font-size:21px;line-height:1.4;color:var(--navy);background:var(--teal-light);border:1px solid rgba(19,181,162,.22);border-radius:12px;padding:20px 22px;margin:16px 0}
+
+.step{background:#fff;border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:14px 20px;margin-bottom:10px}
+.step .n{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark);font-weight:600}
+.step .t{font-family:var(--serif);font-size:17px;font-weight:700;margin:3px 0 4px;color:var(--navy)}
+.step p{margin:0;font-size:15px}
+
+.watchout{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:16px 20px;margin:12px 0}
+.watchout .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.watchout p{margin:5px 0 0;font-size:14.5px}
+
+.tablecard{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:14px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+thead th{background:var(--navy);color:#fff;text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:11px 14px}
+thead th:first-child{background:var(--teal-dark)}
+tbody td{padding:12px 14px;border-top:1px solid var(--line);color:#23364a;vertical-align:top;line-height:1.45}
+tbody td:first-child{font-weight:600;color:var(--navy);background:var(--cream-deep);width:42%}
+tbody tr.primary td{background:var(--teal-light)}
+tbody tr.primary td:first-child{color:var(--teal-dark);background:rgba(19,181,162,.16)}
+
+.use{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-top:6px}
+.use ul{list-style:none;margin:0;padding:0}
+.use li{padding:12px 0;border-top:1px solid var(--line);font-size:15px;color:#23364a}
+.use li:first-child{border-top:none;padding-top:0}
+.use li b{display:block;font-family:var(--serif);font-size:16px;color:var(--navy);margin-bottom:2px}
+
+.checklist{background:#fff;border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:8px 22px;margin-top:6px}
+.checklist ul{list-style:none;margin:0;padding:0}
+.checklist li{display:flex;align-items:center;gap:13px;padding:13px 0;border-top:1px solid var(--line);font-size:16px;color:var(--navy)}
+.checklist li:first-child{border-top:none}
+.checklist .box{width:20px;height:20px;border:2px solid var(--teal);border-radius:5px;flex:0 0 20px}
+
+.bridge{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:22px 24px;margin-top:14px}
+.bridge a{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:#fff;background:var(--navy);padding:9px 15px;border-radius:7px;text-decoration:none}
+.bridge a:hover{background:var(--navy-light)}
+
+a{color:var(--teal-dark);text-decoration:none;font-weight:600}
+a:hover{text-decoration:underline}
+
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-mute)}
+
+@media(max-width:620px){.wrap{padding:24px 18px 64px}h1{font-size:34px}.tablecard{overflow-x:auto}table{min-width:480px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">
+    <span class="logo"></span>
+    <span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span>
+  </div>
+
+  <div class="crumb eyebrow">Accelerator / Curriculum / 0.5 What to Watch For</div>
+  <span class="pill">Phase 0 · Foundations</span>
+
+  <h1>What to watch for</h1>
+  <p class="lede">AI is fast, capable, and sometimes confidently wrong. Five minutes here on what to trust, what to double-check, and what's safe to put in, so it saves you time instead of costing you.</p>
+  <div class="meta eyebrow">5 min read</div>
+
+  <section>
+    <div class="s-label eyebrow">Start Here</div>
+    <h2>Treat it like a sharp intern, not an oracle.</h2>
+    <p>The most useful way to hold it: you've just hired a brilliant, impossibly fast intern who has read almost everything and will hand you a confident answer to any question in seconds. That intern is right most of the time and wrong some of the time. Here's the catch that trips people up: it sounds exactly the same either way.</p>
+    <p>Everything on this page is how you get the upside without getting burned by the downside. It's short on purpose. Learn these three things once and you can stop worrying about the rest.</p>
+    <div class="callout">Used well, it's the best assistant you've ever had. Used blindly, it'll hand you a wrong number inside a beautiful sentence. The whole game is knowing where the edges are.</div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">What it's for</div>
+    <h2>Great at first drafts. Shaky at final facts.</h2>
+    <p>Most of what you'll ask lives in the safe zone. The trouble only starts when you make it the source of truth on something specific and verifiable.</p>
+
+    <div class="use">
+      <ul>
+        <li><b>Lean on it freely</b>Drafting and rewriting. Summarizing something long. Explaining an idea in plain terms. Brainstorming options. Turning a mess of notes into structure. First passes of almost anything.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <span class="tag">Double-check before you rely on it</span>
+      <p>Exact figures, dates, and names. Recent events (it may simply not know them). Math and calculations. Quotes and citations. And anything where being confidently wrong costs you real money or real trust.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">The one habit</div>
+    <h2>It will never tell you when it's unsure.</h2>
+    <p>Here's the part most people get wrong. When the AI doesn't know something, it doesn't stop or shrug or say "I'm not sure." It fills the gap with the most plausible-sounding answer and hands it over with the same confidence as a fact it's certain of.</p>
+    <p>That's not lying, and it's not a bug you can turn off. It's how the tool works: it predicts likely-sounding text, and a wrong name or an invented statistic can be very likely-sounding text. The industry calls this a "hallucination." A plainer word is <b>confabulation</b>: filling a blank with something that fits, and believing it.</p>
+    <div class="callout">So the habit is one line: verify anything you'd be embarrassed to be wrong about. Names, numbers, dates, quotes, and any legal, medical, or financial specifics. If it's going in front of a client or a boss, check it.</div>
+    <div class="watchout">
+      <span class="tag">A ten-second check</span>
+      <p>Ask it, "how sure are you about this, and what's your source?" It will often flag its own shaky spots when you push. But for anything that matters, confirm against a real source. Don't treat its answer <i>as</i> the source.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">What's safe to put in</div>
+    <h2>Treat the message box like an email to an outside vendor.</h2>
+    <p>One rule of thumb keeps you out of almost all the trouble: if you wouldn't put it in an email to a company you don't fully control, don't paste it into a consumer AI tool.</p>
+
+    <div class="use">
+      <ul>
+        <li><b>Keep these out</b>Passwords, account numbers, and Social Security numbers. Client or patient records you're legally bound to protect. Anything under an NDA. Unreleased financials or live legal matters.</li>
+      </ul>
+    </div>
+
+    <div class="watchout">
+      <span class="tag">Personal vs. business accounts</span>
+      <p>On a personal plan, your chats may be used to improve the models unless you switch that off in settings. Business and enterprise plans generally don't train on your data and add real protections. If you'll be using genuine company information, get on the right plan and check the data settings. We cover the account tiers in <a href="/getting-set-up/">Getting Set Up</a>.</p>
+    </div>
+
+    <p>None of this should scare you off. The vast majority of your work, the drafting and thinking and organizing and explaining, has nothing sensitive in it at all. This is just the short list of what to hold back.</p>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">The takeaway</div>
+    <h2>You know what to watch for.</h2>
+    <p>Four things true, and you can move fast without getting burned.</p>
+    <div class="checklist">
+      <ul>
+        <li><span class="box"></span> I trust it for drafts and thinking, not as the final word on facts</li>
+        <li><span class="box"></span> I verify names, numbers, dates, and quotes before they leave my hands</li>
+        <li><span class="box"></span> I keep secrets and protected data out of the message box</li>
+        <li><span class="box"></span> I'm on the right account for the kind of information I'll use</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="s-label eyebrow">Next in the Sequence</div>
+    <h2>Now the skills begin.</h2>
+    <div class="bridge">
+      <p style="margin:0">That's the whole foundation: the mindset, the models, the setup, and the guardrails. From here on it's skill, not setup. First up, the one that changes everything: getting dramatically better results from anything you ask.</p>
+      <a href="/getting-better-results/">Next: Getting Better Results →</a>
+    </div>
+  </section>
+
+  <footer>Michael Gardon · CHIEF AI Accelerator — Phase 0 · 0.5 What to Watch For</footer>
+
+</div>
+</body>
+</html>
