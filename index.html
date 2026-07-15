@@ -248,5 +248,24 @@ footer a{color:var(--teal-dark)}
   <footer>CHIEF Accelerator — an AI fluency program by <a href="https://rejoincoaching.com">Rejoin Coaching</a></footer>
 
 </div>
+
+<script>
+// Phase counters derive from the cards. Never hand-typed — a stored count rots the
+// moment a page ships, and on 2026-07-15 the Reference counter already read 7 for 8
+// cards while 0.5 sat live behind a "Coming soon" label.
+// Progressive enhancement: if this never runs, the static numbers still render.
+(function phaseCounts(){
+  document.querySelectorAll('details').forEach(function(d){
+    var c = d.querySelector('.count');
+    if (!c) return;
+    var mods = d.querySelectorAll('.mod');
+    if (!mods.length) return;
+    var soon = d.querySelectorAll('.mod.soon').length;
+    c.textContent = c.textContent.indexOf('/') > -1
+      ? (mods.length - soon) + ' / ' + mods.length
+      : String(mods.length);
+  });
+})();
+</script>
 </body>
 </html>
