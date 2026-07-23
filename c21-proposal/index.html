@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0E1C2E">
+<title>Chief O.S. — V1 Proposal for Dan Kruse</title>
+<style>
+:root{
+  --teal:#13B5A2; --teal-bright:#3FD8C6; --gold:#E0B24A;
+  --bg:#0E1C2E; --panel:#16293C; --line:rgba(214,228,242,0.12);
+  --ink:#EAF1F8; --body:#C1D0DF; --mute:rgba(214,228,242,0.5);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  background:var(--bg); color:var(--body); font-family:var(--sans);
+  background-image:radial-gradient(1100px 560px at 78% -12%, rgba(19,181,162,0.08), transparent 60%);
+  overflow:hidden; -webkit-font-smoothing:antialiased;
+}
+.stage{position:fixed; inset:0 0 96px 0; display:flex; align-items:center; justify-content:center; padding:5vh 8vw;}
+.slide{display:none; max-width:1000px; width:100%; animation:fade .35s ease; max-height:88vh; overflow:auto;}
+.slide.on{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.slide::-webkit-scrollbar{width:0;}
+
+.time{font-family:var(--mono); text-transform:uppercase; letter-spacing:.18em; font-size:13px; color:var(--teal-bright); margin-bottom:18px;}
+.kicker{font-family:var(--mono); text-transform:uppercase; letter-spacing:.16em; font-size:12px; color:var(--mute); margin-bottom:16px;}
+h1{font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(34px,6vw,60px); line-height:1.05; letter-spacing:-.015em; margin-bottom:12px;}
+.subtitle{font-family:var(--mono); text-transform:uppercase; letter-spacing:.2em; font-size:15px; color:var(--gold); margin-bottom:24px;}
+h2{font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(28px,4.6vw,48px); line-height:1.08; letter-spacing:-.01em; margin-bottom:20px;}
+.lines{font-size:clamp(16px,2.1vw,23px); line-height:1.5; color:var(--body); max-width:820px;}
+.lines p{margin-bottom:16px;}
+.lines .em{color:var(--teal-bright);}
+.lines .go{color:var(--gold);}
+
+ul.clist{list-style:none; max-width:820px;}
+ul.clist li{font-size:clamp(15px,1.8vw,19px); line-height:1.4; color:var(--body); padding:10px 0 10px 22px; position:relative; border-top:1px solid var(--line);}
+ul.clist li:first-child{border-top:0;}
+ul.clist li::before{content:"—"; position:absolute; left:0; color:var(--teal);}
+ul.clist li b{color:var(--ink);}
+
+/* scope slide grouped blocks */
+.scopeblock{margin-bottom:12px; max-width:820px;}
+.slabel{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--body); margin-bottom:5px;}
+.slabel.teal{color:var(--teal-bright);}
+.slabel.gold{color:var(--gold);}
+.sbul{list-style:none; margin:0;}
+.sbul li{position:relative; padding:3px 0 3px 18px; font-size:clamp(14px,1.75vw,16px); line-height:1.4; color:var(--body); border-top:0;}
+.sbul li::before{content:"›"; position:absolute; left:3px; color:var(--teal); font-weight:700;}
+.sbul li b{color:var(--ink);}
+
+/* Reach cascade (animated) */
+.cascade{max-width:740px; margin-top:8px;}
+.clead{opacity:0; transform:translateY(10px); transition:opacity .5s ease, transform .5s ease; font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:13px; color:var(--teal-bright); margin-bottom:14px;}
+.clead.show{opacity:1; transform:none;}
+.crow{opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease;}
+.crow.show{opacity:1; transform:none;}
+.cbullet{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--teal); border-radius:12px; padding:14px 18px; font-family:var(--serif); font-size:clamp(18px,2.3vw,27px); color:var(--ink); line-height:1.2;}
+.carrow{opacity:0; transition:opacity .4s ease; text-align:center; color:var(--teal-bright); font-size:20px; line-height:1; margin:7px 0;}
+.carrow.show{opacity:1;}
+
+/* Roadmap cascade cards */
+#roadCascade{max-width:760px;}
+#roadCascade .crow{margin-bottom:9px;}
+.rcard{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--teal); border-radius:12px; padding:12px 18px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;}
+.rcard .ver{font-family:var(--mono); font-size:13px; font-weight:700; letter-spacing:.08em; color:var(--teal-bright); text-transform:uppercase; flex:none;}
+.rcard .rst{font-family:var(--serif); font-size:clamp(16px,2vw,21px); color:var(--ink); line-height:1.15; flex:none;}
+.rcard .rdel{font-family:var(--sans); font-size:14px; color:var(--gold); line-height:1.3; flex:1; min-width:220px;}
+.rcard.gate{border-left-color:var(--mute);}
+.rcard.gate .rst{color:var(--body);}
+.rcard.gate .rdel{color:var(--mute); font-style:italic;}
+/* Obsidian-style branch tree under each version box */
+#roadCascade .crow{margin-bottom:2px;}
+#roadCascade .crow.gtop{margin-top:16px;}
+#roadCascade .crow.branch{transform:translateX(-16px);}
+#roadCascade .crow.branch.show{transform:none;}
+.rsub{position:relative; padding:5px 0 5px 48px; font-family:var(--sans); font-size:clamp(14px,1.7vw,16px); color:var(--body); line-height:1.32; max-width:730px;}
+.rsub::before{content:""; position:absolute; left:22px; top:-8px; width:17px; height:calc(50% + 8px); border-left:1.6px solid rgba(63,216,198,.5); border-bottom:1.6px solid rgba(63,216,198,.5); border-radius:0 0 0 6px;}
+.rsub b{color:var(--ink); font-weight:600;}
+
+.vennwrap{display:flex; flex-direction:column; align-items:center; gap:6px; margin:2px 0 4px;}
+.venn{width:min(580px,94%); overflow:visible;}
+.ring{cursor:pointer; transform-box:fill-box; transform-origin:center;}
+.ring circle{transition:fill-opacity .25s ease, stroke-opacity .25s ease;}
+.ring:focus{outline:none;}
+.ring.active circle{fill-opacity:.34; stroke-opacity:1;}
+/* start hidden; the merge animation shows three separate rings, holds, then converges */
+/* circles and labels animate independently: separated (big, labels centered) -> merged Venn */
+.rcircle,.rlabel{transform-box:fill-box; transform-origin:center; opacity:0;}
+/* one duration for all; the one-by-one entrance is baked into each ring's opacity keyframes, so all three merge together at the end */
+.venn.converge #cBuild{animation:cBuild 4.6s ease forwards;}
+.venn.converge #lBuild{animation:lBuild 4.6s ease forwards;}
+.venn.converge #cEntre{animation:cEntre 4.6s ease forwards;}
+.venn.converge #lEntre{animation:lEntre 4.6s ease forwards;}
+.venn.converge #cCoach{animation:cCoach 4.6s ease forwards;}
+.venn.converge #lCoach{animation:lCoach 4.6s ease forwards;}
+/* 1st in: AI-native builder */
+@keyframes cBuild{
+  0%{transform:translate(-90px,32px) scale(.7);opacity:0;}
+  6%{transform:translate(-90px,32px) scale(.7);opacity:1;}
+  66%{transform:translate(-90px,32px) scale(.7);opacity:1;}
+  100%{transform:translate(0,0) scale(1);opacity:1;}
+}
+@keyframes lBuild{
+  0%{transform:translate(-46px,42px);opacity:0;}
+  6%{transform:translate(-46px,42px);opacity:1;}
+  66%{transform:translate(-46px,42px);opacity:1;}
+  100%{transform:translate(0,0);opacity:1;}
+}
+/* 2nd in: Entrepreneur */
+@keyframes cEntre{
+  0%{transform:translate(-50px,32px) scale(.7);opacity:0;}
+  14%{transform:translate(-50px,32px) scale(.7);opacity:0;}
+  20%{transform:translate(-50px,32px) scale(.7);opacity:1;}
+  66%{transform:translate(-50px,32px) scale(.7);opacity:1;}
+  100%{transform:translate(0,0) scale(1);opacity:1;}
+}
+@keyframes lEntre{
+  0%{transform:translate(-96px,42px);opacity:0;}
+  14%{transform:translate(-96px,42px);opacity:0;}
+  20%{transform:translate(-96px,42px);opacity:1;}
+  66%{transform:translate(-96px,42px);opacity:1;}
+  100%{transform:translate(0,0);opacity:1;}
+}
+/* 3rd in: Executive coach */
+@keyframes cCoach{
+  0%{transform:translate(140px,-46px) scale(.7);opacity:0;}
+  28%{transform:translate(140px,-46px) scale(.7);opacity:0;}
+  34%{transform:translate(140px,-46px) scale(.7);opacity:1;}
+  66%{transform:translate(140px,-46px) scale(.7);opacity:1;}
+  100%{transform:translate(0,0) scale(1);opacity:1;}
+}
+@keyframes lCoach{
+  0%{transform:translate(140px,-92px);opacity:0;}
+  28%{transform:translate(140px,-92px);opacity:0;}
+  34%{transform:translate(140px,-92px);opacity:1;}
+  66%{transform:translate(140px,-92px);opacity:1;}
+  100%{transform:translate(0,0);opacity:1;}
+}
+/* center text stays hidden until the rings finish converging */
+.venncenter{opacity:0;}
+.venn.converge .venncenter{animation:centerIn .6s ease 4.65s forwards;}
+@keyframes centerIn{from{opacity:0;} to{opacity:1;}}
+.ringdetail{width:100%; max-width:660px; text-align:center; min-height:84px;}
+.rd-title{font-family:var(--serif); font-size:18px; margin-bottom:5px;}
+.rd-body{font-size:13.5px; color:var(--mute); line-height:1.45;}
+.rd-list{list-style:none; margin:0; display:inline-block; text-align:left;}
+.rd-list li{position:relative; padding:3px 0 3px 18px; font-size:14px; line-height:1.4; color:var(--body);}
+.rd-list li::before{content:"›"; position:absolute; left:2px; color:var(--teal); font-weight:700;}
+@media(max-width:640px){ .venn{width:96%;} }
+
+.price{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:16px; padding:26px 28px; display:flex; align-items:baseline; gap:22px; flex-wrap:wrap; max-width:820px;}
+.price .strike{font-size:22px; color:var(--mute); text-decoration:line-through;}
+.price .now{font-family:var(--serif); font-size:clamp(40px,7vw,56px); font-weight:700; color:var(--ink); letter-spacing:-.02em;}
+.price .now small{font-family:var(--mono); font-size:13px; font-weight:600; color:var(--gold); letter-spacing:.06em; text-transform:uppercase;}
+.price .cap{font-size:14px; color:var(--body); flex:1; min-width:200px;}
+.pricechip{align-self:center; display:inline-block; font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--teal-bright); background:rgba(19,181,162,.14); border:1px solid rgba(19,181,162,.4); padding:5px 12px; border-radius:20px;}
+
+table{width:100%; border-collapse:collapse; margin:4px 0 10px; max-width:820px; font-size:clamp(14px,1.7vw,17px);}
+th,td{text-align:left; padding:11px 8px; border-bottom:1px solid var(--line);}
+th{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--mute); font-weight:600;}
+td.hrs{text-align:right; white-space:nowrap; color:var(--teal-bright); font-weight:600; font-family:var(--mono);}
+
+.callout{background:linear-gradient(135deg,rgba(224,178,74,.09),var(--panel)); border-left:3px solid var(--gold); border-radius:0 14px 14px 0; padding:18px 22px; color:var(--ink); font-size:clamp(16px,2vw,21px); line-height:1.4; max-width:820px; margin-top:6px;}
+
+.stage-row{padding:10px 0; border-top:1px solid var(--line);}
+.stage-row:first-of-type{border-top:0;}
+.stage-row b{display:block; color:var(--ink); font-size:clamp(15px,1.9vw,19px);}
+.stage-row small{color:var(--mute); font-size:13px;}
+.unlock{font-family:var(--mono); font-size:11px; letter-spacing:.03em; color:var(--gold); margin-top:6px; line-height:1.35;}
+.unlock.tentative{color:rgba(224,178,74,.72);}
+.unlock.gap{color:var(--mute); font-style:italic;}
+.today{display:inline-block; font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#04140f; background:var(--teal-bright); padding:2px 7px; border-radius:20px; margin-left:8px; vertical-align:middle;}
+
+.logo{width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,var(--teal),var(--teal-bright));box-shadow:0 0 26px rgba(19,181,162,.4);margin-bottom:26px;}
+.theme-chip{display:inline-block;font-family:var(--mono);text-transform:uppercase;letter-spacing:.14em;font-size:12px;color:var(--gold);background:rgba(224,178,74,.12);border:1px solid rgba(224,178,74,.32);padding:8px 14px;border-radius:7px;margin-top:6px;}
+.by{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--mute);margin-top:30px;}
+
+.btn{font-family:var(--sans); border:0; border-radius:11px; padding:14px 22px; font-size:15px; font-weight:700; cursor:pointer;}
+.btn-gold{background:var(--gold); color:#241a05;}
+.btn-gold:disabled{opacity:.35; cursor:not-allowed;}
+.btn-ghost{background:transparent; color:var(--ink); border:1px solid var(--line);}
+.btn-ghost:hover{border-color:var(--teal); color:var(--teal-bright);}
+.btn-line{background:transparent; border:1px solid var(--teal); color:var(--teal-bright); border-radius:9px; padding:11px 18px; font-size:14px; font-weight:600; cursor:pointer; font-family:var(--sans);}
+.btn-line:hover{background:rgba(19,181,162,.12);}
+.btnrow{display:flex; gap:10px; flex-wrap:wrap;}
+
+/* feedback module */
+.fb{margin-top:18px; max-width:760px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px 18px;}
+.fb .fbtitle{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--teal-bright); margin-bottom:12px;}
+.chips{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;}
+.chip{background:transparent; border:1px solid var(--line); color:var(--body); border-radius:20px; padding:8px 14px; font-size:13px; cursor:pointer; font-family:var(--sans);}
+.chip:hover{border-color:var(--teal);}
+.chip.sel{background:var(--gold); border-color:var(--gold); color:#241a05; font-weight:700;}
+.fb textarea{width:100%; min-height:58px; border-radius:10px; border:1px solid var(--line); background:rgba(234,241,248,.96); color:#0E1C2E; font-size:14px; font-family:var(--sans); padding:10px 12px; resize:vertical;}
+.fbfoot{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px; flex-wrap:wrap;}
+.fbhint{font-size:12px; color:var(--mute);}
+.fbstatus{font-size:12px; color:var(--teal-bright); min-height:15px; margin-top:8px;}
+
+/* accept slide */
+.ack{display:grid; gap:10px; margin:6px 0 16px; max-width:720px;}
+.ackrow{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:13px 16px; display:flex; align-items:center; gap:14px;}
+.ackrow.done{border-color:var(--teal); background:linear-gradient(135deg,rgba(19,181,162,.1),var(--panel));}
+.ackrow .mark{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--mute);display:grid;place-items:center;font-weight:700;flex:none;color:var(--mute);}
+.ackrow.done .mark{background:var(--teal);border-color:var(--teal);color:#04140f;}
+.ackrow .t{flex:1; font-size:15px; color:var(--ink);}
+.ackrow .t small{display:block; color:var(--mute); font-size:12.5px;}
+.fields{display:grid; grid-template-columns:2fr 1fr; gap:12px; max-width:720px; margin-bottom:12px;}
+.fields label{display:block; font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--mute); margin-bottom:6px;}
+.fields input{width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--line); background:rgba(234,241,248,.96); color:#0E1C2E; font-size:16px; font-family:var(--sans);}
+.agree{display:flex; gap:10px; align-items:flex-start; font-size:14px; color:var(--body); max-width:720px; margin-bottom:16px;}
+.agree input{margin-top:4px; width:18px; height:18px; flex:none;}
+.cta{display:flex; gap:12px; flex-wrap:wrap; max-width:720px;}
+.cta .btn-gold{flex:1; min-width:220px;}
+.confirm{display:none; margin-top:16px; max-width:720px; background:var(--panel); border:1px solid var(--teal); border-radius:12px; padding:18px 20px;}
+.confirm.show{display:block;}
+.confirm b{color:var(--teal-bright); font-family:var(--serif); font-size:22px;}
+.termlink{margin-top:14px; font-size:13px;}
+.termlink button{background:none; border:0; color:var(--teal-bright); font-family:var(--mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; cursor:pointer; text-decoration:underline;}
+.draftnote{margin-top:16px; background:rgba(224,178,74,.1); border:1px dashed rgba(224,178,74,.4); border-radius:10px; padding:10px 14px; font-size:12.5px; color:var(--gold); max-width:720px;}
+
+/* rail + nav */
+.rail{position:fixed; left:0; right:0; bottom:0; height:96px; border-top:1px solid var(--line); background:rgba(14,28,46,.85); backdrop-filter:blur(8px); display:flex; align-items:center; padding:0 24px; gap:14px;}
+.dots{display:flex; gap:5px; flex:1; align-items:stretch;}
+.seg{flex:1; cursor:pointer; padding-top:18px;}
+.seg .bar{height:4px; border-radius:2px; background:rgba(214,228,242,.14);}
+.seg.done .bar{background:var(--teal);}
+.seg.cur .bar{background:var(--teal-bright); box-shadow:0 0 10px rgba(63,216,198,.6);}
+.seg .lab{font-family:var(--mono); font-size:8.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--mute); margin-top:9px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.seg.cur .lab{color:var(--teal-bright);}
+.railmeta{font-family:var(--mono); font-size:11px; color:var(--mute); text-align:right; min-width:112px; letter-spacing:.06em;}
+.railmeta .t{color:var(--ink); font-size:14px;}
+.nav{position:fixed; bottom:112px; right:24px; display:flex; gap:8px; z-index:5;}
+.nav button{font-family:var(--mono); font-size:16px; color:var(--body); background:var(--panel); border:1px solid var(--line); width:42px;height:42px;border-radius:9px;cursor:pointer;}
+.nav button:hover{color:var(--teal-bright); border-color:var(--teal);}
+.clickzone{position:fixed;top:0;bottom:96px;width:32%;z-index:2;cursor:pointer;}
+.clickzone.l{left:0;} .clickzone.r{right:0;}
+.clickzone.off{pointer-events:none;}
+.hintkey{position:fixed;bottom:112px;left:24px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--mute);text-transform:uppercase;z-index:5;}
+
+/* terms modal */
+.modal{position:fixed; inset:0; z-index:60; display:none; align-items:flex-start; justify-content:center; background:rgba(6,12,20,.7); padding:40px 16px; overflow:auto;}
+.modal.open{display:flex;}
+.sheet{background:var(--panel); border:1px solid var(--line); max-width:640px; width:100%; border-radius:16px; padding:28px 30px 32px; position:relative;}
+.sheet h3{font-family:var(--serif); color:var(--ink); font-size:24px; margin-bottom:6px;}
+.sheet .close{position:absolute; top:14px; right:18px; background:none; border:0; font-size:26px; cursor:pointer; color:var(--mute);}
+.sheet p{font-size:14px; color:var(--body); margin-bottom:11px;}
+.sheet p b{color:var(--ink);}
+.tagd{display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:#241a05; background:var(--gold); padding:3px 9px; border-radius:20px; margin-bottom:8px;}
+
+@media(max-width:640px){ .fields{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div class="stage">
+
+  <!-- 0 TITLE -->
+  <section class="slide on" data-phase="Title" data-time="A proposal, and a POV">
+    <div class="logo"></div>
+    <div class="kicker">Chief O.S. · for Dan Kruse</div>
+    <h1>Quarterback<br>the Enterprise.</h1>
+    <div class="subtitle">V1 Proposal</div>
+    <div class="lines" style="font-size:clamp(16px,2vw,22px);">
+      <p>The first working piece of an AI-native way to see the whole business at a glance, know which lever to pull and through whom, and get out of the operator's seat.</p>
+    </div>
+    <div class="theme-chip">For Dan Kruse · CENTURY 21 Affiliated</div>
+    <div class="by">Michael Gardon · Rejoin Coaching · July 2026</div>
+  </section>
+
+  <!-- 1 MY VIEW -->
+  <section class="slide" data-phase="View" data-time="My view, up front">
+    <div class="time">My view, up front</div>
+    <h2>What we designed on Tuesday isn't just a dashboard.</h2>
+    <div class="lines">
+      <p>The vision we laid out was really about redefining the <span class="em">interaction layer</span> between the data and how action gets taken. Not just for you, but downstream for your exec team, affecting how your enterprise operates.</p>
+      <p>This proposal is scoped to the v1 work that we laid out only. That is the only decision point today. However, this proposal attempts to give life to that ultimate vision and where it could drive real value in your organization.</p>
+      <p class="go">It is my job as a coach to help you see the full picture.</p>
+    </div>
+  </section>
+
+  <!-- 2 REACH -->
+  <section class="slide" data-phase="Reach" data-time="Beyond numbers">
+    <div class="time">Where this can go, beyond numbers</div>
+    <h2>The dashboard is the doorway.</h2>
+    <div class="cascade" id="reachCascade">
+      <div class="clead">Here's what it enables:</div>
+      <div class="crow"><div class="cbullet">Leveraging the data you have to guide strategic direction and forecasting</div></div>
+      <div class="carrow">↓</div>
+      <div class="crow"><div class="cbullet">Mining unused data to identify and execute on hidden pockets of value</div></div>
+      <div class="carrow">↓</div>
+      <div class="crow"><div class="cbullet">Running a tighter EOS process and cadence</div></div>
+      <div class="carrow">↓</div>
+      <div class="crow"><div class="cbullet">Better delegation and accountability</div></div>
+      <div class="carrow">↓</div>
+      <div class="crow"><div class="cbullet">Becoming more efficient and ROI-driven</div></div>
+    </div>
+  </section>
+
+  <!-- 3 WHY ME -->
+  <section class="slide" data-phase="Why me" data-time="Why me, specifically" data-interactive="1">
+    <div class="time">Why me, specifically</div>
+    <h2>Not your average &lsquo;vendor&rsquo;.</h2>
+    <div class="vennwrap">
+      <svg class="venn" id="vennSvg" viewBox="0 0 420 300" aria-label="AI-native builder, entrepreneur, and executive coach — overlapping">
+        <g class="ring" id="ringBuild" tabindex="0" onmouseenter="showRing('build')" onmouseleave="unhoverRing()" onfocus="showRing('build')" onclick="pinRing('build')">
+          <circle class="rcircle" id="cBuild" cx="160" cy="118" r="94" fill="#13B5A2" fill-opacity="0.14" stroke="#13B5A2" stroke-opacity="0.55"/>
+          <g class="rlabel" id="lBuild">
+            <text x="116" y="100" text-anchor="middle" font-size="12.5" font-weight="700" fill="#3FD8C6" font-family="system-ui">AI-native</text>
+            <text x="116" y="116" text-anchor="middle" font-size="12.5" font-weight="700" fill="#3FD8C6" font-family="system-ui">builder</text>
+          </g>
+        </g>
+        <g class="ring" id="ringEntre" tabindex="0" onmouseenter="showRing('entre')" onmouseleave="unhoverRing()" onfocus="showRing('entre')" onclick="pinRing('entre')">
+          <circle class="rcircle" id="cEntre" cx="260" cy="118" r="94" fill="#E0B24A" fill-opacity="0.14" stroke="#E0B24A" stroke-opacity="0.55"/>
+          <g class="rlabel" id="lEntre">
+            <text x="306" y="112" text-anchor="middle" font-size="12.5" font-weight="700" fill="#E0B24A" font-family="system-ui">Entrepreneur</text>
+          </g>
+        </g>
+        <g class="ring" id="ringCoach" tabindex="0" onmouseenter="showRing('coach')" onmouseleave="unhoverRing()" onfocus="showRing('coach')" onclick="pinRing('coach')">
+          <circle class="rcircle" id="cCoach" cx="210" cy="196" r="94" fill="#EAF1F8" fill-opacity="0.10" stroke="#EAF1F8" stroke-opacity="0.55"/>
+          <g class="rlabel" id="lCoach">
+            <text x="210" y="246" text-anchor="middle" font-size="12.5" font-weight="700" fill="#EAF1F8" font-family="system-ui">Executive coach</text>
+          </g>
+        </g>
+        <g class="venncenter">
+          <text x="210" y="146" text-anchor="middle" font-size="11" font-weight="700" fill="#EAF1F8" font-family="system-ui">systems + interactions</text>
+          <text x="210" y="161" text-anchor="middle" font-size="11" font-weight="700" fill="#EAF1F8" font-family="system-ui">designed for growth</text>
+        </g>
+      </svg>
+      <div class="ringdetail" id="ringDetail">
+        <div class="rd-body">Hover or tap a ring to see the experience behind it.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 SCOPE (interactive) -->
+  <section class="slide" data-phase="Scope" data-time="Scope of record" data-interactive="1">
+    <div class="time">v1 scope of record · from the PRD</div>
+    <h2>What v1 is and isn't.</h2>
+    <div class="scopeblock">
+      <div class="slabel teal">v1 scope</div>
+      <ul class="sbul">
+        <li><b>Your command center.</b> A top-level, company-level dashboard from reports you already receive, but that are a hassle to get.</li>
+        <li><b>The Claude Cowork layer</b> to talk to your data in plain language.</li>
+      </ul>
+    </div>
+    <div class="scopeblock">
+      <div class="slabel">Purpose of v1</div>
+      <ul class="sbul">
+        <li>Deliver a snapshot picture of the enterprise.</li>
+        <li>Remove the friction of getting the right numbers, on time, when you want them.</li>
+        <li>Bring it to the exec meeting and facilitate the right discussions — where you want to go, and what needs to get done.</li>
+      </ul>
+    </div>
+    <div class="scopeblock">
+      <div class="slabel gold">Not in v1 — these seed the roadmap</div>
+      <ul class="sbul">
+        <li>Drill-downs, live integrations, automated capture, forecasting</li>
+        <li>EOS / L10 tie-in</li>
+        <li>Deep ancillary insight data</li>
+        <li>Personal planning &amp; finance</li>
+      </ul>
+    </div>
+    <div class="lines" style="font-size:15px; margin:4px 0 12px; color:var(--body);"><b style="color:var(--ink)">What's needed from your team:</b> the source reports and a few short conversations to pull them, plus your go-ahead to coordinate with the report owners. v1 is fast, but not zero-touch on your side.</div>
+    <div class="btnrow" style="margin-bottom:6px;"><button class="btn-line" onclick="openPRD()">Read the full PRD →</button></div>
+    <div class="fb">
+      <div class="fbtitle">Your take, Dan — did we get the scope right?</div>
+      <div class="chips">
+        <button class="chip" data-g="scope" onclick="react(this,'scope','Looks right')">Looks right</button>
+        <button class="chip" data-g="scope" onclick="react(this,'scope','We might have missed something')">Might have missed something</button>
+        <button class="chip" data-g="scope" onclick="react(this,'scope','Let us discuss')">Let's discuss</button>
+      </div>
+      <textarea placeholder="Did we miss anything? Am I off base? Type it here — it goes to Mike." oninput="fb.scopeNote=this.value"></textarea>
+      <div class="fbfoot">
+        <span class="fbhint">Your reactions and notes gather as you go.</span>
+        <button class="btn-line" onclick="sendFeedback()">Send Mike my notes →</button>
+      </div>
+      <div class="fbstatus"></div>
+    </div>
+  </section>
+
+  <!-- 5 EFFORT -->
+  <section class="slide" data-phase="Effort" data-time="What v1 takes">
+    <div class="time">What v1 actually takes — I'll show my work</div>
+    <h2>Nothing hidden.</h2>
+    <table>
+      <tr><th>Work</th><th style="text-align:right">Hours</th></tr>
+      <tr><td>Lock the exact metrics and gather the source reports</td><td class="hrs">3–5</td></tr>
+      <tr><td>Parse and normalize those reports (the messy part)</td><td class="hrs">10–16</td></tr>
+      <tr><td>Build the v1 dashboard view</td><td class="hrs">3–6</td></tr>
+      <tr><td>Wire the drop-to-refresh</td><td class="hrs">4–7</td></tr>
+      <tr><td>Set you up in Cowork with the folder and handoff</td><td class="hrs">3–5</td></tr>
+      <tr><td>Iterate until it's genuinely meeting-ready</td><td class="hrs">8–10</td></tr>
+      <tr><td>Documenting the workflows to access the data</td><td class="hrs">4–6</td></tr>
+    </table>
+    <div class="slabel gold" style="margin-top:16px;">Full transparency</div>
+    <div class="lines" style="font-size:15px; margin-bottom:8px;">Roughly <b style="color:var(--body)">50 hours</b>, and a <b style="color:var(--body)">$12,000</b> build for me (but that's not what you'll pay). Your team or an outside developer could do v1 for far less (maybe $3k).</div>
+    <div class="lines" style="font-size:15px; margin-bottom:6px;"><b style="color:var(--ink)">But they won't be able to…</b></div>
+    <ul class="sbul">
+      <li>Iterate as fast</li>
+      <li>Distill insights and feedback into the roadmap</li>
+      <li>Connect with your vision and what you're trying to drive</li>
+    </ul>
+  </section>
+
+  <!-- 6 PRICE (interactive) -->
+  <section class="slide" data-phase="Price" data-time="v1 price" data-interactive="1">
+    <h2>Your v1 price.</h2>
+    <div class="price">
+      <span class="strike">$12,000</span>
+      <span class="now">$5,000</span>
+      <span class="pricechip">v1 scope</span>
+    </div>
+    <div class="scopeblock" style="margin-top:18px;">
+      <div class="slabel teal">What you get</div>
+      <ul class="sbul">
+        <li><b>Software.</b> The entire PRD, built and delivered.</li>
+        <li><b>Coaching insights</b> from you and your team, distilled and documented into the roadmap for handoff — whether or not you continue with me.</li>
+        <li><b>Hard opinions and pushback</b> on the evolution of the system.</li>
+      </ul>
+    </div>
+    <div class="fb">
+      <div class="fbtitle">Your take on the number</div>
+      <div class="chips">
+        <button class="chip" data-g="price" onclick="react(this,'price','Good to go')">Good to go</button>
+        <button class="chip" data-g="price" onclick="react(this,'price','Let us talk about it')">Let's talk about it</button>
+      </div>
+      <textarea placeholder="Any thoughts on the number or structure? Type it here — it goes to Mike." oninput="fb.priceNote=this.value"></textarea>
+      <div class="fbfoot">
+        <span class="fbhint">Mark it good, or tell me what you're thinking.</span>
+        <button class="btn-line" onclick="sendFeedback()">Send Mike my notes →</button>
+      </div>
+      <div class="fbstatus"></div>
+    </div>
+  </section>
+
+  <!-- 7 WORKING -->
+  <section class="slide" data-phase="Working" data-time="How we work">
+    <div class="time">How we work together</div>
+    <h2>The terms of the relationship.</h2>
+    <ul class="clist">
+      <li><b>Radical transparency.</b> You just saw my real cost and logic, not a marked-up quote.</li>
+      <li><b>You own everything.</b> Every artifact, dashboard, skill, and file is yours to keep.</li>
+      <li><b>No lock-in, ever.</b> Anything ongoing is cancelable, and you keep what's built.</li>
+      <li><b>In the room and a message away.</b> There for the meetings that matter, open line between them.</li>
+      <li><b>Your data, handled with care.</b> Referenced, not copied. We agree what's shareable first.</li>
+    </ul>
+  </section>
+
+  <!-- 8 ROADMAP (interactive) -->
+  <section class="slide" data-phase="Roadmap" data-time="The arc" data-interactive="1">
+    <div class="time">Where the doorway leads</div>
+    <h2>The future can look like this.</h2>
+    <div class="cascade" id="roadCascade">
+      <div class="crow"><div class="rcard"><span class="ver">v1</span><div class="rst">Dashboard <span class="today">Today</span></div></div></div>
+      <div class="crow branch"><div class="rsub">Leverage the data you have</div></div>
+      <div class="crow branch"><div class="rsub">See the whole business at a glance</div></div>
+      <div class="crow branch"><div class="rsub">Get more out of exec meetings</div></div>
+      <div class="crow branch"><div class="rsub">Generate new insights + actions</div></div>
+
+      <div class="crow gtop"><div class="rcard"><span class="ver">v2</span><div class="rst">Drill down: office + regions</div></div></div>
+      <div class="crow branch"><div class="rsub">Mine the data + execute on hidden pockets of value</div></div>
+      <div class="crow branch"><div class="rsub">Locate bottleneck problems</div></div>
+      <div class="crow branch"><div class="rsub">Delegate better</div></div>
+      <div class="crow branch"><div class="rsub">Build accountability</div></div>
+
+      <div class="crow gtop"><div class="rcard"><span class="ver">v3</span><div class="rst">Run the EOS system + L10</div></div></div>
+      <div class="crow branch"><div class="rsub">Refine the scorecard</div></div>
+      <div class="crow branch"><div class="rsub">Run an L10 that produces action + accountability</div></div>
+      <div class="crow branch"><div class="rsub">Leverage the exec team better</div></div>
+
+      <div class="crow gtop"><div class="rcard"><span class="ver">v4</span><div class="rst">Slice historicals for better forecasting</div></div></div>
+      <div class="crow branch"><div class="rsub">Query your data in Claude</div></div>
+      <div class="crow branch"><div class="rsub">Add what you know and your current assumptions</div></div>
+      <div class="crow branch"><div class="rsub">Generate models + base, best, worst forecasts</div></div>
+    </div>
+    <div class="fb">
+      <div class="fbtitle">Your take on the arc</div>
+      <div class="chips">
+        <button class="chip" data-g="road" onclick="react(this,'road','Looks right')">Looks right</button>
+        <button class="chip" data-g="road" onclick="react(this,'road','I have questions')">I have questions</button>
+        <button class="chip" data-g="road" onclick="react(this,'road','Let us discuss')">Let's discuss</button>
+      </div>
+      <textarea placeholder="Reactions to where this goes? Type it here — it goes to Mike." oninput="fb.roadNote=this.value"></textarea>
+      <div class="fbfoot">
+        <span class="fbhint">Optional — helps me shape what comes after v1.</span>
+        <button class="btn-line" onclick="sendFeedback()">Send Mike my notes →</button>
+      </div>
+      <div class="fbstatus"></div>
+    </div>
+  </section>
+
+  <!-- 9 ACCEPT (interactive) -->
+  <section class="slide" data-phase="Accept" data-time="Ready when you are" data-interactive="1">
+    <div class="time">Ready when you are</div>
+    <h2>The next step.</h2>
+    <div class="ack">
+      <div class="ackrow" id="ackScopeRow">
+        <div class="mark">1</div>
+        <div class="t">Scope reviewed<small>The PRD is the scope of record.</small></div>
+        <button class="btn-line" onclick="go(4)">Review</button>
+      </div>
+      <div class="ackrow" id="ackRoadRow">
+        <div class="mark">2</div>
+        <div class="t">Roadmap reviewed<small>v1 is the start, not the whole arc.</small></div>
+        <button class="btn-line" onclick="go(8)">Review</button>
+      </div>
+      <div class="ackrow" id="ackTermsRow">
+        <div class="mark">3</div>
+        <div class="t">Terms reviewed &amp; signed<small>Open the terms and sign off — this step is required.</small></div>
+        <button class="btn-line" onclick="openTerms()">Review &amp; sign</button>
+      </div>
+    </div>
+    <div class="fbhint" id="termsHint" style="margin:8px 0 0; color:var(--gold);">Step 3 is required — open the terms and sign off before you can accept.</div>
+    <div style="font-family:var(--serif); font-size:clamp(20px,2.8vw,27px); color:var(--teal-bright); margin:34px 0 18px;">Good to go? Or talk it through?</div>
+    <div class="fields">
+      <div><label>Your full name — this is your electronic signature</label><input type="text" id="sigName" placeholder="Dan Kruse" oninput="refresh()"></div>
+      <div><label>Date</label><input type="date" id="sigDate" oninput="refresh()"></div>
+    </div>
+    <label class="agree"><input type="checkbox" id="agree" onchange="refresh()"><span>I've reviewed the scope, the roadmap, and the terms, and I agree to the $5,000 engagement for v1.</span></label>
+    <div class="cta">
+      <button class="btn btn-gold" id="acceptBtn" disabled onclick="doAccept()">Accept and pay</button>
+      <button class="btn btn-ghost" onclick="doBook()">Rather talk it through</button>
+    </div>
+    <div class="confirm" id="confirm"><b class="serif" id="confirmBig">Opening secure checkout…</b><div style="margin-top:6px; font-size:14px; color:var(--body);" id="confirmSub"></div></div>
+  </section>
+
+</div>
+
+<div class="clickzone l" id="czl" onclick="prev()"></div>
+<div class="clickzone r" id="czr" onclick="next()"></div>
+
+<div class="hintkey">← → to move</div>
+<div class="nav"><button onclick="prev()">‹</button><button onclick="next()">›</button></div>
+
+<div class="rail">
+  <div class="dots" id="dots"></div>
+  <div class="railmeta"><span id="ct">1</span> / <span id="tot">10</span><br><span class="t" id="phase">Title</span></div>
+</div>
+
+<!-- TERMS MODAL -->
+<div class="modal" id="termsModal"><div class="sheet">
+  <button class="close" onclick="closeTerms()">&times;</button>
+  <h3 class="serif">Engagement terms</h3>
+  <p>The plain-English terms of this v1 engagement. The PRD is the scope of record; these cover the rest.</p>
+  <p><b>Scope.</b> The work is defined by the PRD (the scope of record) and this proposal.</p>
+  <p><b>Fee &amp; payment.</b> $5,000 for v1, due on acceptance. The price is fixed regardless of hours; any out-of-pocket costs are agreed in advance.</p>
+  <p><b>Ownership.</b> You own the deliverables and your data. I keep my own methods, templates, and reusable skills.</p>
+  <p><b>Confidentiality.</b> Mutual. Sensitive and partner-restricted information is referenced, not copied. Happy to sign a mutual NDA, retroactive to our first session.</p>
+  <p><b>Independent contractor.</b> A services engagement, not employment.</p>
+  <p><b>As-is.</b> v1 is a tool and a working method, not a guarantee of specific financial outcomes. Liability is capped at fees paid.</p>
+  <p><b>Cancelable.</b> v1 is one-time; anything ongoing after is cancelable at any time.</p>
+  <p><b>Governing law.</b> Wisconsin.</p>
+  <label class="agree" style="margin-top:20px;"><input type="checkbox" id="termsAgree" onchange="signTerms()"><span>I've read these terms and I'm OK with them.</span></label>
+  <div style="margin-top:4px;"><button class="btn-line" onclick="closeTerms()">Done</button></div>
+</div></div>
+
+<script>
+  /* ---------- CONFIG: swap these ---------- */
+  var STRIPE_PAYMENT_LINK = "https://buy.stripe.com/aFaeVc8jGaJx0EBcWI6AM0f";
+  var BOOKING_LINK        = "https://ro.am/rejoin/";
+  var PRD_LINK            = "https://accelerator.rejoincoaching.com/c21-prd";
+  var MIKE_EMAIL          = "mike@michaelgardon.com";
+  var FEEDBACK_ENDPOINT   = "https://rejoin-feedback.gardon-ba4.workers.dev/api/feedback";
+  var ACCEPT_ENDPOINT     = FEEDBACK_ENDPOINT.replace(/\/api\/feedback$/, "/api/accept");
+  var FEEDBACK_SOURCE     = "dan-kruse-proposal";
+  var DOC_VERSION         = "v1-proposal-2026-07";
+
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var i = 0;
+  var dots = document.getElementById('dots');
+  slides.forEach(function(s, idx){
+    var seg = document.createElement('div');
+    seg.className = 'seg';
+    seg.innerHTML = '<div class="bar"></div><div class="lab">'+s.dataset.phase+'</div>';
+    seg.onclick = function(){ go(idx); };
+    dots.appendChild(seg);
+  });
+  var segs = Array.prototype.slice.call(dots.children);
+  document.getElementById('tot').textContent = slides.length;
+
+  var acked = {scope:false, road:false, terms:false};
+
+  /* Reach cascade animation */
+  var reachTimers = [];
+  function clearReach(){ reachTimers.forEach(clearTimeout); reachTimers = []; }
+  function animateReach(){
+    clearReach();
+    var els = Array.prototype.slice.call(document.querySelectorAll('#reachCascade > *'));
+    els.forEach(function(el){ el.classList.remove('show'); });
+    els.forEach(function(el, idx){
+      reachTimers.push(setTimeout(function(){ el.classList.add('show'); }, 200 + idx*380));
+    });
+  }
+
+  var roadTimers = [];
+  function clearRoad(){ roadTimers.forEach(clearTimeout); roadTimers = []; }
+  function animateRoad(){
+    clearRoad();
+    var els = Array.prototype.slice.call(document.querySelectorAll('#roadCascade > *'));
+    els.forEach(function(el){ el.classList.remove('show'); });
+    els.forEach(function(el, idx){
+      roadTimers.push(setTimeout(function(){ el.classList.add('show'); }, 200 + idx*300));
+    });
+  }
+
+  /* Why-me venn: converge animation + hover/tap ring details */
+  var RINGS = {
+    build: { t:'AI-native builder', c:'#3FD8C6', items:[
+      'Self-taught, AI-first builder — apps, systems, automation (and this proposal itself ;)',
+      'Claude / Cowork fluent.',
+      'Run my own business operations on AI stacks.',
+      'Obsessed in this domain.'
+    ]},
+    entre: { t:'Entrepreneur', c:'#E0B24A', items:[
+      'Built 4 businesses — 1 died, 2 live, 1 exit.',
+      'Helped raise $15M+ in capital.',
+      'Teach entrepreneurship at the college level.'
+    ]},
+    coach: { t:'Executive coach', c:'#EAF1F8', items:[
+      'Coached executives to think like entrepreneurs for the past 3 years.',
+      'Coach and teach AI systems to executives and entrepreneurs.',
+      'Fascinated by mindset and the human side of performance — in individuals and teams.'
+    ]}
+  };
+  var pinnedRing = null;
+  function ringId(k){ return 'ring' + k.charAt(0).toUpperCase() + k.slice(1); }
+  function renderRingDetail(k){
+    var d = document.getElementById('ringDetail');
+    document.querySelectorAll('.ring').forEach(function(g){ g.classList.remove('active'); });
+    if(!k){
+      d.innerHTML = '<div class="rd-body">Hover or tap a ring to see the experience behind it.</div>';
+      return;
+    }
+    var r = RINGS[k];
+    document.getElementById(ringId(k)).classList.add('active');
+    d.innerHTML = '<div class="rd-title" style="color:'+r.c+'">'+r.t+'</div><ul class="rd-list">'+
+      r.items.map(function(x){ return '<li>'+x+'</li>'; }).join('')+'</ul>';
+  }
+  function showRing(k){ renderRingDetail(k); }
+  function unhoverRing(){ renderRingDetail(pinnedRing); }
+  function pinRing(k){ pinnedRing = (pinnedRing===k ? null : k); renderRingDetail(pinnedRing); }
+  function animateVenn(){
+    var v = document.getElementById('vennSvg');
+    if(!v) return;
+    pinnedRing = null; renderRingDetail(null);
+    v.classList.remove('converge'); void v.offsetWidth; v.classList.add('converge');
+  }
+
+  function render(){
+    clearReach(); clearRoad();
+    slides.forEach(function(s,idx){ s.classList.toggle('on', idx===i); });
+    segs.forEach(function(sg,idx){ sg.classList.toggle('cur', idx===i); sg.classList.toggle('done', idx<i); });
+    document.getElementById('ct').textContent = i+1;
+    document.getElementById('phase').textContent = slides[i].dataset.phase;
+    var interactive = slides[i].dataset.interactive === '1';
+    document.getElementById('czl').classList.toggle('off', interactive);
+    document.getElementById('czr').classList.toggle('off', interactive);
+    if(slides[i].dataset.phase==='Scope') acked.scope=true;
+    if(slides[i].dataset.phase==='Roadmap') acked.road=true;
+    refresh();
+    if(slides[i].dataset.phase==='Reach') animateReach();
+    if(slides[i].dataset.phase==='Roadmap') animateRoad();
+    if(slides[i].dataset.phase==='Why me') animateVenn();
+    if(slides[i].scrollTop!==undefined) slides[i].scrollTop=0;
+  }
+  function go(n){ i = Math.max(0, Math.min(slides.length-1, n)); render(); }
+  function next(){ go(i+1); }
+  function prev(){ go(i-1); }
+
+  document.addEventListener('keydown', function(e){
+    var t = e.target.tagName;
+    if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT') return;
+    if(document.getElementById('termsModal').classList.contains('open')) return;
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'){ e.preventDefault(); next(); }
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp'){ e.preventDefault(); prev(); }
+  });
+
+  /* feedback */
+  var fb = {scopeReact:'', scopeNote:'', priceReact:'', priceNote:'', roadReact:'', roadNote:''};
+  function react(el, group, val){
+    var chips = document.querySelectorAll('.chip[data-g="'+group+'"]');
+    chips.forEach(function(c){ c.classList.remove('sel'); });
+    el.classList.add('sel');
+    fb[group+'React']=val;
+  }
+  function setFbStatus(msg){
+    var els=document.querySelectorAll('.fbstatus');
+    els.forEach(function(e){ e.textContent=msg; });
+  }
+  function collectItems(){
+    var items=[];
+    if(fb.scopeReact||fb.scopeNote) items.push({section:'scope', reaction:fb.scopeReact, message:fb.scopeNote});
+    if(fb.priceReact||fb.priceNote) items.push({section:'price', reaction:fb.priceReact, message:fb.priceNote});
+    if(fb.roadReact||fb.roadNote)   items.push({section:'roadmap', reaction:fb.roadReact, message:fb.roadNote});
+    return items;
+  }
+  function mailtoFallback(name, items){
+    var lines=["From: "+name,""];
+    items.forEach(function(it){
+      lines.push("— "+((it.section||'note').toUpperCase())+" —");
+      lines.push("Reaction: "+(it.reaction||'(none)'));
+      if(it.message) lines.push("Notes: "+it.message);
+      lines.push("");
+    });
+    lines.push("(Sent from the Chief O.S. V1 proposal.)");
+    var body=encodeURIComponent(lines.join("\n"));
+    var subject=encodeURIComponent("Feedback on the Chief O.S. V1 Proposal — "+name);
+    window.location.href="mailto:"+MIKE_EMAIL+"?subject="+subject+"&body="+body;
+  }
+  function sendFeedback(){
+    var name=(document.getElementById('sigName').value||'').trim()||'Dan Kruse';
+    var items=collectItems();
+    if(!items.length){ setFbStatus("Add a reaction or a note first."); return; }
+    setFbStatus("Sending…");
+    fetch(FEEDBACK_ENDPOINT,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({source:FEEDBACK_SOURCE, name:name, items:items})})
+      .then(function(r){ if(!r.ok) throw new Error('bad status'); return r.json(); })
+      .then(function(){ setFbStatus("Sent to Mike. Thank you."); })
+      .catch(function(){ setFbStatus("Network blocked it — opening your email instead…"); setTimeout(function(){ mailtoFallback(name, items); }, 700); });
+  }
+
+  /* acceptance — soft gate: name + date + agree only */
+  function refresh(){
+    document.getElementById('ackScopeRow').classList.toggle('done', acked.scope);
+    document.getElementById('ackRoadRow').classList.toggle('done', acked.road);
+    document.getElementById('ackTermsRow').classList.toggle('done', acked.terms);
+    if(acked.scope) document.querySelector('#ackScopeRow .mark').textContent='✓';
+    if(acked.road) document.querySelector('#ackRoadRow .mark').textContent='✓';
+    document.querySelector('#ackTermsRow .mark').textContent = acked.terms ? '✓' : '3';
+    document.getElementById('termsHint').style.display = acked.terms ? 'none' : 'block';
+    var name=document.getElementById('sigName').value.trim();
+    var date=document.getElementById('sigDate').value;
+    var agree=document.getElementById('agree').checked;
+    document.getElementById('acceptBtn').disabled = !(name.length>1&&date&&agree&&acked.terms);
+  }
+  function doAccept(){
+    var name=document.getElementById('sigName').value.trim();
+    var date=document.getElementById('sigDate').value;
+    var agreed=document.getElementById('agree').checked;
+    // Log the acceptance (the E-SIGN record) before checkout. Fire-and-forget — never block payment on it.
+    try{
+      fetch(ACCEPT_ENDPOINT,{method:'POST',headers:{'content-type':'application/json'},
+        body:JSON.stringify({source:FEEDBACK_SOURCE, name:name, sig_date:date, agreed:agreed, amount:'$5,000 — v1', doc_version:DOC_VERSION})
+      }).catch(function(){});
+    }catch(e){}
+    document.getElementById('confirm').classList.add('show');
+    document.getElementById('confirmSub').textContent =
+      "Thanks, "+(name.split(' ')[0]||"Dan")+". Opening secure checkout — your acceptance is recorded and on file with Mike.";
+    setTimeout(function(){ window.open(STRIPE_PAYMENT_LINK,'_blank'); }, 1200);
+  }
+  function doBook(){ window.open(BOOKING_LINK,'_blank'); }
+  function openPRD(){ window.open(PRD_LINK,'_blank'); }
+
+  function openTerms(){ document.getElementById('termsModal').classList.add('open'); }
+  function signTerms(){ acked.terms = document.getElementById('termsAgree').checked; refresh(); }
+  function closeTerms(){ document.getElementById('termsModal').classList.remove('open'); }
+  document.getElementById('termsModal').addEventListener('click',function(e){ if(e.target===this) closeTerms(); });
+
+  (function(){ var d=new Date(); var p=function(n){return String(n).padStart(2,'0');};
+    document.getElementById('sigDate').value = d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); })();
+
+  render();
+</script>
+</body>
+</html>
