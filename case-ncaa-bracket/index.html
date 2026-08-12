@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>Case Study: A March Madness draft model, built by talking | CHIEF AI Accelerator</title>
+<meta name="description" content="A friendly bracket pool became a real expected-value decision. One plain-English prompt produced a ranked draft board of all 64 teams, a strategy, and a sharper answer once I pushed back. No code.">
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{margin:0; background:var(--cream); color:#23364a; font-family:var(--sans); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+.wrap{max-width:760px; margin:0 auto; padding:32px 24px 80px;}
+.brand{display:flex; align-items:center; gap:10px; margin-bottom:18px;}
+.logo{width:26px; height:26px; border-radius:7px; background:var(--teal); display:inline-block; flex:none;}
+.eyebrow{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:var(--navy-mute);}
+.crumb{margin-bottom:22px;}
+.pill{display:inline-block; font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:#fff; background:var(--teal); padding:5px 10px; border-radius:6px; margin-bottom:16px;}
+h1{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:44px; line-height:1.08; letter-spacing:-.01em; margin:0 0 16px;}
+.lede{font-size:18px; color:var(--navy-light); line-height:1.5; margin:0 0 16px;}
+.meta{margin:0 0 8px;}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:32px 0 8px;}
+.stat{background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 16px;}
+.stat .num{font-family:var(--serif); font-weight:700; color:var(--teal-dark); font-size:30px; line-height:1; letter-spacing:-.02em;}
+.stat .cap{font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:9.5px; color:var(--navy-mute); margin-top:9px; line-height:1.4;}
+section{margin-top:42px;}
+.s-label{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:var(--navy-mute); margin:0 0 8px;}
+h2{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:26px; line-height:1.15; letter-spacing:-.01em; margin:0 0 14px;}
+p{margin:0 0 16px;}
+code{font-family:var(--mono); font-size:.88em; background:var(--cream-deep); padding:1px 6px; border-radius:5px; color:var(--navy);}
+.callout{background:var(--teal-light); border-left:4px solid var(--teal); border-radius:0 12px 12px 0; padding:20px 22px; margin:26px 0; font-family:var(--serif); font-size:23px; line-height:1.32; color:var(--navy); font-weight:700;}
+.card{background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px;}
+.card.muted{background:var(--cream-deep);}
+.card h3{font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10.5px; margin:0 0 12px; color:var(--navy-mute);}
+.ptext{font-family:var(--serif); font-size:18px; line-height:1.5; color:var(--navy); margin:0;}
+.vtable{width:100%; border-collapse:collapse; margin:20px 0; font-size:14.5px;}
+.vtable th{font-family:var(--mono); text-transform:uppercase; letter-spacing:.08em; font-size:10px; color:var(--navy-mute); text-align:left; padding:0 10px 8px 0; font-weight:600;}
+.vtable th.ev, .vtable td.ev{text-align:right; white-space:nowrap;}
+.vtable td{padding:9px 10px 9px 0; border-top:1px solid var(--line);}
+.vtable td.r{font-family:var(--serif); font-weight:700; color:var(--teal-dark); width:34px;}
+.vtable td.tm{font-weight:600; color:var(--navy);}
+.vtable td.ev{font-family:var(--mono); font-weight:600;}
+.steps{margin:24px 0;}
+.step{background:#fff; border:1px solid var(--line); border-left:4px solid var(--teal); border-radius:12px; padding:18px 20px; margin-bottom:12px;}
+.step h3{font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:11px; color:var(--navy-mute); margin:0 0 8px;}
+.step h3 b{color:var(--teal-dark);}
+.step p{margin:0;}
+.take{font-weight:700; color:var(--navy);}
+.hood{display:flex; align-items:stretch; gap:10px; flex-wrap:wrap; margin:22px 0;}
+.hood .node{flex:1; min-width:150px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
+.hood .node .k{font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:9.5px; color:var(--teal-dark); font-weight:700;}
+.hood .node .v{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:16px; margin-top:4px;}
+.hood .node p{font-size:13px; color:var(--navy-mute); margin:5px 0 0; line-height:1.45;}
+.hood .arrow{align-self:center; color:var(--teal); font-size:20px; flex:0 0 auto;}
+@media (max-width:620px){.hood{flex-direction:column;} .hood .arrow{transform:rotate(90deg);}}
+.bridge{background:#fff; border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:12px; padding:26px; margin-top:48px;}
+.bridge .s-label{color:var(--gold);}
+.bridge h2{font-size:24px; margin-bottom:10px;}
+.bridge p{margin-bottom:20px;}
+.btn{display:inline-block; font-family:var(--sans); font-weight:600; font-size:15px; text-decoration:none; color:#fff; background:var(--navy); padding:13px 24px; border-radius:8px;}
+.btn:hover{background:var(--navy-light);}
+footer{margin-top:56px; padding-top:22px; border-top:1px solid var(--line); font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:var(--navy-mute);}
+@media (max-width:620px){.wrap{padding:24px 18px 64px;} h1{font-size:33px;} h2{font-size:22px;} .stats{grid-template-columns:repeat(2,1fr);} .callout{font-size:20px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><span class="logo"></span><span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span></div>
+  <div class="crumb eyebrow">Accelerator / Case Studies / NCAA Draft</div>
+
+  <span class="pill">Case Study</span>
+
+  <h1>I built a March Madness draft model by talking to my computer, and won.</h1>
+  <p class="lede">A friendly bracket pool is the kind of analysis I would never actually sit down and do. Too much work for a game night. So I tried AI to see what it could do. Forty-five minutes later I had a ranked board of all 64 teams and a draft strategy, and I won the pool. No spreadsheet formulas. No code.</p>
+  <p class="meta eyebrow">One casual prompt · 45 minutes · $750 won</p>
+
+  <div class="stats">
+    <div class="stat"><div class="num">$750</div><div class="cap">What I won</div></div>
+    <div class="stat"><div class="num">64</div><div class="cap">Teams ranked by expected value</div></div>
+    <div class="stat"><div class="num">~45m</div><div class="cap">Start to finish</div></div>
+    <div class="stat"><div class="num">0</div><div class="cap">Lines of code I wrote</div></div>
+  </div>
+
+  <section>
+    <p class="s-label">The Problem</p>
+    <h2>Analysis I would never actually do</h2>
+    <p>Eight of us run a snake draft of NCAA tournament teams. The scoring rewards survival, not favorites: each team pays its seed times the round it reaches, so a 15-seed that wins a second-round game pays $30 and a 1-seed that wins it pays $2. Everyone senses the strategy, draft middle seeds that go far, but nobody can quantify it across 64 teams.</p>
+    <p>Here is the honest part: before AI, there is zero chance I do this. Ranking 64 teams by expected value is a weekend of work for a game night, so I never bothered. This time I just tried AI to see what it could do.</p>
+    <p class="take">Strip away the basketball and this is a portfolio problem: rank 64 options by expected value under uncertainty, then pick in order. The kind of analysis that stays undone because it costs too much time.</p>
+  </section>
+
+  <section>
+    <p class="s-label">The Prompt</p>
+    <h2>Here is everything I typed</h2>
+    <div class="card muted">
+      <h3>The opening message</h3>
+      <p class="ptext">"I'm doing an 8-team snake draft for the NCAA basketball tournament. The game pays seed × the round, so a 15-seed that wins a second-round game gets $30. The strategy is to pick middle seeds that will go far in the tournament. I'd like you to research all 64 teams and come up with a ranking system to help me draft. I have the 6th pick in the first round."</p>
+    </div>
+    <p>No formula. No code. I described the game, the scoring rule, my intuition, and my one constraint, the way you would brief a sharp analyst.</p>
+    <p class="take">If you can explain the rules of the game and what you are trying to win, you can brief the model. That is the whole skill.</p>
+  </section>
+
+  <section>
+    <p class="s-label">What It Built</p>
+    <h2>A model, a ranked board, and a strategy, in minutes</h2>
+    <p>It researched all 64 teams across the four regions, pulled the current bracket and betting odds, and built an expected-value model: a team's value equals its seed times the sum, over each round, of the round number times its odds of getting there. Then it delivered a spreadsheet with three tabs: a full ranked draft board color-coded by tier, my specific snake-draft picks, and a strategy guide.</p>
+    <div class="callout">The favorites are a trap. Duke winning it all pays $21. A 4-seed winning it all pays $84. The money lives in the 4 to 7 seeds.</div>
+    <table class="vtable">
+      <thead><tr><th>Rank</th><th>Team</th><th>Seed</th><th class="ev">Value</th></tr></thead>
+      <tbody>
+        <tr><td class="r">1</td><td class="tm">Nebraska</td><td>4</td><td class="ev">$15.00</td></tr>
+        <tr><td class="r">2</td><td class="tm">Alabama</td><td>4</td><td class="ev">$14.96</td></tr>
+        <tr><td class="r">3</td><td class="tm">Kansas</td><td>4</td><td class="ev">$14.93</td></tr>
+        <tr><td class="r">4</td><td class="tm">Kentucky</td><td>7</td><td class="ev">$14.83</td></tr>
+        <tr><td class="r">5</td><td class="tm">Tennessee</td><td>6</td><td class="ev">$14.35</td></tr>
+        <tr><td class="r">6</td><td class="tm">Arkansas</td><td>4</td><td class="ev">$14.18</td></tr>
+        <tr><td class="r">7</td><td class="tm">Saint Mary's</td><td>7</td><td class="ev">$14.06</td></tr>
+        <tr><td class="r">8</td><td class="tm">Miami FL</td><td>7</td><td class="ev">$14.05</td></tr>
+      </tbody>
+    </table>
+    <p>The marching orders were clear: at pick 6, target a 4-seed like Arkansas. Load up on 4 to 7 seeds early, grab 8 to 10 seeds in the middle rounds, and save the 11 and 12 seed Cinderellas for last. Let everyone else waste early picks on 1-seeds worth a dollar a win.</p>
+    <p class="take">One pass produced what a sharp analyst might spend a weekend on: a defensible model, a ranked board, and a plan of attack.</p>
+  </section>
+
+  <section>
+    <p class="s-label">The Tweaks</p>
+    <h2>Then I nudged it, one prompt at a time</h2>
+    <p>The first board was good. The edge came from a few plain-English follow-ups, each one sharpening the model.</p>
+    <div class="card muted"><h3>Tweak 1 · Find the real edge</h3><p class="ptext">"What other data sources would we need to swing these rankings? Injury reports? Betting odds and history? Last 10 game streak? Think outside the box to get an edge."</p></div>
+    <p>It came back with the edges that actually move money: KenPom efficiency (how a team wins, not just that it does), injury reports (North Carolina had lost its best player, so a 6-seed was really a 10-seed), Vegas round-by-round odds, and tempo, you want your mid-seeds to be high-variance chaos teams, not slow grinders.</p>
+    <div class="card muted"><h3>Tweak 2 · Challenge the pick</h3><p class="ptext">I pushed back on its championship pick. It was riding raw talent and under-weighting a key injury.</p></div>
+    <p>It revised in real time: a point-guard injury compounds every round against elite defenses, so Duke bows out in the Final Four instead of cutting down the nets.</p>
+    <div class="card muted"><h3>Tweak 3 · Go deeper</h3><p class="ptext">"I have Florida and Michigan in the final now. Predict the score."</p></div>
+    <p>It reasoned through both profiles and called a low-scoring defensive grinder, Michigan 63, Florida 58, detailed enough to sanity-check every branch of the board.</p>
+    <p class="take">The value was never the first answer. It was interrogating it, the same judgment I would bring to any analyst's model. AI proposes. I still decide.</p>
+  </section>
+
+  <section>
+    <p class="s-label">Under The Hood</p>
+    <h2>The entire stack was a conversation and a file</h2>
+    <p>Most builds have parts talking to each other: an inbox connector here, a database there. This one had none of that. Here is literally everything involved.</p>
+    <div class="hood">
+      <div class="node"><div class="k">You</div><div class="v">A plain-English brief</div><p>The rules, the goal, the one constraint.</p></div>
+      <div class="arrow">&#8594;</div>
+      <div class="node"><div class="k">Claude</div><div class="v">Research + model</div><p>Read the bracket and odds off the web, built the expected-value math.</p></div>
+      <div class="arrow">&#8594;</div>
+      <div class="node"><div class="k">Output</div><div class="v">One spreadsheet</div><p>A three-tab file: board, picks, strategy.</p></div>
+    </div>
+    <p class="take">No connectors. No database. No plugins. No code I ran. A conversation and a file, and that was enough to win.</p>
+  </section>
+
+  <section>
+    <p class="s-label">Why It Matters</p>
+    <h2>This was never about basketball</h2>
+    <p>The whole thing took about 45 minutes, for a game night, and I won the pool. But it was a messy, multi-variable ranking decision made under uncertainty, built and pressure-tested by talking. Now swap the 64 teams for your vendors, your markets, your open deals, your hiring shortlist, or your feature backlog. Same move. The model does the math. You bring the judgment and the pushback.</p>
+    <div class="bridge">
+      <p class="s-label">The Chief AI Accelerator</p>
+      <h2>Want to build things like this?</h2>
+      <p>This is the everyday skill the program teaches: bring a real decision, brief it in plain English, and pressure-test what comes back. No code required.</p>
+      <a class="btn" href="/">See the Accelerator</a>
+    </div>
+  </section>
+
+  <footer>Case Study · NCAA Draft · Michael Gardon · CHIEF AI Accelerator</footer>
+
+</div>
+</body>
+</html>

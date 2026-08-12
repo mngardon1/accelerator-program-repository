@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>Case Study: One ranked draft board from a pile of spreadsheets | CHIEF AI Accelerator</title>
+<meta name="description" content="A volunteer coach turned five spreadsheets and three Word docs on 156 kids into one ranked draft board in 30 minutes. The only input was dragging in the files.">
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{margin:0; background:var(--cream); color:#23364a; font-family:var(--sans); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+.wrap{max-width:760px; margin:0 auto; padding:32px 24px 80px;}
+.brand{display:flex; align-items:center; gap:10px; margin-bottom:18px;}
+.logo{width:26px; height:26px; border-radius:7px; background:var(--teal); display:inline-block; flex:none;}
+.eyebrow{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:var(--navy-mute);}
+.crumb{margin-bottom:22px;}
+.pill{display:inline-block; font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:#fff; background:var(--teal); padding:5px 10px; border-radius:6px; margin-bottom:16px;}
+h1{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:44px; line-height:1.08; letter-spacing:-.01em; margin:0 0 16px;}
+.lede{font-size:18px; color:var(--navy-light); line-height:1.5; margin:0 0 16px;}
+.meta{margin:0 0 8px;}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:32px 0 8px;}
+.stat{background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 16px;}
+.stat .num{font-family:var(--serif); font-weight:700; color:var(--teal-dark); font-size:30px; line-height:1; letter-spacing:-.02em;}
+.stat .cap{font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:9.5px; color:var(--navy-mute); margin-top:9px; line-height:1.4;}
+section{margin-top:42px;}
+.s-label{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:var(--navy-mute); margin:0 0 8px;}
+h2{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:26px; line-height:1.15; letter-spacing:-.01em; margin:0 0 14px;}
+p{margin:0 0 16px;}
+code{font-family:var(--mono); font-size:.88em; background:var(--cream-deep); padding:1px 6px; border-radius:5px; color:var(--navy);}
+.callout{background:var(--teal-light); border-left:4px solid var(--teal); border-radius:0 12px 12px 0; padding:20px 22px; margin:26px 0; font-family:var(--serif); font-size:23px; line-height:1.32; color:var(--navy); font-weight:700;}
+.card{background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px;}
+.card.muted{background:var(--cream-deep);}
+.card h3{font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10.5px; margin:0 0 12px; color:var(--navy-mute);}
+.ptext{font-family:var(--serif); font-size:18px; line-height:1.5; color:var(--navy); margin:0;}
+.take{font-weight:700; color:var(--navy);}
+.hood{display:flex; align-items:stretch; gap:10px; flex-wrap:wrap; margin:22px 0;}
+.hood .node{flex:1; min-width:150px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
+.hood .node .k{font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:9.5px; color:var(--teal-dark); font-weight:700;}
+.hood .node .v{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:16px; margin-top:4px;}
+.hood .node p{font-size:13px; color:var(--navy-mute); margin:5px 0 0; line-height:1.45;}
+.hood .arrow{align-self:center; color:var(--teal); font-size:20px; flex:0 0 auto;}
+@media (max-width:620px){.hood{flex-direction:column;} .hood .arrow{transform:rotate(90deg);}}
+.bridge{background:#fff; border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:12px; padding:26px; margin-top:48px;}
+.bridge .s-label{color:var(--gold);}
+.bridge h2{font-size:24px; margin-bottom:10px;}
+.bridge p{margin-bottom:20px;}
+.btn{display:inline-block; font-family:var(--sans); font-weight:600; font-size:15px; text-decoration:none; color:#fff; background:var(--navy); padding:13px 24px; border-radius:8px;}
+.btn:hover{background:var(--navy-light);}
+footer{margin-top:56px; padding-top:22px; border-top:1px solid var(--line); font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:var(--navy-mute);}
+@media (max-width:620px){.wrap{padding:24px 18px 64px;} h1{font-size:33px;} h2{font-size:22px;} .stats{grid-template-columns:repeat(2,1fr);} .callout{font-size:20px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><span class="logo"></span><span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span></div>
+  <div class="crumb eyebrow">Accelerator / Case Studies / Little League Draft</div>
+
+  <span class="pill">Case Study</span>
+
+  <h1>I got a ranked board for my Little League draft from eight spreadsheets I never opened.</h1>
+  <p class="lede">I coach Little League on nights and weekends. The league coordinator handed me five spreadsheets and three Word docs on 156 kids and said good luck. There was no world where I cross-referenced all of that by hand to rank a 13-round draft. So I dropped the files in a folder, described what I wanted, and thirty minutes later I had one ranked board. The only thing I did was drag in the files.</p>
+  <p class="meta eyebrow">Volunteer coach · 156 kids · 30 minutes · one folder of files</p>
+
+  <div class="stats">
+    <div class="stat"><div class="num">156</div><div class="cap">Players consolidated and ranked</div></div>
+    <div class="stat"><div class="num">8</div><div class="cap">Spreadsheets and docs merged</div></div>
+    <div class="stat"><div class="num">~30m</div><div class="cap">Start to finish</div></div>
+    <div class="stat"><div class="num">1</div><div class="cap">Thing I did: drag in the files</div></div>
+  </div>
+
+  <section>
+    <p class="s-label">The Problem</p>
+    <h2>Who has time to merge, dedupe, and combine 8 spreadsheets?</h2>
+    <p>Not a volunteer dad coach on a school night. The coordinator sent a master list of 156 kids plus separate coach-evaluation files, a self-rating column, tournament rosters, and seasons played, eight files in all, in different shapes, none of them talking to each other. Everything I needed to draft well was in there, buried.</p>
+    <p>So the honest outcome, every year, is that you draft on gut and a few names you remember. The analysis just does not happen.</p>
+    <p class="take">This is the everyday version of the real problem: the data is real, but it is spread across files in inconsistent shapes, so the good decision loses to the fast one.</p>
+  </section>
+
+  <section>
+    <p class="s-label">The Prompt</p>
+    <h2>I pointed it at the folder</h2>
+    <div class="card muted">
+      <h3>The opening message</h3>
+      <p class="ptext">"I'm doing a draft of 11 and 12 year olds for Little League. In this folder are several spreadsheets. Analyze these by player and consolidate the information so I can rank my choices. Please ask me questions for clarification as we go. Ideally we'd have a separate spreadsheet with all the 11 and 12 year olds in rank order by round. We may have up to 13 rounds."</p>
+    </div>
+    <p>I formatted nothing. I dropped the coordinator's files into a folder, pointed at it, and said what I wanted, including that it should ask me questions instead of guessing.</p>
+    <p class="take">If you can hand a sharp assistant a folder and describe the outcome, you can do this. That is the entire ask.</p>
+  </section>
+
+  <section>
+    <p class="s-label">How It Worked</p>
+    <h2>It asked before it built</h2>
+    <p>It opened the folder, found the master list of 156 players and the twelve coach-evaluation files, and then did the thing a good analyst does: it asked how I wanted the decision made before making it. How should it weight coach evals versus tournament experience versus seasons played? What were the different files? How many teams were drafting?</p>
+    <div class="callout">Coach evals first, then tournament experience, then seasons played, positions useful. My weighting. Its math.</div>
+    <p>I answered in a sentence or two. Twelve teams, thirteen rounds, 156 picks. It consolidated every file into one ranked draft board, in order, by round.</p>
+    <p class="take">It behaved like a good hire: it learned how I think about the decision before it handed me an answer.</p>
+  </section>
+
+  <section>
+    <p class="s-label">The Tweaks</p>
+    <h2>Then I steered it, one line at a time</h2>
+    <p>The first board was close. A few plain-English nudges made it mine.</p>
+    <div class="card muted"><h3>Tweak 1 · Scope it</h3><p class="ptext">"Starting with the Draft List spreadsheet, only tab 'Major BB', those are the only names I care about."</p></div>
+    <p>It trimmed the pool to exactly the players in play, so the board was not cluttered with names I would never draft.</p>
+    <div class="card muted"><h3>Tweak 2 · Keep my judgment in it</h3><p class="ptext">I had it fold my own 32 notes into the board, side by side with its own.</p></div>
+    <p>It merged them into a "Your Notes" column next to an "Asst Notes" column, so I could see my read and its read on every kid at a glance. I stayed the decision-maker.</p>
+    <div class="card muted"><h3>Tweak 3 · Add a new source</h3><p class="ptext">"Use this sheet and add the Tournament Team for each kid under 'Travel Team' in the draft board."</p></div>
+    <p>I dragged in the travel-team rosters mid-stream. It tagged 34 players with their specific tournament team and flagged their experience, no rebuild required.</p>
+    <p class="take">Each nudge sharpened the board. It kept my notes next to its own, so the judgment stayed mine.</p>
+  </section>
+
+  <section>
+    <p class="s-label">Under The Hood</p>
+    <h2>A folder of files and a conversation</h2>
+    <p>No database. No internet. No plugins. The only connection was a folder on my own computer.</p>
+    <div class="hood">
+      <div class="node"><div class="k">Your files</div><div class="v">A folder of spreadsheets and eval docs</div><p>Dropped in exactly as the coordinator sent them.</p></div>
+      <div class="arrow">&#8594;</div>
+      <div class="node"><div class="k">Claude</div><div class="v">Reads, consolidates, ranks</div><p>Opened the folder, merged every file, ranked by my weighting.</p></div>
+      <div class="arrow">&#8594;</div>
+      <div class="node"><div class="k">Output</div><div class="v">One ranked draft board</div><p>156 players by round, my notes beside its notes.</p></div>
+    </div>
+    <p class="take">I dragged in files. It did the rest. That was the whole system.</p>
+  </section>
+
+  <section>
+    <p class="s-label">Why It Matters</p>
+    <h2>This was never about baseball</h2>
+    <p>It took thirty minutes, on a school night, and I walked into the draft with the best board in the room. But the real move was consolidating messy, inconsistent data from a pile of sources into one ranked, decision-ready view. Swap the 156 kids for your candidates, your vendors, your accounts, or your deals. The files are already sitting in a folder somewhere. This is how you finally use them.</p>
+    <div class="bridge">
+      <p class="s-label">The Chief AI Accelerator</p>
+      <h2>Want to build things like this?</h2>
+      <p>This is the everyday skill the program teaches: point AI at the mess you already have, describe the outcome, and steer it in plain English. No code required.</p>
+      <a class="btn" href="/">See the Accelerator</a>
+    </div>
+  </section>
+
+  <footer>Case Study · Little League Draft · Michael Gardon · CHIEF AI Accelerator</footer>
+
+</div>
+</body>
+</html>
