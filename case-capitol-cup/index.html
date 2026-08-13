@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>Case Study: I built live scoring for our golf event | CHIEF AI Accelerator</title>
+<meta name="description" content="Golf Genius couldn't score our custom multi-format golf event live. So I built a web app that does: tap a score, watch the team total move on every phone. Built by talking.">
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{margin:0; background:var(--cream); color:#23364a; font-family:var(--sans); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+.wrap{max-width:760px; margin:0 auto; padding:32px 24px 80px;}
+.brand{display:flex; align-items:center; gap:10px; margin-bottom:18px;}
+.logo{width:26px; height:26px; border-radius:7px; background:var(--teal); display:inline-block; flex:none;}
+.eyebrow{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:var(--navy-mute);}
+.crumb{margin-bottom:22px;}
+.pill{display:inline-block; font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:#fff; background:var(--teal); padding:5px 10px; border-radius:6px; margin-bottom:16px;}
+h1{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:42px; line-height:1.1; letter-spacing:-.01em; margin:0 0 16px;}
+.lede{font-size:18px; color:var(--navy-light); line-height:1.5; margin:0 0 16px;}
+.meta{margin:0 0 8px;}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:32px 0 8px;}
+.stat{background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 16px;}
+.stat .num{font-family:var(--serif); font-weight:700; color:var(--teal-dark); font-size:30px; line-height:1; letter-spacing:-.02em;}
+.stat .cap{font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:9.5px; color:var(--navy-mute); margin-top:9px; line-height:1.4;}
+section{margin-top:42px;}
+.s-label{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:var(--navy-mute); margin:0 0 8px;}
+h2{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:26px; line-height:1.15; letter-spacing:-.01em; margin:0 0 14px;}
+p{margin:0 0 16px;}
+code{font-family:var(--mono); font-size:.88em; background:var(--cream-deep); padding:1px 6px; border-radius:5px; color:var(--navy);}
+.callout{background:var(--teal-light); border-left:4px solid var(--teal); border-radius:0 12px 12px 0; padding:20px 22px; margin:26px 0; font-family:var(--serif); font-size:23px; line-height:1.32; color:var(--navy); font-weight:700;}
+.card{background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px;}
+.card.muted{background:var(--cream-deep);}
+.card h3{font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10.5px; margin:0 0 12px; color:var(--navy-mute);}
+.ptext{font-family:var(--serif); font-size:18px; line-height:1.5; color:var(--navy); margin:0;}
+.take{font-weight:700; color:var(--navy);}
+.hood{display:flex; align-items:stretch; gap:10px; flex-wrap:wrap; margin:22px 0;}
+.hood .node{flex:1; min-width:150px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px;}
+.hood .node .k{font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:9.5px; color:var(--teal-dark); font-weight:700;}
+.hood .node .v{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:16px; margin-top:4px;}
+.hood .node p{font-size:13px; color:var(--navy-mute); margin:5px 0 0; line-height:1.45;}
+.hood .arrow{align-self:center; color:var(--teal); font-size:20px; flex:0 0 auto;}
+@media (max-width:620px){.hood{flex-direction:column;} .hood .arrow{transform:rotate(90deg);}}
+.extra{background:#fff; border:1px solid var(--line); border-radius:12px; padding:8px 22px; margin:20px 0; list-style:none;}
+.extra li{padding:12px 0; border-bottom:1px solid var(--line); font-size:14.5px;}
+.extra li:last-child{border-bottom:none;}
+.extra b{font-family:var(--serif); color:var(--navy);}
+.bridge{background:#fff; border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:12px; padding:26px; margin-top:48px;}
+.bridge .s-label{color:var(--gold);}
+.bridge h2{font-size:24px; margin-bottom:10px;}
+.bridge p{margin-bottom:20px;}
+.btn{display:inline-block; font-family:var(--sans); font-weight:600; font-size:15px; text-decoration:none; color:#fff; background:var(--navy); padding:13px 24px; border-radius:8px;}
+.btn:hover{background:var(--navy-light);}
+footer{margin-top:56px; padding-top:22px; border-top:1px solid var(--line); font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:var(--navy-mute);}
+@media (max-width:620px){.wrap{padding:24px 18px 64px;} h1{font-size:31px;} h2{font-size:22px;} .stats{grid-template-columns:repeat(2,1fr);} .callout{font-size:20px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><span class="logo"></span><span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span></div>
+  <div class="crumb eyebrow">Accelerator / Case Studies / Capitol Cup</div>
+
+  <span class="pill">Case Study</span>
+
+  <h1>Golf Genius couldn't give us live scoring for our multi-format event. So I built my own.</h1>
+  <p class="lede">I captain the Capitol Cup, an annual match between two clubs, 52 players, in a custom format the big tournament software can't score live. For years, the only way to know where the match stood was captains texting each other hole by hole. Now everyone just taps a button and watches the team total move in real time. The core worked after one thirty-minute session. Everything after that was making it better.</p>
+  <p class="meta eyebrow">Annual golf event · 52 players · live leaderboard · built by talking</p>
+
+  <p style="margin:18px 0 0"><a class="btn" href="https://thecapitolcup.com/demo" target="_blank" rel="noopener">Check out the live demo &#8594;</a></p>
+
+  <div class="stats">
+    <div class="stat"><div class="num">30m</div><div class="cap">Core built, one session</div></div>
+    <div class="stat"><div class="num">65</div><div class="cap">Points, scored live</div></div>
+    <div class="stat"><div class="num">52</div><div class="cap">Players, two clubs</div></div>
+    <div class="stat"><div class="num">0</div><div class="cap">"How's your match going?" texts</div></div>
+  </div>
+
+  <section>
+    <p class="s-label">The Problem</p>
+    <h2>We were texting each other scores</h2>
+    <p>The Capitol Cup is a one-day team match, 26 players a side, 27 holes that mix best ball, alternate shot, and singles into one running team total worth 65 points. Golf Genius, the software everyone uses, could not score our format live. So every year the same thing happened: to know if we were winning, captains texted each other match updates and did the math in their heads.</p>
+    <p class="take">The tool everyone uses did not fit our event. That is the usual reason a real need goes unmet: the off-the-shelf thing is close, but it is not yours.</p>
+  </section>
+
+  <section>
+    <p class="s-label">What I Built</p>
+    <h2>One link the whole event runs on</h2>
+    <div class="card muted">
+      <h3>The ask, in plain terms</h3>
+      <p class="ptext">One link my event runs on: a live leaderboard anyone can watch, a dead-simple way for each group to tap their score hole by hole, and it has to understand our format, best ball, alternate shot, and singles, all rolling into one team total.</p>
+    </div>
+    <p>That is what it built. Each group opens their own match link on a phone and taps <b>A wins</b>, <b>halve</b>, or <b>B wins</b> for the hole they just finished. Anyone else opens the leaderboard and watches the score move.</p>
+    <div class="callout">Nobody texts a score anymore. Scorekeepers tap. The team total updates on every phone in about five seconds.</div>
+  </section>
+
+  <section>
+    <p class="s-label">Under The Hood</p>
+    <h2>Real parts, talking to each other</h2>
+    <p>Unlike a one-off spreadsheet, this is a live system with moving pieces. Here is what talks to what.</p>
+    <div class="hood">
+      <div class="node"><div class="k">Scorekeepers</div><div class="v">Phones on the course</div><p>Open their match link and tap the result of each hole.</p></div>
+      <div class="arrow">&#8594;</div>
+      <div class="node"><div class="k">The app</div><div class="v">A cloud worker + database</div><p>Records every hole and computes the team total across all three formats.</p></div>
+      <div class="arrow">&#8594;</div>
+      <div class="node"><div class="k">Everyone else</div><div class="v">The live leaderboard</div><p>Refreshes on every phone about every five seconds.</p></div>
+    </div>
+    <ul class="extra">
+      <li><b>Its own address.</b> The app lives at its own domain, for about ten dollars a year.</li>
+      <li><b>A QR code per group.</b> Print a sheet, each group scans theirs and starts, no logins.</li>
+      <li><b>A pairings board.</b> A separate screen, projected on a TV, to set the matchups the night before.</li>
+      <li><b>Even voice notes.</b> Testers left feedback by talking; the app transcribed it. That built the next round of features.</li>
+    </ul>
+    <p class="take">Phones, a database, a live board, all talking. No app store, no vendor, no code shop. A conversation across a few evenings.</p>
+  </section>
+
+  <section>
+    <p class="s-label">How It Grew</p>
+    <h2>Thirty minutes got the core. Then we kept leveling it up.</h2>
+    <p>The first version worked after one thirty-minute session: tap a score, watch the leaderboard. Everything after that was focusing on what the guys actually needed and automating wherever we could.</p>
+    <div class="card muted"><h3>Printed scorecards, dotted automatically</h3><p>A print-ready card for each group. It calculates every player's course handicap from their index, then dots the card, marking exactly which holes each side gets a stroke. The math that usually starts the arguments, done for you.</p></div>
+    <div class="card muted" style="margin-top:12px"><h3>Individual match view</h3><p>Pull up any single group's live scorecard and follow one match without the whole board.</p></div>
+    <div class="card muted" style="margin-top:12px"><h3>Starting holes</h3><p>A shotgun start puts every group on a different hole. The app follows each group's real hole order.</p></div>
+    <div class="card muted" style="margin-top:12px"><h3>The pairings party</h3><p>A board projected on the TV to set the matchups the night before, more fun and more banter with the guys.</p></div>
+    <p class="take">Thirty minutes got the core working. The printing, the match views, the pairings party, all came from watching the guys use it and removing every bit of friction.</p>
+  </section>
+
+  <section>
+    <p class="s-label">Why It Matters</p>
+    <h2>This was never about golf</h2>
+    <p>Golf Genius is fine for a normal tournament. Ours was not normal, and when the standard tool is 80% right, most people just live with the missing 20% forever. This is the alternative: build the exact thing you need, for about the cost of a domain. Swap the golf event for your reporting, your intake, your ops board, the workflow no vendor sells because it is specific to you.</p>
+    <div class="bridge">
+      <p class="s-label">The Chief AI Accelerator</p>
+      <h2>Want to build things like this?</h2>
+      <p>This is the skill the program teaches: describe the tool you wish existed, in plain English, and build it. No code required.</p>
+      <a class="btn" href="/">See the Accelerator</a>
+    </div>
+  </section>
+
+  <footer>Case Study · Capitol Cup · Michael Gardon · CHIEF AI Accelerator</footer>
+
+</div>
+</body>
+</html>
