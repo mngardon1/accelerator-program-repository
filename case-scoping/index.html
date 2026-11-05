@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F9F8F5">
+<title>Case Study: Scoping with AI | CHIEF AI Accelerator</title>
+<meta name="description" content="A financial advisory owner gave AI one paragraph about a $100,000 goal. Scoping showed what it filled in, and what was still missing before anyone built anything.">
+<style>
+:root{
+  --teal:#13B5A2; --teal-light:#DCFAF5; --teal-dark:#12917E;
+  --navy:#132539; --navy-light:#2A3F54; --navy-mute:rgba(19,37,57,0.55);
+  --cream:#F9F8F5; --cream-deep:#F2EFE8; --gold:#D4A338;
+  --line:rgba(19,37,57,0.08);
+  --serif:"Iowan Old Style","Charter","Cochin",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Menlo","JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0; background:var(--cream); color:#23364a;
+  font-family:var(--sans); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px; margin:0 auto; padding:32px 24px 80px;}
+
+/* Brand header */
+.brand{display:flex; align-items:center; gap:10px; margin-bottom:18px;}
+.logo{width:26px; height:26px; border-radius:7px; background:var(--teal); display:inline-block; flex:none;}
+.eyebrow{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:var(--navy-mute);}
+.crumb{margin-bottom:22px;}
+
+/* Pill */
+.pill{
+  display:inline-block; font-family:var(--mono); text-transform:uppercase;
+  letter-spacing:.14em; font-size:10.5px; color:#fff; background:var(--teal);
+  padding:5px 10px; border-radius:6px; margin-bottom:16px;
+}
+
+/* Title block */
+h1{
+  font-family:var(--serif); font-weight:700; color:var(--navy);
+  font-size:44px; line-height:1.08; letter-spacing:-.01em; margin:0 0 16px;
+}
+.lede{font-size:18px; color:var(--navy-light); line-height:1.5; margin:0 0 16px;}
+.meta{margin:0 0 8px;}
+
+/* Stat band */
+.stats{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
+  margin:32px 0 8px;
+}
+.stat{
+  background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 16px;
+}
+.stat .num{font-family:var(--serif); font-weight:700; color:var(--teal-dark); font-size:30px; line-height:1; letter-spacing:-.02em;}
+.stat .cap{font-family:var(--mono); text-transform:uppercase; letter-spacing:.1em; font-size:9.5px; color:var(--navy-mute); margin-top:9px; line-height:1.4;}
+
+/* Sections */
+section{margin-top:42px;}
+.s-label{font-family:var(--mono); text-transform:uppercase; letter-spacing:.14em; font-size:10.5px; color:var(--navy-mute); margin:0 0 8px;}
+h2{font-family:var(--serif); font-weight:700; color:var(--navy); font-size:26px; line-height:1.15; letter-spacing:-.01em; margin:0 0 14px;}
+p{margin:0 0 16px;}
+
+/* Teal callout */
+.callout{
+  background:var(--teal-light); border-left:4px solid var(--teal);
+  border-radius:0 12px 12px 0; padding:20px 22px; margin:26px 0;
+  font-family:var(--serif); font-size:23px; line-height:1.32; color:var(--navy); font-weight:700;
+}
+
+/* Two-up grid */
+.grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:24px 0;}
+.card{background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px;}
+.card.accent{border-left:4px solid var(--teal);}
+.card.muted{background:var(--cream-deep);}
+.card h3{font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:10.5px; margin:0 0 12px; color:var(--navy-mute);}
+.card ul{margin:0; padding-left:18px;}
+.card li{margin-bottom:7px;}
+.card.muted li{color:var(--navy-mute);}
+
+.take{font-weight:700; color:var(--navy);}
+
+/* Bridge / CTA */
+.bridge{
+  background:#fff; border:1px solid var(--line); border-left:4px solid var(--gold);
+  border-radius:12px; padding:26px; margin-top:48px;
+}
+.bridge .s-label{color:var(--gold);}
+.bridge h2{font-size:24px; margin-bottom:10px;}
+.bridge p{margin-bottom:20px;}
+.btn{
+  display:inline-block; font-family:var(--sans); font-weight:600; font-size:15px;
+  text-decoration:none; color:#fff; background:var(--navy);
+  padding:13px 24px; border-radius:8px;
+}
+.btn:hover{background:var(--navy-light);}
+
+footer{
+  margin-top:56px; padding-top:22px; border-top:1px solid var(--line);
+  font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em;
+  font-size:10px; color:var(--navy-mute);
+}
+
+@media (max-width:620px){
+  .wrap{padding:24px 18px 64px;}
+  h1{font-size:33px;}
+  h2{font-size:22px;}
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .grid{grid-template-columns:1fr;}
+  .callout{font-size:20px;}
+}
+</style>
+<style>
+.raw{background:#fff;border:1px solid var(--line);border-left:4px solid var(--navy-mute);border-radius:0 12px 12px 0;padding:18px 22px;margin:18px 0;font-size:15.5px;color:var(--navy-light);font-style:italic}
+.row{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:10px 0}
+.row .tag{flex:none;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;border-radius:999px;padding:4px 9px;margin-top:3px;width:92px;text-align:center}
+.tag.filled{background:var(--teal-light);color:var(--teal-dark)}
+.tag.partial{background:#FBF3DE;color:#9a7720}
+.tag.gap{background:var(--cream-deep);color:var(--navy-mute)}
+.row h3{font-family:var(--serif);font-size:18px;color:var(--navy);margin:0 0 4px}
+.row p{margin:0;font-size:15px}
+.row .q{margin-top:6px;font-size:14px;color:var(--navy-mute)}
+ol.steps{padding-left:20px;margin:0 0 16px}
+ol.steps li{margin:8px 0}
+.dl{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.btn.alt{background:#fff;color:var(--navy);border:1px solid var(--navy)}
+.btn.alt:hover{background:var(--cream-deep)}
+@media (max-width:620px){.row{flex-direction:column;gap:8px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand"><span class="logo"></span><span class="eyebrow">Michael Gardon · CHIEF AI Accelerator</span></div>
+  <div class="crumb eyebrow">Accelerator / Case Studies / Scoping</div>
+
+  <span class="pill">Case Study</span>
+  <h1>A financial advisor gave AI one paragraph. Scoping showed what was missing.</h1>
+  <p class="lede">He wanted AI to find $100,000 of value in how his office runs. One paragraph filled in the goal. Scoping showed the three things nobody had said yet.</p>
+  <div class="meta eyebrow">Financial advisory practice · One paragraph of input · Scoped before any build</div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">1</div><div class="cap">Paragraph of raw input</div></div>
+    <div class="stat"><div class="num">$100K</div><div class="cap">The value he set as the win</div></div>
+    <div class="stat"><div class="num">3</div><div class="cap">Gaps that had to close first</div></div>
+    <div class="stat"><div class="num">5</div><div class="cap">Steps in the build order</div></div>
+  </div>
+
+  <section>
+    <p class="s-label">The Ask</p>
+    <h2>"Most of what we do is just how we've always done it"</h2>
+    <p>The owner of a financial advisory practice brought this to a scoping session. Here it is, as he wrote it:</p>
+    <div class="raw">"I want to be able to take a look at the processes and ways we currently manage our financial advisory practice. Most of what we do is just because that's how we've always done it. I'd like to be able to spot inefficiencies, and come up with better ways to manage our office. I think we're trying to raise quality, and that means proposing processes or ways of working that we haven't done before. This working in 90 days: Claude has a high-level view of our systems and processes. I can bring in a specific workflow, point to the SOPs or process docs we currently have and explore ways we could re-engineer them. That doesn't just mean tech, but AI or automation can definitely help. Single result: redesign at least one specific process that saves over $100,000 in value."</div>
+    <p class="take">It's a good ask. It's also not a plan yet.</p>
+  </section>
+
+  <section>
+    <p class="s-label">What Scoping Did</p>
+    <h2>One paragraph filled the goal. The rest had holes.</h2>
+    <p>AI sorted the paragraph into a scope doc, section by section. Each section was marked filled, partly filled or still open.</p>
+
+    <div class="row"><span class="tag filled">Filled</span><div><h3>The outcome</h3><p>Find better ways to run the office than "how we've always done it." Raise quality. Win: redesign one process worth $100,000 or more.</p></div></div>
+    <div class="row"><span class="tag filled">Filled</span><div><h3>The 90-day picture</h3><p>AI holds a high-level view of the practice. He brings one workflow and its process docs, and they redesign it together.</p></div></div>
+    <div class="row"><span class="tag partial">Partly</span><div><h3>The inputs</h3><p>Some process docs exist. Nobody knows which processes are written down and which live in people's heads.</p><p class="q">First job: gather the docs into one place, and list which processes have none.</p></div></div>
+    <div class="row"><span class="tag partial">Partly</span><div><h3>The output</h3><p>A redesigned process, plus a living map of how the practice works. The format, and who reads it, weren't stated.</p></div></div>
+    <div class="row"><span class="tag gap">Open</span><div><h3>How the work runs today</h3><p>The actual processes, who runs them and where the time goes. None of it was in the paragraph.</p><p class="q">Question to close it: "Walk me through one process start to finish, the way it really happens today."</p></div></div>
+    <div class="row"><span class="tag gap">Open</span><div><h3>His standard for "better"</h3><p>Without it, AI proposes redesigns he wouldn't sign off on.</p><p class="q">Question to close it: "When you see a process that works well, what's true about it?"</p></div></div>
+    <div class="row"><span class="tag gap">Open</span><div><h3>Compliance and trust</h3><p>Financial advice is regulated. Record-keeping rules, client confidentiality and how accurate a redesign must be had to be settled before any build.</p></div></div>
+  </section>
+
+  <section>
+    <p class="s-label">The Insight</p>
+    <h2>The bottleneck was the paperwork, not the AI</h2>
+    <div class="callout">The hard part was getting the process docs in one place and knowing which ones existed at all.</div>
+    <p>That's what scoping is for. It shows you the real first step before you spend a dollar on the exciting one.</p>
+  </section>
+
+  <section>
+    <p class="s-label">The Plan</p>
+    <h2>Smallest useful version first</h2>
+    <ol class="steps">
+      <li><b>20-minute inventory.</b> List every process bucket in the practice. No detail yet.</li>
+      <li><b>Pick one.</b> Choose the process most likely to clear the $100,000 bar.</li>
+      <li><b>Document today.</b> Write down how it really works now.</li>
+      <li><b>Redesign it.</b> Propose the new version, with AI and without.</li>
+      <li><b>Ship and measure.</b> Put it in place, measure the saving, then move to the next process.</li>
+    </ol>
+    <div class="grid">
+      <div class="card muted">
+        <h3>Without scoping</h3>
+        <ul>
+          <li>Start building on a paragraph</li>
+          <li>Find the compliance wall halfway in</li>
+          <li>AI guesses at what "better" means</li>
+          <li>No way to tell if you hit $100,000</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>With scoping</h3>
+        <ul>
+          <li>Goal and win written down</li>
+          <li>Gaps named, with the question that closes each</li>
+          <li>Real bottleneck found on day one</li>
+          <li>A five-step plan, smallest step first</li>
+        </ul>
+      </div>
+    </div>
+    <p class="take">Scoping is the conversation that closes the gaps before anyone builds.</p>
+  </section>
+
+  <div class="bridge" id="skill">
+    <p class="s-label">Do This Yourself</p>
+    <h2>Get the scoping skill</h2>
+    <p>This is the skill I use to scope ideas like this one. Install it in Claude, then tell it what you want to build. It maps the real steps, the honest cost and the first move, and writes a one-page brief you can decide on and hand off.</p>
+    <div class="dl">
+      <a class="btn" href="/files/scope-and-brief.zip" download>↓ Download scope-and-brief.zip</a>
+      <a class="btn alt" href="/files/scope-and-brief-SKILL.md" download>↓ SKILL.md (raw)</a>
+    </div>
+    <p style="margin:18px 0 0;font-size:15px">To install: in Claude, go to <b>Customize</b>, then <b>Skills</b>, and upload the ZIP. Then start a new chat and say: <i>"Scope this with me: [your idea]."</i></p>
+  </div>
+
+  <footer>Michael Gardon · CHIEF AI Accelerator — rejoincoaching.com</footer>
+
+</div>
+</body>
+</html>
